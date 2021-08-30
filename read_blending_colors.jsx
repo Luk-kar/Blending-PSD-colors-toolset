@@ -1,24 +1,6 @@
 $.level = 0; // Debugging level, Level: 0 - No Break, 1 - Break, 2 - Immediate Break
 
-function doInvisible(items) {
-    for (var i = 0; i < items.length; i++) {
-        items[i].visible = false;
-    }
-}
-
-function doInvisibleLayers() {
-    var doc = app.activeDocument;
-    var notFolderLayers = doc.artLayers;
-
-    doInvisible(notFolderLayers)
-}
-
-function doInvisibleFolders() {
-    var doc = app.activeDocument;
-    var folders = doc.layerSets;
-
-    doInvisible(folders)
-}
+#include "./helpers/changeLayersFolderAttributes/prearrangeDocToProcess.jsx"
 
 function convertValueStringToInt(_unitValue) {
 
@@ -85,32 +67,6 @@ function doLayersVisible(layers) {
     for (var j = 0; j < layers.length; j++) {
         layers[j].visible = true;
     }
-}
-
-function doBlendingModesNormal(items) {
-    for (var i = 0; i < items.length; i++) {
-        items[i].blendMode = BlendMode.NORMAL;
-    }
-}
-
-function doBlendingModesNormalAllLayersInAllFolders(RGBfolders) {
-    for (var i = 0; i < RGBfolders.length; i++) {
-        var folderRGB = RGBfolders[i];
-        var layers = folderRGB.artLayers;
-        doBlendingModesNormal(layers);
-    }
-}
-
-function prearrangeDocToProcess(COLORSFolder, RGBfolders) {
-
-    doInvisibleLayers();
-    doInvisibleFolders();
-
-    COLORSFolder.visible = true;
-    COLORSFolder.blendMode = BlendMode.NORMAL;
-
-    doBlendingModesNormal(RGBfolders);
-    doBlendingModesNormalAllLayersInAllFolders(RGBfolders);
 }
 
 function getAllHexValues(RGBfolders) {

@@ -3,53 +3,7 @@ $.level = 0; // Debugging level, Level: 0 - No Break, 1 - Break, 2 - Immediate B
 #include "./helpers/changeLayersFolderAttributes/prearrangeDocToProcess.jsx"
 #include "./helpers/casting/convertValueStringToInt.jsx"
 #include "./helpers/checking/getLayerLeftUpperCornerColorHex.jsx"
-
-function writeValuesToCSV(HexColorValues) {
-
-    var text = "Group, R, G, B\n";
-
-    for (var i = 0; i < HexColorValues.length; i++) {
-        var flattenArray = [HexColorValues[i][0]].concat(HexColorValues[i][1]);
-        for (var j = 0; j < flattenArray.length; j++) {
-            text += flattenArray[j]
-            if (j + 1 < flattenArray.length) {
-                text += ", ";
-            } else {
-                text += "\n";
-            }
-        }
-    }
-
-    try {
-        var path = saveTxt(text);
-        return "You successfully saved values to " + path;
-
-    } catch (error) {
-        return error;
-    }
-}
-
-function saveTxt(string) {
-    var doc = app.activeDocument;
-    var name = doc.name.replace(/\.[^\.]+$/, '');
-    var ext = decodeURI(doc.name).replace(/^.*\./, '');
-    if (ext.toLowerCase() != 'psd')
-        return alert("document is not saved!\nSave document on disk first!");
-
-    var docPath = doc.path;
-    var scvPath = docPath + "/" + name + ".csv"
-    var saveFile = File(scvPath);
-
-    if (saveFile.exists)
-        saveFile.remove();
-
-    saveFile.encoding = "UTF8";
-    saveFile.open("e", "TEXT", "????");
-    saveFile.writeln(string);
-    saveFile.close();
-
-    return scvPath;
-}
+#include "./helpers/CSV/writeValuesToCSV"
 
 function main() {
     try {
@@ -90,4 +44,4 @@ function main() {
     app.open(File(docPath));
 }
 
-main();
+main();saveCSVsaveCSV

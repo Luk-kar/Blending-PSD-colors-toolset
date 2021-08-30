@@ -1,7 +1,7 @@
 #include "../checking/isLayerEmptyCheck.jsx"
 #include "./getLayerLeftUpperCornerColorHex.jsx"
 
-function getHexColorInLayers(layers) {
+function getHexColorInLayer(layers) {
     var RGBHexes = [];
 
     for (var j = 0; j < layers.length; j++) {

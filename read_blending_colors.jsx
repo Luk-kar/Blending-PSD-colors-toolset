@@ -2,7 +2,6 @@ $.level = 0; // Debugging level, Level: 0 - No Break, 1 - Break, 2 - Immediate B
 
 #include "./helpers/changeLayersFolderAttributes/prearrangeDocToProcess.jsx"
 #include "./helpers/casting/convertValueStringToInt.jsx"
-#include "./helpers/checking/getLayerLeftUpperCornerColorHex.jsx"
 #include "./helpers/CSV/writeValuesToCSV"
 
 function main() {

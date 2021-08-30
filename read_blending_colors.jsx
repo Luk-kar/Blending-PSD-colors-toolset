@@ -3,6 +3,7 @@ $.level = 0; // Debugging level, Level: 0 - No Break, 1 - Break, 2 - Immediate B
 #include "./helpers/changeLayersFolderAttributes/prearrangeDocToProcess.jsx"
 #include "./helpers/casting/convertValueStringToInt.jsx"
 #include "./helpers/CSV/writeValuesToCSV"
+#include "./UI/mainMenu.jsx"
 
 function main() {
     try {
@@ -10,6 +11,9 @@ function main() {
     } catch (error) {
         return alert("You do not have any opened file!")
     }
+
+    mainMenu();
+    return;
 
     try {
         var docPath = doc.fullName;

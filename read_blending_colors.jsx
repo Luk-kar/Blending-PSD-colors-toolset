@@ -1,13 +1,8 @@
 $.level = 0; // Debugging level, Level: 0 - No Break, 1 - Break, 2 - Immediate Break
 
 #include "./helpers/changeLayersFolderAttributes/prearrangeDocToProcess.jsx"
-
-function convertValueStringToInt(_unitValue) {
-
-    var string = _unitValue.toString();
-    var nonDecimal = /\D/g;
-    return string.replace(nonDecimal, '');
-}
+#include "./helpers/changeLayersFolderAttributes/doLayersVisible.jsx"
+#include "./helpers/casting/convertValueStringToInt.jsx"
 
 function leftUpperCornerColorBGSet(layer) {
 
@@ -61,12 +56,6 @@ function getHexColorInLayers(layers) {
     }
 
     return RGBHexes;
-}
-
-function doLayersVisible(layers) {
-    for (var j = 0; j < layers.length; j++) {
-        layers[j].visible = true;
-    }
 }
 
 function getAllHexValues(RGBfolders) {

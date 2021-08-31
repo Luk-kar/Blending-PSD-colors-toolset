@@ -20,6 +20,20 @@ function createCOLORSFolderTemplate() {
 
 }
 
+function create_folder_in(COLORSFolder, folders) {
+
+    var folders = [];
+    var foldersNames = ["1", "2"].reverse();
+
+    for (var i = 0; i < foldersNames.length; i++) {
+        var folder = COLORSFolder.layerSets.add();
+        folder.name = foldersNames[i];
+        folders.push(folder);
+    }
+
+    return setRightOrder(folders);
+}
+
 function create_RGB_layer_in(folders) {
 
     var layers = ["R", "G", "B"]
@@ -44,28 +58,6 @@ function create_RGB_layer_in(folders) {
     }
 }
 
-function create_folder_in(COLORSFolder, folders) {
-
-    var folders = [];
-    var foldersNames = ["1", "2"].reverse();
-
-    for (var i = 0; i < foldersNames.length; i++) {
-        var folder = COLORSFolder.layerSets.add();
-        folder.name = foldersNames[i];
-        folders.push(folder);
-    }
-
-    return setRightOrder(folders);
-}
-
-/**
- * When a layer or group is created in a PSD file, it gets always a higher hierarchy in the stack than a previously created one.
- * @param {Array} array - Array with any data types.
- */
-function setRightOrder(array) {
-    return array.reverse();
-}
-
 function create_colored_pixel(color) {
 
     var doc = app.activeDocument;
@@ -82,4 +74,12 @@ function create_colored_pixel(color) {
 
     selectedPixel.fill(colorToFill); //fills background layer with white.
     selectedPixel.deselect();
+}
+
+/**
+ * When a layer or group is created in a PSD file, it gets always a higher hierarchy in the stack than a previously created one.
+ * @param {Array} array - Array with any data types.
+ */
+function setRightOrder(array) {
+    return array.reverse();
 }

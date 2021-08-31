@@ -1,4 +1,5 @@
 #include "../eventHandlers/readColorFromLayers.jsx"
+#include "../eventHandlers/createCOLORSFolderTemplate.jsx"
 #include "./about.jsx"
 
 function mainMenu() {
@@ -8,6 +9,11 @@ function mainMenu() {
     var buttonReadColors = menu.add("button", [0,80,290,101], 'Read colors from layers');
     var buttonAbout = menu.add("button", [0,80,290,101], 'About');
     var buttonClose = menu.add("button", [0,80,290,101], 'Close');
+
+    buttonCOLORSFolder.onClick = function() {
+        createCOLORSFolderTemplate();
+        menu.close();
+    }
 
     buttonReadColors.onClick = function() {
         readColorFromLayers();

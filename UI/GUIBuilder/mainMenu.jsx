@@ -11,13 +11,13 @@ function mainMenu() {
     var buttonClose = menu.add("button", [0,80,290,101], 'Close');
 
     buttonCOLORSFolder.onClick = function() {
-        createCOLORSFolderTemplate();
         menu.close();
+        createCOLORSFolderTemplate();
     }
 
     buttonReadColors.onClick = function() {
-        readColorFromLayers();
         menu.close();
+        readColorFromLayers();
     }
 
     buttonAbout.onClick = function() {

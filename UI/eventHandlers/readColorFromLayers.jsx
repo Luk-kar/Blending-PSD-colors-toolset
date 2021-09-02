@@ -28,9 +28,11 @@ function readColorFromLayers() {
     
     var RGBfolders = COLORSFolder.layerSets;
 
-    prearrangeDocToProcess(COLORSFolder, RGBfolders);
+    var layersNames = ["R", "G", "B"];
 
-    var HexColorValues = getAllHexValues(RGBfolders);
+    prearrangeDocToProcess(COLORSFolder, RGBfolders, layersNames);
+
+    var HexColorValues = getAllHexValues(RGBfolders, layersNames);
 
     var promise = writeValuesToCSV(HexColorValues);
     alert(promise);

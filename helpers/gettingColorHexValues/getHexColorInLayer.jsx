@@ -1,18 +1,26 @@
 #include "../checking/isLayerEmptyCheck.jsx"
 #include "./getLayerLeftUpperCornerColorHex.jsx"
 
-function getHexColorInLayer(layers) {
+function getHexColorInLayer(layers, layersNames) {
     var RGBHexes = [];
 
-    for (var j = 0; j < layers.length; j++) {
+    for (var j = 0; j < layersNames.length; j++) {
 
-        if (isLayerEmptyCheck(layers[j])) {
+        try {
+            var validLayer = layers.getByName(layersNames[j]);
+        }
+        catch(e){
+            continue;
+        } 
+        
+
+        if (isLayerEmptyCheck(validLayer)) {
             RGBHexes.push("null");
             continue;
         }
 
-        RGBHexes.push(getLayerLeftUpperCornerColorHex(layers[j]));
-        layers[j].visible = false;
+        RGBHexes.push(getLayerLeftUpperCornerColorHex(validLayer));
+        validLayer.visible = false;
     }
 
     return RGBHexes;

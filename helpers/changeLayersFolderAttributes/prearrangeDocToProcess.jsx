@@ -3,7 +3,7 @@
 #include "./doBlendingModesNormal.jsx"
 #include "./doBlendingModesNormalAllLayersInAllFolders.jsx"
 
-function prearrangeDocToProcess(COLORSFolder, RGBfolders) {
+function prearrangeDocToProcess(COLORSFolder, RGBfolders, layersNames) {
 
     doInvisibleLayers();
     doInvisibleFolders();
@@ -12,5 +12,5 @@ function prearrangeDocToProcess(COLORSFolder, RGBfolders) {
     COLORSFolder.blendMode = BlendMode.NORMAL;
 
     doBlendingModesNormal(RGBfolders);
-    doBlendingModesNormalAllLayersInAllFolders(RGBfolders);
+    doBlendingModesNormalAllLayersInAllFolders(RGBfolders, layersNames);
 }

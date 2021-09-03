@@ -4,8 +4,6 @@
 
 function getHexColorInLayer(RBGLayers) {
 
-    alert(RBGLayers)
-
     for (var j = 0; j < RBGLayers.length; j++) {
 
         var layer = RBGLayers[j];

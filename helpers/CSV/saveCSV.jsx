@@ -1,19 +1,9 @@
-function getCSVpath() {
-    var doc = app.activeDocument;
-    var name = doc.name.replace(/\.[^\.]+$/, '');
-    var ext = decodeURI(doc.name).replace(/^.*\./, '');
-    if (ext.toLowerCase() != 'psd')
-        return alert("document is not saved!\nSave document on disk first!");
-
-    var docPath = doc.path;
-    var scvPath = docPath + "/" + name + ".csv";
-    return scvPath;
-}
+#include "./getCSVpath.jsx"
 
 function saveCSV(string) {
 
-    var scvPath = getCSVpath();
-    var saveFile = File(scvPath);
+    var csvPath = getCSVpath();
+    var saveFile = File(csvPath);
 
     if (saveFile.exists)
         saveFile.remove();
@@ -23,5 +13,5 @@ function saveCSV(string) {
     saveFile.writeln(string);
     saveFile.close();
 
-    return scvPath;
+    return csvPath;
 }

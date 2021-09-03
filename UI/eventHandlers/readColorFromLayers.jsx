@@ -1,6 +1,8 @@
 #include "../../helpers/changeLayersFolderAttributes/prearrangeDocToProcess.jsx"
 #include "../../helpers/CSV/writeValuesToCSV.jsx"
 #include "../../helpers/gettingColorHexValues/getAllHexValues.jsx"
+#include "../../helpers/CSV/writeCSVColumns.jsx"
+#include "../../helpers/CSV/getCSVpath.jsx"
 
 function readColorFromLayers() {
     try {
@@ -32,10 +34,11 @@ function readColorFromLayers() {
 
     prearrangeDocToProcess(COLORSFolder, RGBfolders, layersNames);
 
-    var HexColorValues = getAllHexValues(RGBfolders, layersNames);
+    writeCSVColumns(layersNames);
 
-    var promise = writeValuesToCSV(HexColorValues);
-    alert(promise);
+    getAllHexValues(RGBfolders, layersNames);
+
+    alert("You successfully saved values to " + getCSVpath());
 
     // reset file
     doc.close(SaveOptions.DONOTSAVECHANGES);

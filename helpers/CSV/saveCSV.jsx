@@ -1,5 +1,4 @@
-
-function saveCSV(string) {
+function getCSVpath() {
     var doc = app.activeDocument;
     var name = doc.name.replace(/\.[^\.]+$/, '');
     var ext = decodeURI(doc.name).replace(/^.*\./, '');
@@ -8,6 +7,12 @@ function saveCSV(string) {
 
     var docPath = doc.path;
     var scvPath = docPath + "/" + name + ".csv";
+    return scvPath;
+}
+
+function saveCSV(string) {
+
+    var scvPath = getCSVpath();
     var saveFile = File(scvPath);
 
     if (saveFile.exists)

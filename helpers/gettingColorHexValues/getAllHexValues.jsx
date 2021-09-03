@@ -1,5 +1,6 @@
 #include "../changeLayersFolderAttributes/doLayersVisible.jsx"
 #include "./getHexColorInLayer.jsx"
+#include "./getRGBLayers.jsx";
 
 function getAllHexValues(RGBfolders, layersNames) {
     var HexColorValues = [];
@@ -8,7 +9,8 @@ function getAllHexValues(RGBfolders, layersNames) {
         var folderRGB = RGBfolders[i];
         var layers = folderRGB.artLayers;
         doLayersVisible(layers);
-        HexColorValues.push([folderRGB.name, getHexColorInLayer(layers, layersNames)]);
+        var RBGLayers = getRGBLayers(layers, layersNames);
+        HexColorValues.push([folderRGB.name, getHexColorInLayer(RBGLayers)]);
     }
 
     return HexColorValues;

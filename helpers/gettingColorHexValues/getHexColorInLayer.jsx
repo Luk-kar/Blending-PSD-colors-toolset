@@ -4,23 +4,29 @@
 function getHexColorInLayer(layers, layersNames) {
     var RGBHexes = [];
 
-    for (var j = 0; j < layersNames.length; j++) {
+    var RBGLayers = [];
+    for (var i = 0; i < layersNames.length; i++) {
 
         try {
-            var validLayer = layers.getByName(layersNames[j]);
+            RBGLayers.push(layers.getByName(layersNames[i]));
         }
         catch(e){
             continue;
-        } 
-        
+        }
 
-        if (isLayerEmptyCheck(validLayer)) {
+    }
+
+    for (var j = 0; j < RBGLayers.length; j++) {
+
+        var layer = RBGLayers[j];
+
+        if (isLayerEmptyCheck(layer)) {
             RGBHexes.push("null");
             continue;
         }
 
-        RGBHexes.push(getLayerLeftUpperCornerColorHex(validLayer));
-        validLayer.visible = false;
+        RGBHexes.push(getLayerLeftUpperCornerColorHex(layer));
+        layer.visible = false;
     }
 
     return RGBHexes;

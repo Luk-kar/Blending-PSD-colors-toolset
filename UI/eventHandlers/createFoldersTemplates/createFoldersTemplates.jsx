@@ -5,6 +5,7 @@
 function createFoldersTemplates() {
 
     if(!isActiveDocument()) {
+        alert("You do not have any opened file!");
         return; //abort program
     }
     

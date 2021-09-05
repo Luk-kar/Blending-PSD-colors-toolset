@@ -1,12 +1,13 @@
 #include "../../../utils/checkIfHasItBlendingColorFolder.jsx";
+#include "../../../utils/isActiveDocument.jsx";
 
 function checkConditionToRunScript() {
-    
-    try {
-        var doc = app.activeDocument;
-    } catch (error) {
+
+    if(!isActiveDocument()) {
         return alert("You do not have any opened file!");
     }
+    
+    var doc = app.activeDocument;
 
     try {
         var docPath = doc.fullName;

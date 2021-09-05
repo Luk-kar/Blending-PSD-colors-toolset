@@ -1,5 +1,5 @@
 #include "../changeLayersFolderAttributes/doLayersVisible.jsx"
-#include "./writeCSVHexRGBLayers.jsx"
+#include "./writeCSVHexRGBLayersInFolder.jsx"
 #include "../gettingLayers/getRGBLayers.jsx";
 #include "../CSV/writeInCSVFile.jsx"
 
@@ -11,7 +11,7 @@ function writeCSVAllHexFoldersValues(RGBfolders, layersNames) {
         var RBGLayers = getRGBLayers(layers, layersNames);
         doLayersVisible(RBGLayers);
         writeInCSVFile(folderRGB.name + " ,") // writeinCSVFile
-        writeCSVHexRGBLayers(RBGLayers);
+        writeCSVHexRGBLayersInFolder(RBGLayers);
     }
 
 }

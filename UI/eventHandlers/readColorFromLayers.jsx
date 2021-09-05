@@ -50,4 +50,22 @@ function readColorFromLayers() {
     doc.close(SaveOptions.DONOTSAVECHANGES);
     // reload to stage before processing file
     app.open(File(docPath));
+
+    var openExplorer = confirm("Do you want to open explorer?", true);
+    if (openExplorer) {
+        revealFile(csvPath);
+    }
+}
+    
+function revealFile(filePath) {
+	if ( filePath instanceof File ) {
+		filePath = filePath.fsName;
+	}
+
+	var command = "open -R";
+	if ($.os.indexOf("Win") != -1) {
+		command = "Explorer /select,";
+	}
+	arg = "\"" + filePath + "\"";
+	return app.system(command + " " + arg);
 }

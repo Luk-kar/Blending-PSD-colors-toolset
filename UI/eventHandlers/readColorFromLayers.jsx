@@ -34,6 +34,12 @@ function readColorFromLayers() {
 
     prearrangeDocToProcess(COLORSFolder, RGBfolders, layersNames);
 
+    var csvPath = getCSVpath();
+    var saveFile = File(csvPath);
+
+    if (saveFile.exists)
+        saveFile.remove();
+
     writeCSVColumns(layersNames);
 
     getAllHexValues(RGBfolders, layersNames);

@@ -3,7 +3,7 @@
 #include "../gettingLayers/getRGBLayers.jsx";
 #include "../CSV/writeInCSVFile.jsx"
 
-function writeCSVAllHexValues(RGBfolders, layersNames) {
+function writeCSVAllHexFoldersValues(RGBfolders, layersNames) {
 
     for (var i = 0; i < RGBfolders.length; i++) {
         var folderRGB = RGBfolders[i];

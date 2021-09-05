@@ -1,5 +1,5 @@
 #include "./helpers/changeLayersFolderAttributes/prearrangeDocToProcess.jsx"
-#include "./helpers/gettingColorHexValues/writeCSVAllHexValues.jsx"
+#include "./helpers/gettingColorHexValues/writeCSVAllHexFoldersValues.jsx"
 #include "./helpers/CSV/writeCSVColumns.jsx"
 #include "./helpers/CSV/getCSVpath.jsx"
 #include "./helpers/checkingConditions/checkConditionToRunScript.jsx"
@@ -28,7 +28,7 @@ function readColorFromLayers() {
 
     writeCSVColumns(layersNames);
 
-    writeCSVAllHexValues(RGBfolders, layersNames);
+    writeCSVAllHexFoldersValues(RGBfolders, layersNames);
 
     alert("You successfully saved values to " + getCSVpath());
 

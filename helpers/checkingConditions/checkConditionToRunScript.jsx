@@ -1,4 +1,5 @@
 function checkConditionToRunScript() {
+    
     try {
         var doc = app.activeDocument;
     } catch (error) {
@@ -6,7 +7,7 @@ function checkConditionToRunScript() {
     }
 
     try {
-        var existingDocPath = doc.fullName;
+        var docPath = doc.fullName;
     } catch (error) {
         throw new Error("To make use of the script, save the document on a drive first.");
     }
@@ -17,10 +18,10 @@ function checkConditionToRunScript() {
         throw new Error("To make use of the script, save the document on a drive first.");
     }
 
-    var returned = {
-        docPath: existingDocPath,
-        COLORSFolder: existingCOLORSFolder,
-    };
+    var returned = {};
+    returned.existingDoc = doc;
+    returned.existingDocPath = docPath;
+    returned.existingCOLORSFolder = COLORSFolder;
 
     return returned;
 }

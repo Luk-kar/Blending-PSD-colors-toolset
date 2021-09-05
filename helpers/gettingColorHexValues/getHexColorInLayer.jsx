@@ -1,4 +1,4 @@
-#include "../checking/isLayerEmptyCheck.jsx";
+#include "../checkingConditions/isLayerEmptyCheck.jsx";
 #include "./getLayerLeftUpperCornerColorHex.jsx";
 #include "../CSV/writeInCSVFile.jsx"
 

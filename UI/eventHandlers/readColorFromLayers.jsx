@@ -3,35 +3,22 @@
 #include "../../helpers/gettingColorHexValues/getAllHexValues.jsx"
 #include "../../helpers/CSV/writeCSVColumns.jsx"
 #include "../../helpers/CSV/getCSVpath.jsx"
+#include "../../helpers/checkingConditions/checkConditionToRunScript.jsx"
 
 function readColorFromLayers() {
-    try {
-        var doc = app.activeDocument;
-    } catch (error) {
-        return alert("You do not have any opened file!")
-    }
 
-    try {
-        var docPath = doc.fullName;
-    } catch (error) {
-        return alert("To make use of the script, save the document on a drive first.");
-    }
+    var passedConditons = checkConditionToRunScript();
 
-    var saveFile = confirm("Do you want to save file? File will be closed without saving and reopen after executing script.", true, "Warning!");
-    if (saveFile) {
-        doc.save();
-    }
-
-    var COLORSFolder = doc.layerSets.getByName("COLORS");
-
-    if (!COLORSFolder) {
-        return alert('No "COLORS" folder in top hierarchy');
-    }
+    var doc = passedConditons.existingDoc;
+    var docPath = passedConditons.existingDocPath;
+    var COLORSFolder = passedConditons.existingCOLORSFolder;
     
+    makeSureIfSavedBeforeChangingFile();
+
     var RGBfolders = COLORSFolder.layerSets;
 
     var layersNames = ["R", "G", "B"];
-
+    
     prearrangeDocToProcess(COLORSFolder, RGBfolders, layersNames);
 
     var csvPath = getCSVpath();
@@ -51,13 +38,24 @@ function readColorFromLayers() {
     // reload to stage before processing file
     app.open(File(docPath));
 
+
     var openExplorer = confirm("Do you want to open explorer?", true);
     if (openExplorer) {
-        revealFile(csvPath);
+        revealFileInExplorer(csvPath);
+    }
+
+}
+
+function makeSureIfSavedBeforeChangingFile() {
+    var doc = app.activeDocument;
+
+    var saveFile = confirm("Do you want to save file? File will be closed without saving and reopen after executing script.", true, "Warning!")
+    if (saveFile) {
+        doc.save()
     }
 }
-    
-function revealFile(filePath) {
+
+function revealFileInExplorer(filePath) {
 	if ( filePath instanceof File ) {
 		filePath = filePath.fsName;
 	}

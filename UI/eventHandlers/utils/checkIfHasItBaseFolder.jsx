@@ -1,8 +1,8 @@
 #include "./checkIfThereIsTopFolder.jsx"
 
-function checkIfHasItBlendingColorFolder() {
+function checkIfHasItBaseFolder() {
 
-    var nameOfFolder = "COLORS";
+    var nameOfFolder = "BASE";
 
     return checkIfThereIsTopFolder(nameOfFolder);
 }

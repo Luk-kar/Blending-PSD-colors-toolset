@@ -1,25 +1,54 @@
 #include "../utils/checkIfHasItBlendingColorFolder.jsx"
+#include "../utils/checkIfHasItBaseFolder.jsx"
 
 function createFoldersTemplates() {
-    try {
-        var doc = app.activeDocument;
-    } catch (error) {
-        return alert("You do not have any opened file!")
+
+    if(!isActiveDocuments()) {
+        return; //abort program
     }
+    
+    createBASEFolderIfNoeExists();
+    
+    createCOLORFolderIfNoeExists();
+}
+
+function isActiveDocuments() {
+    if (app.documents.length != 0 ) {
+        return true;
+    } else {
+        alert("You do not have any opened file!");
+        return false;
+    }
+}
+
+function createCOLORFolderIfNoeExists() {
+    var doc = app.activeDocument;
 
     var hasItBlendingColorsFolder = checkIfHasItBlendingColorFolder();
     if (hasItBlendingColorsFolder) {
-        return alert('there is already "COLORS" folder in top hierarchy');
+        alert('There is already "COLORS" folder in top hierarchy');
+
+    } else {
+        var COLORSFolder = doc.layerSets.add();
+        COLORSFolder.name = "COLORS";
+
+        var folders = create_folder_in(COLORSFolder, folders);
+
+        create_RGB_layer_in(folders);
     }
+}
 
-    var COLORSFolder = doc.layerSets.add();
-    COLORSFolder.name = "COLORS";
+function createBASEFolderIfNoeExists() {
+    var doc = app.activeDocument;
 
-    
-    var folders = create_folder_in(COLORSFolder, folders);
+    var hasItBaseFolder = checkIfHasItBaseFolder();
+    if (hasItBaseFolder) {
+        alert('There is already "BASE" folder in top hierarchy');
 
-    create_RGB_layer_in(folders);
-
+    } else {
+        var BASEFolder = doc.layerSets.add();
+        BASEFolder.name = "BASE";
+    }
 }
 
 function create_folder_in(COLORSFolder, folders) {
@@ -33,10 +62,11 @@ function create_folder_in(COLORSFolder, folders) {
         folders.push(folder);
     }
 
-    folders;
+    return folders;
 }
 
 function create_RGB_layer_in(folders) {
+
 
     var layers = ["R", "G", "B"]
     var colors = [

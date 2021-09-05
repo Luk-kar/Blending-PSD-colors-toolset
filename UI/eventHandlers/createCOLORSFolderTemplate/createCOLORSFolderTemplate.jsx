@@ -7,7 +7,7 @@ function createCOLORSFolderTemplate() {
 
     var isCOLORSFolder = doc.layerSets.getByName("COLORS");
     if (isCOLORSFolder) {
-        alert('there is already "COLORS" folder in top hierarchy');
+        return alert('there is already "COLORS" folder in top hierarchy');
     }
 
     var COLORSFolder = doc.layerSets.add();

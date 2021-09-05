@@ -2,7 +2,7 @@
 #include "./getLayerLeftUpperCornerColorHex.jsx";
 #include "../CSV/writeInCSVFile.jsx"
 
-function getHexColorInLayer(RBGLayers) {
+function writeCSVHexRGBLayers(RBGLayers) {
 
     for (var j = 0; j < RBGLayers.length; j++) {
 

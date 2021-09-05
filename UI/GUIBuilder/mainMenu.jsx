@@ -1,5 +1,5 @@
-#include "../eventHandlers/readColorFromLayers.jsx"
-#include "../eventHandlers/createCOLORSFolderTemplate.jsx"
+#include "../eventHandlers/readColorFromLayers/readColorFromLayers.jsx"
+#include "../eventHandlers/createCOLORSFolderTemplate/createCOLORSFolderTemplate.jsx"
 #include "./about.jsx"
 
 function mainMenu() {

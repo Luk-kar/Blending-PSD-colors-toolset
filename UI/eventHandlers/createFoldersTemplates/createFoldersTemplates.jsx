@@ -1,24 +1,16 @@
 #include "../utils/checkIfHasItBlendingColorFolder.jsx"
 #include "../utils/checkIfHasItBaseFolder.jsx"
+#include "../utils/isActiveDocument.jsx"
 
 function createFoldersTemplates() {
 
-    if(!isActiveDocuments()) {
+    if(!isActiveDocument()) {
         return; //abort program
     }
     
     createBASEFolderIfNoeExists();
     
     createCOLORFolderIfNoeExists();
-}
-
-function isActiveDocuments() {
-    if (app.documents.length != 0 ) {
-        return true;
-    } else {
-        alert("You do not have any opened file!");
-        return false;
-    }
 }
 
 function createCOLORFolderIfNoeExists() {

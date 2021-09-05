@@ -1,5 +1,5 @@
 #include "../eventHandlers/readColorFromLayers/readColorFromLayers.jsx"
-#include "../eventHandlers/createCOLORSFolderTemplate/createCOLORSFolderTemplate.jsx"
+#include "../eventHandlers/createFoldersTemplates/createFoldersTemplates.jsx"
 #include "./about.jsx"
 
 function mainMenu() {
@@ -12,7 +12,7 @@ function mainMenu() {
 
     buttonCOLORSFolder.onClick = function() {
         menu.close();
-        createCOLORSFolderTemplate();
+        createFoldersTemplates();
     }
 
     buttonReadColors.onClick = function() {

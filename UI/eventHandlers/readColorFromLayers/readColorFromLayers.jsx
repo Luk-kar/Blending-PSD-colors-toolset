@@ -1,8 +1,10 @@
-#include "./helpers/changeLayersFolderAttributes/prearrangeDocToProcess.jsx"
-#include "./helpers/gettingColorHexValues/writeCSVAllHexFoldersValues.jsx"
-#include "./helpers/CSV/writeCSVColumns.jsx"
-#include "./helpers/CSV/getCSVpath.jsx"
 #include "./helpers/checkingConditions/checkConditionToRunScript.jsx"
+#include "./helpers/makeSureIfSavedBeforeChangingFile.jsx"
+#include "./helpers/changeLayersFolderAttributes/prearrangeDocToProcess.jsx"
+#include "./helpers/CSV/getCSVpath.jsx"
+#include "./helpers/CSV/writeCSVColumns.jsx"
+#include "./helpers/gettingColorHexValues/writeCSVAllHexFoldersValues.jsx"
+#include "./helpers/revealFileInExplorer.jsx"
 
 function readColorFromLayers() {
 
@@ -42,27 +44,4 @@ function readColorFromLayers() {
     if (openExplorer) {
         revealFileInExplorer(csvPath);
     }
-
-}
-
-function makeSureIfSavedBeforeChangingFile() {
-    var doc = app.activeDocument;
-
-    var saveFile = confirm("Do you want to save file? File will be closed without saving and reopen after executing script.", true, "Warning!")
-    if (saveFile) {
-        doc.save()
-    }
-}
-
-function revealFileInExplorer(filePath) {
-	if ( filePath instanceof File ) {
-		filePath = filePath.fsName;
-	}
-
-	var command = "open -R";
-	if ($.os.indexOf("Win") != -1) {
-		command = "Explorer /select,";
-	}
-	arg = "\"" + filePath + "\"";
-	return app.system(command + " " + arg);
 }

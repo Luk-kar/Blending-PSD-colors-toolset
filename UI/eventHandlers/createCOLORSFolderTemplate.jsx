@@ -31,7 +31,7 @@ function create_folder_in(COLORSFolder, folders) {
         folders.push(folder);
     }
 
-    return setRightOrder(folders);
+    folders;
 }
 
 function create_RGB_layer_in(folders) {
@@ -42,9 +42,6 @@ function create_RGB_layer_in(folders) {
         {red: 0, green: 255, blue: 0},
         {red: 0, green: 0, blue: 255},
     ]
-
-    setRightOrder(layers)
-    setRightOrder(colors)
 
     for (var i = 0; i < folders.length; i++) {
         for (var j = 0; j < layers.length; j++) {
@@ -74,12 +71,4 @@ function create_colored_pixel(color) {
 
     selectedPixel.fill(colorToFill); //fills background layer with white.
     selectedPixel.deselect();
-}
-
-/**
- * When a layer or group is created in a PSD file, it gets always a higher hierarchy in the stack than a previously created one.
- * @param {Array} array - Array with any data types.
- */
-function setRightOrder(array) {
-    return array.reverse();
 }

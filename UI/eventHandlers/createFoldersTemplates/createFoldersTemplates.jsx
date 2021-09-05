@@ -1,3 +1,5 @@
+#include "../utils/checkIfHasItBlendingColorFolder.jsx"
+
 function createFoldersTemplates() {
     try {
         var doc = app.activeDocument;
@@ -6,7 +8,6 @@ function createFoldersTemplates() {
     }
 
     var hasItBlendingColorsFolder = checkIfHasItBlendingColorFolder();
-
     if (hasItBlendingColorsFolder) {
         return alert('there is already "COLORS" folder in top hierarchy');
     }
@@ -19,21 +20,6 @@ function createFoldersTemplates() {
 
     create_RGB_layer_in(folders);
 
-}
-
-function checkIfHasItBlendingColorFolder() {
-    var doc = app.activeDocument;
-    var NameOffolderWithBlendingColors = "COLORS";
-
-    var topFoldersInPSD = doc.layerSets;
-    var hasItBlendingColorsFolder = false;
-
-    for (var i = 0; i < topFoldersInPSD.length; i++) {
-        if (topFoldersInPSD[i].name === NameOffolderWithBlendingColors) {
-            hasItBlendingColorsFolder = true;
-        }
-    }
-    return hasItBlendingColorsFolder;
 }
 
 function create_folder_in(COLORSFolder, folders) {

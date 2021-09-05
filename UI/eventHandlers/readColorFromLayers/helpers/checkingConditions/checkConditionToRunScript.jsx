@@ -1,3 +1,5 @@
+#include "../../../utils/checkIfHasItBlendingColorFolder.jsx";
+
 function checkConditionToRunScript() {
     
     try {
@@ -12,11 +14,11 @@ function checkConditionToRunScript() {
         return alert("To make use of the script, save the document on a drive first.");
     }
 
-    var COLORSFolder = doc.layerSets.getByName("COLORS");
-
-    if (!COLORSFolder) {
-        return alert("To make use of the script, save the document on a drive first.");
+    var hasItBlendingColorsFolder = checkIfHasItBlendingColorFolder();
+    if (!hasItBlendingColorsFolder) {
+        return alert('Warning! There is NO "COLORS" folder in top hierarchy!');
     }
+    var COLORSFolder = doc.layerSets.getByName("COLORS");
 
     var returned = {};
     returned.existingDoc = doc;

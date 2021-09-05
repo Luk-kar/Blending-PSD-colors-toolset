@@ -5,12 +5,12 @@
 function mainMenu() {
     var menu = new Window("dialog", "Read blending colors");
 
-    var buttonCOLORSFolder = menu.add("button", [0,80,290,101], 'Create template COLORS folder');
+    var buttonFoldersTemplates = menu.add("button", [0,80,290,101], 'Create folders templates');
     var buttonReadColors = menu.add("button", [0,80,290,101], 'Read colors from layers');
     var buttonAbout = menu.add("button", [0,80,290,101], 'About');
     var buttonClose = menu.add("button", [0,80,290,101], 'Close');
 
-    buttonCOLORSFolder.onClick = function() {
+    buttonFoldersTemplates.onClick = function() {
         menu.close();
         createFoldersTemplates();
     }

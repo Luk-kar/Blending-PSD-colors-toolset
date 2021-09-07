@@ -1,4 +1,4 @@
-#include "../utils/checkIfHasItBlendingColorFolder.jsx"
+#include "../../../utils/checkIfHasItBlendingColorFolder.jsx"
 #include "./createFolderIn.jsx"
 #include "./createRGBLayerIn.jsx"
 

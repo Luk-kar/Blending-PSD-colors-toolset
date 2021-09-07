@@ -1,7 +1,6 @@
 #include "../utils/isActiveDocument.jsx"
-#include "./createCOLORFolderIfNotExists.jsx"
-#include "./createBASEFolderIfNotExists.jsx"
-#include "./createCOLORFolderIfNotExists.jsx"
+#include "./helpers/createCOLORFolderIfNotExists/createCOLORFolderIfNotExists.jsx"
+#include "./helpers/createBASEFolderIfNotExists/createBASEFolderIfNotExists.jsx"
 
 function createFoldersTemplates() {
     

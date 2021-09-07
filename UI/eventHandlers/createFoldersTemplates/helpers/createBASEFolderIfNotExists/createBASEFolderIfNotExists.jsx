@@ -1,4 +1,4 @@
-#include "../utils/checkIfHasItBaseFolder.jsx"
+#include "../../../utils/checkIfHasItBaseFolder.jsx"
 
 function createBASEFolderIfNotExists() {
     var doc = app.activeDocument;

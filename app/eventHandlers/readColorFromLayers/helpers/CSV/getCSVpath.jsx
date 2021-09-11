@@ -5,7 +5,7 @@ function getCSVpath() {
     if (fileExt.toLowerCase() != 'psd')
         return alert("document is not saved!\nSave document on disk first!");
 
-    var docPath = doc.path;
-    var scvPath = docPath + "/" + fileName + ".csv";
+    var docFolderPath = doc.path;
+    var scvPath = docFolderPath + "/" + fileName + ".csv";
     return scvPath;
 }

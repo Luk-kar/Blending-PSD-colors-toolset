@@ -2,6 +2,7 @@
 #include "../utils/checkIfHasItBaseFolder.jsx"
 #include "../readColorFromLayers/helpers/changeLayersFolderAttributes/doInvisibleLayers.jsx"
 #include "../readColorFromLayers/helpers/changeLayersFolderAttributes/doInvisibleFolders.jsx"
+#include "../readColorFromLayers/helpers/checkingConditions/isLayerEmptyCheck.jsx"
 
 function BASELayersIntoPNGs() {
 
@@ -16,6 +17,7 @@ function BASELayersIntoPNGs() {
     }
 
     var doc = app.activeDocument;
+    var docPath = doc.fullName;
     var BASEFolder = doc.layerSets.getByName("BASE");
     var BASELayers = BASEFolder.artLayers;
 
@@ -25,6 +27,10 @@ function BASELayersIntoPNGs() {
     for (var i = BASELayers.length - 1; i >= 0; i--) {
 
         doc.activeLayer = BASELayers[i];
+
+        if(isLayerEmptyCheck(BASELayers[i])) {
+            continue;
+        }
 
         selectLayerPixels();
         copyLayer();
@@ -38,6 +44,14 @@ function BASELayersIntoPNGs() {
 
     copyFolder.visible =true;    
     var copiedLayers = copyFolder.artLayers;
+
+    var docName = getDocName();
+    var docFolder = doc.path;
+
+    var f = new Folder(docFolder + "/" + docName + "_BASE/");
+    if (!f.exists){
+        f.create();
+    }
 
     for (var i = copiedLayers.length - 1; i >= 0; i--) {
         var layer = copiedLayers[i];
@@ -53,13 +67,41 @@ function BASELayersIntoPNGs() {
             deleteCropped: false
         });
 
-        alert("Stop")
+        var docName = getDocName();
+        var layerName = layer.name;
+        var docFolder = doc.path;
+        var savePath = f + "/" + layerName + ".png"
+        var saveFile = File(savePath);
 
+        sfwPNG24(saveFile);
     }
 
-    // make all invisible
-    // make visible BASEFolder
-    // layersToFiles
+    doc.close(SaveOptions.DONOTSAVECHANGES);
+    app.open(File(docPath));
+
+    alert("succes")
+}
+
+function sfwPNG24(saveFile){
+
+    var pngOpts = new PNGSaveOptions;
+
+    pngOpts.compression = 9;
+
+    pngOpts.interlaced = false;
+
+    activeDocument.saveAs(saveFile, pngOpts, true, Extension.LOWERCASE);
+
+}
+
+function getFullDocPath() {
+    var doc = app.activeDocument;
+    return doc.fullName;
+}
+
+function getDocName() {
+    var doc = app.activeDocument;
+    return doc.name;
 }
 
 function crop(data)

@@ -3,6 +3,7 @@
 #include "../readColorFromLayers/helpers/changeLayersFolderAttributes/doInvisibleLayers.jsx"
 #include "../readColorFromLayers/helpers/changeLayersFolderAttributes/doInvisibleFolders.jsx"
 #include "../readColorFromLayers/helpers/checkingConditions/isLayerEmptyCheck.jsx"
+#include "../readColorFromLayers/helpers/revealFileInExplorer.jsx"
 
 function BASELayersIntoPNGs() {
 
@@ -24,6 +25,75 @@ function BASELayersIntoPNGs() {
     var copyFolder = doc.layerSets.add();
     copyFolder.name = "COPIED"
 
+    copyPixelAreasToFolder(BASELayers, copyFolder);
+
+    makeOnlyVisible(copyFolder);
+    var copiedLayers = copyFolder.artLayers;
+
+    var copiedLayersPNGsFolder = getFolderToSavePNGs();
+
+    saveLayersToPNGsInFolder(copiedLayers, copiedLayersPNGsFolder)
+
+    doc.close(SaveOptions.DONOTSAVECHANGES);
+    app.open(File(docPath));
+
+    alert("You saved PNGs to " + copiedLayersPNGsFolder);
+
+    var openExplorer = confirm("Do you want to open explorer?", true);
+    if (openExplorer) {
+        revealFileInExplorer(copiedLayersPNGsFolder);
+    }
+}
+
+function saveLayersToPNGsInFolder(layersToSave, folderPath) {
+
+    for (var i = layersToSave.length - 1; i >= 0; i--) {
+        var layer = layersToSave[i]
+        selectLayerPixels()
+
+        var LayerBounds = layer.bounds
+
+        crop({
+            left: LayerBounds[0],
+            top: LayerBounds[1],
+            right: LayerBounds[2],
+            bottom: LayerBounds[3],
+            deleteCropped: false
+        })
+
+        var layerName = layer.name
+        var savePath = folderPath + "/" + layerName + ".png"
+        var saveFile = File(savePath)
+
+        saveFilePNG24(saveFile)
+    }
+}
+
+function getFolderToSavePNGs() {
+
+    var doc = app.activeDocument;
+    var docName = getDocName()
+    var docFolder = doc.path
+
+    var copiedLayersPNGsFolder = new Folder(docFolder + "/" + docName + "_BASE/")
+    if (!copiedLayersPNGsFolder.exists) {
+        copiedLayersPNGsFolder.create()
+    }
+    return copiedLayersPNGsFolder;
+}
+
+function makeOnlyVisible(copyFolder) {
+
+    doInvisibleLayers()
+    doInvisibleFolders()
+
+    copyFolder.visible = true
+}
+
+function copyPixelAreasToFolder(BASELayers, copyFolder) {
+
+    var doc = app.activeDocument;
+    
     for (var i = BASELayers.length - 1; i >= 0; i--) {
 
         doc.activeLayer = BASELayers[i];
@@ -33,64 +103,23 @@ function BASELayersIntoPNGs() {
         }
 
         selectLayerPixels();
-        copyLayer();
+        copyPixelsDocArea();
 
         copyFolder.artLayers.add();
-        pasteLayer();
+        // it pastes into newly created layer
+        pastePixelsDocArea();
     }
-
-    doInvisibleLayers();
-    doInvisibleFolders();
-
-    copyFolder.visible =true;    
-    var copiedLayers = copyFolder.artLayers;
-
-    var docName = getDocName();
-    var docFolder = doc.path;
-
-    var f = new Folder(docFolder + "/" + docName + "_BASE/");
-    if (!f.exists){
-        f.create();
-    }
-
-    for (var i = copiedLayers.length - 1; i >= 0; i--) {
-        var layer = copiedLayers[i];
-        selectLayerPixels();
-
-        var LayerBounds = layer.bounds;
-
-        crop({
-            left: LayerBounds[0],
-            top: LayerBounds[1],
-            right: LayerBounds[2],
-            bottom: LayerBounds[3],
-            deleteCropped: false
-        });
-
-        var docName = getDocName();
-        var layerName = layer.name;
-        var docFolder = doc.path;
-        var savePath = f + "/" + layerName + ".png"
-        var saveFile = File(savePath);
-
-        sfwPNG24(saveFile);
-    }
-
-    doc.close(SaveOptions.DONOTSAVECHANGES);
-    app.open(File(docPath));
-
-    alert("succes")
 }
 
-function sfwPNG24(saveFile){
+function saveFilePNG24(saveFile){
 
-    var pngOpts = new PNGSaveOptions;
+    var PNGOptions = new PNGSaveOptions;
 
-    pngOpts.compression = 9;
+    PNGOptions.compression = 9;
 
-    pngOpts.interlaced = false;
+    PNGOptions.interlaced = false;
 
-    activeDocument.saveAs(saveFile, pngOpts, true, Extension.LOWERCASE);
+    activeDocument.saveAs(saveFile, PNGOptions, true, Extension.LOWERCASE);
 
 }
 
@@ -139,12 +168,12 @@ function selectLayerPixels() {
   executeAction( id710, desc168, DialogModes.NO );
 }
 
-function copyLayer() {
+function copyPixelsDocArea() {
     var idCpyM = charIDToTypeID( "CpyM" );
     executeAction( idCpyM, undefined, DialogModes.NO );
 }
 
-function pasteLayer() {
+function pastePixelsDocArea() {
 var idpast = charIDToTypeID( "past" );
     var desc6 = new ActionDescriptor();
     var idinPlace = stringIDToTypeID( "inPlace" );

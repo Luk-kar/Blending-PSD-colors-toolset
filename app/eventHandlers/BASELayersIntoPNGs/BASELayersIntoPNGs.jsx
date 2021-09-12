@@ -32,7 +32,7 @@ function BASELayersIntoPNGs() {
 
     var copiedLayersPNGsFolder = getFolderToSavePNGs();
 
-    saveLayersToPNGsInFolder(copiedLayers, copiedLayersPNGsFolder)
+    saveLayersToPNGsInFolder(copiedLayers, copiedLayersPNGsFolder);
 
     doc.close(SaveOptions.DONOTSAVECHANGES);
     app.open(File(docPath));
@@ -49,11 +49,11 @@ function saveLayersToPNGsInFolder(layersToSave, folderPath) {
 
     for (var i = layersToSave.length - 1; i >= 0; i--) {
 
-        var layer = layersToSave[i]
+        var layer = layersToSave[i];
 
-        selectLayerPixels()
+        selectLayerPixels();
 
-        var LayerBounds = layer.bounds
+        var LayerBounds = layer.bounds;
 
         crop({
             left: LayerBounds[0],
@@ -63,9 +63,9 @@ function saveLayersToPNGsInFolder(layersToSave, folderPath) {
             deleteCropped: false
         })
 
-        var saveFile = getSaveFilePath(layer, folderPath)
+        var saveFile = getSaveFilePath(layer, folderPath);
 
-        saveFilePNG24(saveFile);
+        saveFileToPNG24(saveFile);
     }
 }
 
@@ -143,7 +143,7 @@ function copyPixelAreasToFolder(BASELayers, copyFolder) {
     }
 }
 
-function saveFilePNG24(saveFile){
+function saveFileToPNG24(saveFile){
 
     var PNGOptions = new PNGSaveOptions;
 

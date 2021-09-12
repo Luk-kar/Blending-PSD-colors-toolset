@@ -1,5 +1,5 @@
-#include "../../../readColorFromLayers/helpers/changeLayersFolderAttributes/doInvisibleAllTopLayers.jsx"
-#include "../../../readColorFromLayers/helpers/changeLayersFolderAttributes/doInvisibleAllTopFolders.jsx"
+#include "../../../utils/doInvisibleAllTopLayers.jsx"
+#include "../../../utils/doInvisibleAllTopFolders.jsx"
 
 function makeOnlyVisible(copyFolder) {
 

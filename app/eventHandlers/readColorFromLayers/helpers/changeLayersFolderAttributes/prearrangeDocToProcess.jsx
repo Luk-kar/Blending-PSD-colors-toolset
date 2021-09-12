@@ -1,5 +1,5 @@
-#include "./doInvisibleAllTopFolders.jsx"
-#include "./doInvisibleAllTopLayers.jsx"
+#include "../../../utils/doInvisibleAllTopFolders.jsx"
+#include "../../../utils//doInvisibleAllTopLayers.jsx"
 #include "./doBlendingModesNormal.jsx"
 #include "./doBlendingModesNormalAllLayersInAllFolders.jsx"
 

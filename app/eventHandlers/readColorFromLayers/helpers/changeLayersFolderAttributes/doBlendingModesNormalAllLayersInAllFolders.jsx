@@ -6,7 +6,7 @@ function doBlendingModesNormalAllLayersInAllFolders(RGBfolders, layersNames) {
         var folderRGB = RGBfolders[i];
         var layersInFolder = folderRGB.artLayers;
 
-        var RGBLayers = getRGBLayers(RGBfolders, layersNames);
+        var RGBLayers = getRGBLayers(layersInFolder, layersNames);
 
         doBlendingModesNormal(RGBLayers);
     }

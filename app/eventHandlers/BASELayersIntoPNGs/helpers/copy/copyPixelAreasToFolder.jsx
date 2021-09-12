@@ -1,4 +1,4 @@
-#include "../../../readColorFromLayers/helpers/checkingConditions/isLayerEmptyCheck.jsx"
+#include "../../../utils/isLayerEmptyCheck.jsx"
 #include "../selection/selectLayerPixels.jsx"
 #include "../copy/copyPixelsDocArea.jsx"
 #include "../paste/pastePixelsDocArea.jsx"

@@ -1,6 +1,6 @@
 #include "./doInvisible.jsx"
 
-function doInvisibleFolders() {
+function doInvisibleAllTopFolders() {
     var doc = app.activeDocument;
     var folders = doc.layerSets;
 

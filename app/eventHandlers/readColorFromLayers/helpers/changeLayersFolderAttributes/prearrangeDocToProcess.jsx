@@ -1,12 +1,12 @@
-#include "./doInvisibleFolders.jsx"
-#include "./doInvisibleLayers.jsx"
+#include "./doInvisibleAllTopFolders.jsx"
+#include "./doInvisibleAllTopLayers.jsx"
 #include "./doBlendingModesNormal.jsx"
 #include "./doBlendingModesNormalAllLayersInAllFolders.jsx"
 
 function prearrangeDocToProcess(COLORSFolder, RGBfolders, layersNames) {
 
-    doInvisibleLayers();
-    doInvisibleFolders();
+    doInvisibleAllTopLayers();
+    doInvisibleAllTopFolders();
 
     COLORSFolder.visible = true;
     COLORSFolder.blendMode = BlendMode.NORMAL;

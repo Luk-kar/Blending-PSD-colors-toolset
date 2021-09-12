@@ -1,6 +1,6 @@
 #include "./doInvisible.jsx"
 
-function doInvisibleLayers() {
+function doInvisibleAllTopLayers() {
     var doc = app.activeDocument;
     var notFolderLayers = doc.artLayers;
 

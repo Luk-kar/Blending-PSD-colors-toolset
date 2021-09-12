@@ -1,7 +1,7 @@
 #include "../utils/isActiveDocument.jsx"
 #include "../utils/checkIfHasItBaseFolder.jsx"
-#include "../readColorFromLayers/helpers/changeLayersFolderAttributes/doInvisibleLayers.jsx"
-#include "../readColorFromLayers/helpers/changeLayersFolderAttributes/doInvisibleFolders.jsx"
+#include "../readColorFromLayers/helpers/changeLayersFolderAttributes/doInvisibleAllTopLayers.jsx"
+#include "../readColorFromLayers/helpers/changeLayersFolderAttributes/doInvisibleAllTopFolders.jsx"
 #include "../readColorFromLayers/helpers/checkingConditions/isLayerEmptyCheck.jsx"
 #include "../readColorFromLayers/helpers/revealFileInExplorer.jsx"
 
@@ -84,8 +84,8 @@ function getFolderToSavePNGs() {
 
 function makeOnlyVisible(copyFolder) {
 
-    doInvisibleLayers()
-    doInvisibleFolders()
+    doInvisibleAllTopLayers()
+    doInvisibleAllTopFolders()
 
     copyFolder.visible = true
 }

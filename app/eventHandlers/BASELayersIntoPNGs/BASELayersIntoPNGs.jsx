@@ -48,7 +48,9 @@ function BASELayersIntoPNGs() {
 function saveLayersToPNGsInFolder(layersToSave, folderPath) {
 
     for (var i = layersToSave.length - 1; i >= 0; i--) {
+
         var layer = layersToSave[i]
+
         selectLayerPixels()
 
         var LayerBounds = layer.bounds
@@ -61,25 +63,54 @@ function saveLayersToPNGsInFolder(layersToSave, folderPath) {
             deleteCropped: false
         })
 
-        var layerName = layer.name
-        var savePath = folderPath + "/" + layerName + ".png"
-        var saveFile = File(savePath)
+        var saveFile = getSaveFilePath(layer, folderPath)
 
-        saveFilePNG24(saveFile)
+        saveFilePNG24(saveFile);
+    }
+}
+
+function getSaveFilePath(layer, folderPath) {
+
+    var layerName = layer.name;
+    var savePath = folderPath + "/" + layerName + ".png";
+    var saveFile = File(savePath);
+    
+    incrementFileNameIfExists()
+    return saveFile;
+    
+    function incrementFileNameIfExists() {
+        var num = 0
+        while (saveFile.exists) {
+            num += 1
+            savePath = folderPath + "/" + layerName + "(" + num + ").png"
+            saveFile = File(savePath)
+        }
     }
 }
 
 function getFolderToSavePNGs() {
 
     var doc = app.activeDocument;
-    var docName = getDocName()
-    var docFolder = doc.path
+    var docName = getDocName();
+    var docFolder = doc.path;
 
-    var copiedLayersPNGsFolder = new Folder(docFolder + "/" + docName + "_BASE/")
-    if (!copiedLayersPNGsFolder.exists) {
-        copiedLayersPNGsFolder.create()
-    }
+    var newFolderPath = docFolder + "/" + docName + "_BASE/";
+    var copiedLayersPNGsFolder = new Folder(newFolderPath);
+
+    icrementFolderNameIfExists()
+
+    copiedLayersPNGsFolder.create();
+
     return copiedLayersPNGsFolder;
+
+    function icrementFolderNameIfExists() {
+        var num = 0
+        while (copiedLayersPNGsFolder.exists) {
+            num += 1
+            newFolderPath = docFolder + "/" + docName + "_BASE(" + num + ")/"
+            copiedLayersPNGsFolder = new Folder(newFolderPath)
+        }
+    }
 }
 
 function makeOnlyVisible(copyFolder) {
@@ -105,7 +136,8 @@ function copyPixelAreasToFolder(BASELayers, copyFolder) {
         selectLayerPixels();
         copyPixelsDocArea();
 
-        copyFolder.artLayers.add();
+        var newLayer = copyFolder.artLayers.add();
+        newLayer.name = BASELayers[i].name
         // it pastes into newly created layer
         pastePixelsDocArea();
     }

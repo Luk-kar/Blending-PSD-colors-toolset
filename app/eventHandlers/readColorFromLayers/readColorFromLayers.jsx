@@ -4,7 +4,7 @@
 #include "./helpers/CSV/getCSVpath.jsx"
 #include "./helpers/CSV/writeCSVColumns.jsx"
 #include "./helpers/gettingColorHexValues/writeCSVAllHexFoldersValues.jsx"
-#include "./helpers/revealFileInExplorer.jsx"
+#include "../utils/revealFileInExplorer.jsx"
 
 function readColorFromLayers() {
 

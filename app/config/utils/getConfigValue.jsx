@@ -12,6 +12,5 @@ function getConfigValue(searchedPhrase) {
 
     configFile.open("r");
 
-
     return getValueFromKey(searchedPhrase, configFile);
 }

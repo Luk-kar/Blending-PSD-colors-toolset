@@ -14,8 +14,8 @@ function createCOLORFolderIfNotExists() {
         var COLORSFolder = doc.layerSets.add();
         COLORSFolder.name = readColorFolderName();
 
-        var folders = createFolderIn(COLORSFolder, folders);
+        var folders = createFolderIn(COLORSFolder);
 
-        create_RGB_layer_in(folders);
+        createRGBLayerIn(folders);
     }
 }

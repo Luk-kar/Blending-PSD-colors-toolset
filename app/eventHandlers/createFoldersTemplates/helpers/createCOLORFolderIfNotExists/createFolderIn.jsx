@@ -1,4 +1,4 @@
-function createFolderIn(COLORSFolder, folders) {
+function createFolderIn(COLORSFolder) {
 
     var folders = [];
     var foldersNames = ["1"].reverse();

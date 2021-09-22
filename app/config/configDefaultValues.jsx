@@ -3,7 +3,8 @@ var configDefaultValues = {
         title: "FILE STRUCTURE",
         color_folder_name: {
             key: "color_folder_name",
-            value: "COLORS"
+            value: "COLORS",
+            foldersInIt: "1"
         },
         base_folder_name: {
             key: "base_folder_name",

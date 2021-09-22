@@ -7,5 +7,3 @@ function readColorFolderName() {
 
     return getConfigValue(searchedPhrase);
 }
-
-

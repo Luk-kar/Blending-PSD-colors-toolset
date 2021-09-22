@@ -6,6 +6,7 @@
 #include "./helpers/saveToPNGs/saveLayersToPNGsInFolder.jsx"
 #include "./helpers/saveToPNGs/saveLayersToPNGsInFolder.jsx"
 #include "../utils/revealFileInExplorer.jsx"
+#include "../../config/readBaseFolderName.jsx"
 
 function BASELayersIntoPNGs() {
 
@@ -21,7 +22,7 @@ function BASELayersIntoPNGs() {
 
     var doc = app.activeDocument;
     var docPath = doc.fullName;
-    var BASEFolder = doc.layerSets.getByName("BASE");
+    var BASEFolder = doc.layerSets.getByName(readBaseFolderName());
     var BASELayers = BASEFolder.artLayers;
 
     var copyFolder = doc.layerSets.add();

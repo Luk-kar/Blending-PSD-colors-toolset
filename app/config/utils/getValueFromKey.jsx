@@ -11,7 +11,7 @@ function getValueFromKey(key, FileIni) {
             var matichingLine = (lines[lineNumber]);
 
             const regex = /[^= ]*$/g;
-            var foundValue = matichingLine.match(regex);
+            var foundValue = matichingLine.match(regex).toString();
             return foundValue;
         }
 

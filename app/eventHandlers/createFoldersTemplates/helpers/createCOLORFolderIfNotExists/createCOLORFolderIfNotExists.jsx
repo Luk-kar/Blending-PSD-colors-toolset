@@ -12,7 +12,7 @@ function createCOLORFolderIfNotExists() {
 
     } else {
         var COLORSFolder = doc.layerSets.add();
-        COLORSFolder.name = "COLORS";
+        COLORSFolder.name = readColorFolderName();
 
         var folders = createFolderIn(COLORSFolder, folders);
 

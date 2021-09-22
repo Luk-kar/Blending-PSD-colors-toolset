@@ -10,6 +10,10 @@ function readColorFromLayers() {
 
     var passedConditons = checkConditionToRunScript();
 
+    if(!passedConditons) {
+        return // abort program
+    }
+
     var doc = passedConditons.existingDoc;
     var docPath = passedConditons.existingDocPath;
     var COLORSFolder = passedConditons.existingCOLORSFolder;

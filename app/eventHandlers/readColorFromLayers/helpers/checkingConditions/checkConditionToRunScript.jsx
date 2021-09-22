@@ -1,5 +1,6 @@
 #include "../../../utils/checkIfHasItBlendingColorFolder.jsx";
 #include "../../../utils/isActiveDocument.jsx";
+#include "../../../../config/readColorFolderName.jsx"
 
 function checkConditionToRunScript() {
 
@@ -17,9 +18,9 @@ function checkConditionToRunScript() {
 
     var hasItBlendingColorsFolder = checkIfHasItBlendingColorFolder();
     if (!hasItBlendingColorsFolder) {
-        return alert('Warning! There is NO "COLORS" folder in top hierarchy!');
+        return alert('Warning! There is NO "' + readColorFolderName() + '" folder in top hierarchy!');
     }
-    var COLORSFolder = doc.layerSets.getByName("COLORS");
+    var COLORSFolder = doc.layerSets.getByName(readColorFolderName());
 
     var returned = {};
     returned.existingDoc = doc;

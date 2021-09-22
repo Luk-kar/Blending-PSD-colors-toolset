@@ -7,6 +7,7 @@ function checkIfThereIsTopFolder(folderName) {
     for (var i = 0; i < topFoldersInPSD.length; i++) {
         if (topFoldersInPSD[i].name === folderName) {
             itHasFolder = true;
+            break;
         }
     }
     return itHasFolder;

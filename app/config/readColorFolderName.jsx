@@ -1,6 +1,35 @@
+$.level = 1; // Debugging level, Level: 0 - No Break, 1 - Break, 2 - Immediate Break
+
 var configDefaultValues = {
     fileStructure: {
-        color_folder_name: "color_folder_name = "
+        title: "FILE STRUCTURE",
+        color_folder_name: {
+            key: "color_folder_name",
+            value: "COLORS"
+        },
+        base_folder_name: {
+            key: "base_folder_name",
+            value: "BASE"
+        },
+        layers: {
+            key: "layers",
+            value: "R, G, B"
+        }
+    },
+    colorsRGB:{
+        title: "COLORS RGB",
+        R: {
+            key: "0",
+            value: "255, 0, 0"
+        },
+        G: {
+            key: "1",
+            value: "0, 255, 0"
+        },
+        B: {
+            key: "2",
+            value: "0, 0, 255"
+        }
     }
 }
 
@@ -8,7 +37,7 @@ alert(readColorFolderName());
 
 function readColorFolderName() {
 
-    var searchedPhrase = configDefaultValues.fileStructure.color_folder_name;
+    var searchedPhrase = configDefaultValues.fileStructure.color_folder_name.key;
 
     return getConfigValue(searchedPhrase);
 }
@@ -49,15 +78,18 @@ function getValueFromKey(key, FileIni) {
 }
 
 function createConfigFile() {
+
+    var configFile = getConfigFile();
+
     var configDefaultText = "" +
-        "[FILE STRUCTURE]\n" +
-        "color_folder_name = COLORS\n" +
-        "base_folder_name = BASE\n" +
-        "layers = R, G, B\n" +
-        "[COLORS RGB]\n" +
-        "0 = 255, 0, 0\n" +
-        "1 = 0, 255, 0\n" +
-        "2 = 0, 0, 255";
+        "["+ configDefaultValues.fileStructure.title + "]\n" +
+        configDefaultValues.fileStructure.color_folder_name.key + " = " + configDefaultValues.fileStructure.color_folder_name.value + "\n" +
+        configDefaultValues.fileStructure.base_folder_name.key + " = " + configDefaultValues.fileStructure.base_folder_name.value + "\n" +
+        configDefaultValues.fileStructure.layers.key + " = " + configDefaultValues.fileStructure.layers.value + "\n" +
+        "[" + configDefaultValues.colorsRGB.title + "]\n" +
+        configDefaultValues.colorsRGB.R.key + " = " + configDefaultValues.colorsRGB.R.value + "\n" +
+        configDefaultValues.colorsRGB.G.key + " = " + configDefaultValues.colorsRGB.G.value + "\n" +
+        configDefaultValues.colorsRGB.B.key + " = " + configDefaultValues.colorsRGB.B.value + "\n";
 
     configFile.open("w");
     configFile.write(configDefaultText);

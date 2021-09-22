@@ -1,4 +1,19 @@
+var configDefaultValues = {
+    fileStructure: {
+        color_folder_name: "color_folder_name = "
+    }
+}
+
+alert(readColorFolderName());
+
 function readColorFolderName() {
+
+    var searchedPhrase = configDefaultValues.fileStructure.color_folder_name;
+
+    return getConfigValue(searchedPhrase);
+}
+
+function getConfigValue(searchedPhrase) {
 
     var configFile = getConfigFile();
 
@@ -8,12 +23,9 @@ function readColorFolderName() {
 
     configFile.open("r");
 
-    var searchedPhrase = "color_folder_name = ";
 
     return getValueFromKey(searchedPhrase, configFile);
 }
-
-alert(readColorFolderName());
 
 function getValueFromKey(key, FileIni) {
 

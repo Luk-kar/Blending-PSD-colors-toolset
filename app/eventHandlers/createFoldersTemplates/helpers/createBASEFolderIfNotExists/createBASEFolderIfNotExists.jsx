@@ -1,14 +1,15 @@
 #include "../../../utils/checkIfHasItBaseFolder.jsx"
+#include "../../../../config/readBaseFolderName.jsx"
 
 function createBASEFolderIfNotExists() {
     var doc = app.activeDocument;
 
     var hasItBaseFolder = checkIfHasItBaseFolder();
     if (hasItBaseFolder) {
-        alert('There is already "BASE" folder in top hierarchy');
+        alert('There is already "' + readBaseFolderName() + '" folder in top hierarchy');
 
     } else {
         var BASEFolder = doc.layerSets.add();
-        BASEFolder.name = "BASE";
+        BASEFolder.name = readBaseFolderName();
     }
 }

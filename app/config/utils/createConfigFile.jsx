@@ -1,4 +1,4 @@
-#inlcude "./getConfigFile.jsx"
+#include "./getConfigFile.jsx"
 
 function createConfigFile() {
 

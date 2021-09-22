@@ -1,6 +1,7 @@
 function getConfigPath() {
     var configFileName = "config.ini";
+    var root = (new File($.fileName)).parent.parent.parent.toString().replace(/\\/g, '/') + "/";
 
-    var congiFilePath = ((new File($.fileName)).parent.parent.parent).toString().replace(/\\/g, '/') + "/" + configFileName;
+    var congiFilePath = root + configFileName;
     return congiFilePath;
 }

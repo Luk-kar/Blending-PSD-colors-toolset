@@ -1,3 +1,5 @@
+#include "./getConfigPath.jsx"
+
 function getConfigFile() {
     var configFilePath = getConfigPath();
 

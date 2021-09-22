@@ -1,3 +1,7 @@
+#include "./getConfigFile.jsx"
+#include "./createConfigFile.jsx"
+#include "./getValueFromKey.jsx"
+
 function getConfigValue(searchedPhrase) {
 
     var configFile = getConfigFile();

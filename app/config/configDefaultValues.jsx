@@ -25,15 +25,15 @@ var configDefaultValues = {
     colorsRGB: {
         title: "COLORS RGB",
         R: {
-            key: "red",
+            key: "R",
             value: "255, 0, 0"
         },
         G: {
-            key: "green",
+            key: "G",
             value: "0, 255, 0"
         },
         B: {
-            key: "blue",
+            key: "B",
             value: "0, 0, 255"
         }
     }

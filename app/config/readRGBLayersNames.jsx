@@ -1,9 +1,21 @@
 #include "./utils/getConfigValue.jsx"
 #include "./configDefaultValues.jsx"
 
-function readColorFolderName() {
+function readRGBLayersNames() {
 
-    var searchedPhrase = configDefaultValues.fileStructure.color_folder.name.key;
+    var R = {
+        key: getConfigValue(configDefaultValues.fileStructure.colorsRGB.R.key),
+    };
 
-    return getConfigValue(searchedPhrase);
+    var G = {
+        key: getConfigValue(configDefaultValues.fileStructure.colorsRGB.G.key),
+    }
+
+    var B = {
+        key: getConfigValue(configDefaultValues.fileStructure.colorsRGB.B.key),
+    }
+
+
+    var layersNames = [R.key, G.key, B.key];
+    return layersNames;
 }

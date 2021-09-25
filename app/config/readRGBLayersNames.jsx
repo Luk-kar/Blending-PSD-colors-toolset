@@ -4,15 +4,15 @@
 function readRGBLayersNames() {
 
     var R = {
-        key: getConfigValue(configDefaultValues.fileStructure.colorsRGB.R.key),
+        key: configDefaultValues.colorsRGB.R.key,
     };
 
     var G = {
-        key: getConfigValue(configDefaultValues.fileStructure.colorsRGB.G.key),
+        key: configDefaultValues.colorsRGB.G.key,
     }
 
     var B = {
-        key: getConfigValue(configDefaultValues.fileStructure.colorsRGB.B.key),
+        key: configDefaultValues.colorsRGB.B.key,
     }
 
 

@@ -7,11 +7,11 @@ function getValueFromKey(key, FileIni) {
 
         lines[lineNumber] = FileIni.readln();
 
-        if (lines[lineNumber].search(key) != -1) {
+        if (lines[lineNumber].search(key) === 0) {
             var matichingLine = (lines[lineNumber]);
 
-            const regex = /[^= ]*$/g;
-            var foundValue = matichingLine.match(regex).toString();
+            const regex = / \= (.*)/g; // https://regex101.com/r/n91i7K/1
+            var foundValue = matichingLine.match(regex).toString().substring(3);
             return foundValue;
         }
 

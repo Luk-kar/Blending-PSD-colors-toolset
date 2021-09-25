@@ -3,7 +3,7 @@
 
 function readBaseFolderName() {
 
-    var searchedPhrase = configDefaultValues.fileStructure.base_folder_name.key;
+    var searchedPhrase = configDefaultValues.fileStructure.base_folder.name.key;
 
     return getConfigValue(searchedPhrase);
 }

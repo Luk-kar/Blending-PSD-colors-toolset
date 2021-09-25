@@ -1,7 +1,7 @@
 #include "../../../utils/checkIfHasItBlendingColorFolder.jsx"
 #include "./createFolderIn.jsx"
 #include "./createRGBLayerIn.jsx"
-#include "../../../../config/readColorFolderName.jsx"
+#include "../../../../config/read/readColorFolderName.jsx"
 
 function createCOLORFolderIfNotExists() {
     var doc = app.activeDocument;

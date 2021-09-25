@@ -6,7 +6,7 @@
 #include "./helpers/saveToPNGs/saveLayersToPNGsInFolder.jsx"
 #include "./helpers/saveToPNGs/saveLayersToPNGsInFolder.jsx"
 #include "../utils/revealFileInExplorer.jsx"
-#include "../../config/readBaseFolderName.jsx"
+#include "../../config/read/readBaseFolderName.jsx"
 
 function BASELayersIntoPNGs() {
 

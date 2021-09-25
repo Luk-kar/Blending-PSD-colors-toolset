@@ -1,4 +1,4 @@
-#include "../../../../config/readFoldersInColorFolder.jsx"
+#include "../../../../config/read/readFoldersInColorFolder.jsx"
 
 function createFolderIn(COLORSFolder) {
 

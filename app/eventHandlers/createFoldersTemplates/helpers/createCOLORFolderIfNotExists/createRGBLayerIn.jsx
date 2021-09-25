@@ -1,6 +1,6 @@
 #include "./createColoredPixel.jsx"
-#include "../../../../config/readRGBLayersNames.jsx"
-#include "../../../../config/readColorsRGB.jsx"
+#include "../../../../config/read/readRGBLayersNames.jsx"
+#include "../../../../config/read/readColorsRGB.jsx"
 
 function createRGBLayerIn(folders) {
 

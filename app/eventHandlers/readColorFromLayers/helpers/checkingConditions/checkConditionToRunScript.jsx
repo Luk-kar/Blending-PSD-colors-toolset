@@ -1,6 +1,6 @@
 #include "../../../utils/checkIfHasItBlendingColorFolder.jsx";
 #include "../../../utils/isActiveDocument.jsx";
-#include "../../../../config/readColorFolderName.jsx"
+#include "../../../../config/read/readColorFolderName.jsx"
 
 function checkConditionToRunScript() {
 

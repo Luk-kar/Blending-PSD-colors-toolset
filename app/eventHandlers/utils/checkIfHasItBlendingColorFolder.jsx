@@ -1,5 +1,5 @@
 #include "./checkIfThereIsTopFolder.jsx"
-#include "../../config/readColorFolderName.jsx"
+#include "../../config/read/readColorFolderName.jsx"
 
 function checkIfHasItBlendingColorFolder() {
 

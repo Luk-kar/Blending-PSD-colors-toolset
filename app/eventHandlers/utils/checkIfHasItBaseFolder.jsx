@@ -1,5 +1,5 @@
 #include "./checkIfThereIsTopFolder.jsx"
-#include "../../config/readBaseFolderName.jsx"
+#include "../../config/read/readBaseFolderName.jsx"
 
 function checkIfHasItBaseFolder() {
 

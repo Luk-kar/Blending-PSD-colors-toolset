@@ -1,5 +1,5 @@
 #include "../../../utils/checkIfHasItBaseFolder.jsx"
-#include "../../../../config/readBaseFolderName.jsx"
+#include "../../../../config/read/readBaseFolderName.jsx"
 
 function createBASEFolderIfNotExists() {
     var doc = app.activeDocument;

@@ -1,14 +1,11 @@
 #include "./createColoredPixel.jsx"
 #include "../../../../config/readRGBLayersNames.jsx"
+#include "../../../../config/readColorsRGB.jsx"
 
 function createRGBLayerIn(folders) {
 
     var layers = readRGBLayersNames();
-    var colors = [
-        { red: 255, green: 0, blue: 0 },
-        { red: 0, green: 255, blue: 0 },
-        { red: 0, green: 0, blue: 255 },
-    ];
+    var colors = readColorsRGB();
 
     for (var i = 0; i < folders.length; i++) {
         for (var j = 0; j < layers.length; j++) {

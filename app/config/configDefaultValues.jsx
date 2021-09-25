@@ -6,12 +6,12 @@ var configDefaultValues = {
                 key: "color_folder_name",
                 value: "COLORS"
             },
-            foldersInIt: {
+            folders: {
                 key: "folders_in_it",
                 value: "1"
             },
             layers: {
-                key: "layers",
+                key: "layers_in_it",
                 value: "R, G, B"
             }
         },

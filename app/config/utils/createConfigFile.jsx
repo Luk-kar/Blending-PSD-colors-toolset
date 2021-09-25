@@ -13,7 +13,7 @@ function createConfigFile() {
     var configDefaultText = "" +
         "[" + configDefaultValues.fileStructure.title + "]\n" +
         color_folder.name.key + _ + color_folder.name.value + "\n" +
-        color_folder.foldersInIt.key + _ + color_folder.foldersInIt.value + "\n" +
+        color_folder.folders.key + _ + color_folder.folders.value + "\n" +
         color_folder.layers.key + _ + color_folder.layers.value + "\n" +
         base_folder.name.key + _ + base_folder.name.value + "\n" +
         "[" + configDefaultValues.colorsRGB.title + "]\n" +

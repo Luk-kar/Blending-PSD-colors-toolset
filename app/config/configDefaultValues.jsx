@@ -1,6 +1,9 @@
+
+
 var configDefaultValues = {
     fileStructure: {
         title: "FILE STRUCTURE",
+        header_0: "groups",
         color_folder: {
             name: {
                 key: "color_folder_name",
@@ -12,7 +15,7 @@ var configDefaultValues = {
             },
             layers: {
                 key: "layers_in_it",
-                value: "R, G, B"
+                value: "R,G,B"
             }
         },
         base_folder: {
@@ -26,15 +29,15 @@ var configDefaultValues = {
         title: "COLORS RGB",
         R: {
             key: "R",
-            value: "255, 0, 0"
+            value: "255,0,0"
         },
         G: {
             key: "G",
-            value: "0, 255, 0"
+            value: "0,255,0"
         },
         B: {
             key: "B",
-            value: "0, 0, 255"
+            value: "0,0,255"
         }
     }
 };

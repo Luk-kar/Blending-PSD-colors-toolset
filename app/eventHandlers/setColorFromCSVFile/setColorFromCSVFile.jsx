@@ -1,5 +1,6 @@
 #include "../utils/isActiveDocument.jsx"
 #include "../utils/checkIfHasItBlendingColorFolder.jsx"
+#include "../../config/configDefaultValues.jsx"
 
 function setColorFromCSVFile() {
 
@@ -13,33 +14,7 @@ function setColorFromCSVFile() {
         return; //abort program
     }
 
-    var CSV = File.openDialog("Select csv file", "*.csv", false);
-
-    var lines = [];
-    var lineNumber = 0;
-
-    CSV.open("r");
-
-    var header ="groups, R ,G ,B ,";
-
-    while (!CSV.eof) {
-
-        var line = CSV.readln();
-        
-
-        if (line !== header) {
-            lines[lineNumber] = line
-            lineNumber++;
-        }
-    }
-
-    // check if CSV is not corrupted
-
-    // check if there is enough folders
-
-    // check if there are all layers
-
-    CSV.close();
+    var lines = getRGBColorsAndFolderNames();
 
     var doc = app.activeDocument;
     app.displayDialogs = DialogModes.ALL // is needed to selection.fill works
@@ -51,9 +26,10 @@ function setColorFromCSVFile() {
     var colorLayersNames = ["R", "G", "B"];
 
     for (var i =0; i < lines.length; i++) {
-        var elements = lines[i].split(",")
+        var elements = lines[i]
 
-        var folderName = elements[0].slice(0, -1);
+        var folderName = elements[0]
+        alert(folderName)
         var foundFolder = FoldersInCOLORS.getByName(folderName);
 
         for (var j=0; j < colorLayersNames.length; j++) {
@@ -63,13 +39,47 @@ function setColorFromCSVFile() {
             doc.selection.selectAll();
 
             var myColor = new SolidColor();
-            myColor.rgb.hexValue = elements[j + 1].replace(/\n|\r|\s/g, ""); // last char is /n
+            myColor.rgb.hexValue = elements[j + 1]; // last char is /n
             doc.selection.fill(myColor)
 
             doc.selection.deselect();
             colorLayer.transparentPixelsLocked = false;
         }
     }
+}
+
+function getRGBColorsAndFolderNames() {
+
+    var CSV = File.openDialog("Select csv file", "*.csv", false);
+
+    var lines = [];
+    var lineNumber = 0;
+
+    CSV.open("r");
+
+    var header_0 = configDefaultValues.fileStructure.header_0;
+    var layers = configDefaultValues.fileStructure.color_folder.layers.value
+
+    var columns = header_0 + "," + layers;
+    alert(columns)
+
+    while (!CSV.eof) {
+
+        var line = CSV.readln();
+        alert(line)
+
+
+        if (line !== columns) {
+            lines[lineNumber] = line.replace(/\n|\r|\s/g, "").split(",");
+            lineNumber++;
+        }
+    }
+
+    // check if CSV is not corrupted
+    // check if there is enough folders
+    // check if there are all layers
+    CSV.close();
+    return lines;
 }
 
 function selectLayerPixels() {

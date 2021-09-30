@@ -9,11 +9,11 @@ function writeCSVHexRGBLayersInFolder(RBGLayers) {
         var layer = RBGLayers[j];
 
         if (isLayerEmptyCheck(layer)) {
-            writeInCSVFile("null ,");
+            writeInCSVFile("null,");
             continue;
         }
 
-        writeInCSVFile(getLayerLeftUpperCornerColorHex(layer) + " ,");
+        writeInCSVFile(getLayerLeftUpperCornerColorHex(layer) + ",");
         layer.visible = false;
     }
 

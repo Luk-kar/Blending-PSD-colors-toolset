@@ -23,13 +23,12 @@ function setColorFromCSVFile() {
 
     var FoldersInCOLORS = COLORSFolder.layerSets;
 
-    var colorLayersNames = ["R", "G", "B"];
+    var colorLayersNames = ["R", "G", "B"]; // todo
 
     for (var i =0; i < lines.length; i++) {
         var elements = lines[i]
 
         var folderName = elements[0]
-        alert(folderName)
         var foundFolder = FoldersInCOLORS.getByName(folderName);
 
         for (var j=0; j < colorLayersNames.length; j++) {
@@ -39,13 +38,15 @@ function setColorFromCSVFile() {
             doc.selection.selectAll();
 
             var myColor = new SolidColor();
-            myColor.rgb.hexValue = elements[j + 1]; // last char is /n
+            myColor.rgb.hexValue = elements[j + 1];
             doc.selection.fill(myColor)
 
             doc.selection.deselect();
             colorLayer.transparentPixelsLocked = false;
         }
     }
+
+    alert("You succesfully set all colors from columns from CSV file")
 }
 
 function getRGBColorsAndFolderNames() {
@@ -61,16 +62,13 @@ function getRGBColorsAndFolderNames() {
     var layers = configDefaultValues.fileStructure.color_folder.layers.value
 
     var columns = header_0 + "," + layers;
-    alert(columns)
 
     while (!CSV.eof) {
 
         var line = CSV.readln();
-        alert(line)
-
 
         if (line !== columns) {
-            lines[lineNumber] = line.replace(/\n|\r|\s/g, "").split(",");
+            lines[lineNumber] = line.split(",");
             lineNumber++;
         }
     }

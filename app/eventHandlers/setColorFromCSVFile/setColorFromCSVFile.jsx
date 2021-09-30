@@ -14,7 +14,9 @@ function setColorFromCSVFile() {
         return; //abort program
     }
 
-    var lines = getRGBColorsAndFolderNames();
+    var CSV = File.openDialog("Select csv file", "*.csv", false);
+
+    var lines = getRGBColorsAndFolderNames(CSV);
 
     var doc = app.activeDocument;
     app.displayDialogs = DialogModes.ALL // is needed to selection.fill works
@@ -46,12 +48,10 @@ function setColorFromCSVFile() {
         }
     }
 
-    alert("You succesfully set all colors from columns from CSV file")
+    alert("You succesfully set all colors from columns from CSV file:\n" + CSV.toString())
 }
 
-function getRGBColorsAndFolderNames() {
-
-    var CSV = File.openDialog("Select csv file", "*.csv", false);
+function getRGBColorsAndFolderNames(CSV) {
 
     var lines = [];
     var lineNumber = 0;

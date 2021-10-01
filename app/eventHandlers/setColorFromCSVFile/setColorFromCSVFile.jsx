@@ -1,6 +1,7 @@
 #include "../utils/isActiveDocument.jsx"
 #include "../utils/checkIfHasItBlendingColorFolder.jsx"
 #include "../../config/configDefaultValues.jsx"
+#include "../../config/read/readRGBLayersNames.jsx"
 
 function setColorFromCSVFile() {
 
@@ -25,7 +26,7 @@ function setColorFromCSVFile() {
 
     var FoldersInCOLORS = COLORSFolder.layerSets;
 
-    var colorLayersNames = ["R", "G", "B"]; // todo
+    var colorLayersNames = readRGBLayersNames();
 
     for (var i =0; i < lines.length; i++) {
         var elements = lines[i]

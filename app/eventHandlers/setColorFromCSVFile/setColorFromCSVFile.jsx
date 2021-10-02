@@ -31,34 +31,38 @@ function setColorFromCSVFile() {
 
 function setColorsToLayers(COLORSGroups) {
 
-    var doc = app.activeDocument;
-
-    var FoldersInCOLORS = getFoldersInCOLORS()
-
-    var colorsLayersNames = readRGBLayersNames()
-
-    get_selection_fill_to_work()
+    setOptionsToSelectionFillToWork()
 
     for (var i = 0; i < COLORSGroups.length; i++) {
 
         var COLORGroup = COLORSGroups[i]
 
-        var folderCOLOR = getFolderCOLOR(COLORGroup, FoldersInCOLORS)
+        setColorsInLayers(COLORGroup)
+    }
+}
 
-        for (var j = 0; j < colorsLayersNames.length; j++) {
+function setColorsInLayers(COLORGroup) {
 
-            var colorLayer = getCOLORLayer(folderCOLOR, colorsLayersNames[j])
-            doc.activeLayer = colorLayer
+    var doc = app.activeDocument;
 
-            var myColor = getColorTofill(COLORGroup[j + 1])
-            // to fill only non-transparent pixels
-            colorLayer.transparentPixelsLocked = true
-            doc.selection.selectAll()
-            doc.selection.fill(myColor)
+    var folderName = COLORGroup[0];
+    var folderLayers = COLORGroup.slice(1, COLORGroup.length);
+    var foldersInCOLORS = getFoldersInCOLORS()
+    var folderCOLOR = getFolderCOLOR(folderName, foldersInCOLORS)
+    var colorsLayersNames = readRGBLayersNames()
 
-            // clean up selection
-            doc.selection.deselect()
-        }
+    for (var j = 0; j < colorsLayersNames.length; j++) {
+
+        var colorLayer = getCOLORLayer(folderCOLOR, colorsLayersNames[j])
+        doc.activeLayer = colorLayer
+
+        var myColor = getColorTofill(folderLayers[j])
+        colorLayer.transparentPixelsLocked = true // to fill only non-transparent pixels
+        doc.selection.selectAll()
+        doc.selection.fill(myColor)
+
+        // clean up selection
+        doc.selection.deselect()
     }
 }
 
@@ -73,10 +77,8 @@ function getFoldersInCOLORS() {
     return COLORSFolder.layerSets
 }
 
-function getFolderCOLOR(COLORGroup, FoldersInCOLORS) {
-    var folderName = COLORGroup[0]
-    var folderCOLOR = FoldersInCOLORS.getByName(folderName)
-    return folderCOLOR
+function getFolderCOLOR(folderName, FoldersInCOLORS) {
+    return FoldersInCOLORS.getByName(folderName)
 }
 
 function getColorTofill(rows) {
@@ -85,7 +87,7 @@ function getColorTofill(rows) {
     return myColor
 }
 
-function get_selection_fill_to_work() {
+function setOptionsToSelectionFillToWork() {
     app.displayDialogs = DialogModes.ALL
 }
 

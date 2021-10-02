@@ -2,6 +2,7 @@
 #include "../utils/checkIfHasItBlendingColorFolder.jsx"
 #include "../../config/configDefaultValues.jsx"
 #include "../../config/read/readRGBLayersNames.jsx"
+#include "../../config/read/readColorFolderName.jsx"
 
 function setColorFromCSVFile() {
 
@@ -11,45 +12,81 @@ function setColorFromCSVFile() {
     }
 
     if(!checkIfHasItBlendingColorFolder()) {
-        alert("There is no COLOR folder");
+        alert("There is no " + readColorFolderName() + " folder");
         return; //abort program
     }
 
-    var CSV = File.openDialog("Select csv file", "*.csv", false);
-
-    var lines = getRGBColorsAndFolderNames(CSV);
-
-    var doc = app.activeDocument;
-    app.displayDialogs = DialogModes.ALL // is needed to selection.fill works
-
-    var COLORSFolder = doc.layerSets.getByName("COLORS");
-
-    var FoldersInCOLORS = COLORSFolder.layerSets;
-
-    var colorLayersNames = readRGBLayersNames();
-
-    for (var i =0; i < lines.length; i++) {
-        var elements = lines[i]
-
-        var folderName = elements[0]
-        var foundFolder = FoldersInCOLORS.getByName(folderName);
-
-        for (var j=0; j < colorLayersNames.length; j++) {
-            var colorLayer = foundFolder.artLayers.getByName(colorLayersNames[j]);
-            doc.activeLayer = colorLayer;
-            colorLayer.transparentPixelsLocked = true;
-            doc.selection.selectAll();
-
-            var myColor = new SolidColor();
-            myColor.rgb.hexValue = elements[j + 1];
-            doc.selection.fill(myColor)
-
-            doc.selection.deselect();
-            colorLayer.transparentPixelsLocked = false;
-        }
+    var CSV = File.openDialog("Select the csv file", "*.csv", false);
+    if (!CSV) {
+        alert("You did not select the CSV file!")
+        return; //abort program
     }
 
-    alert("You succesfully set all colors from columns from CSV file:\n" + CSV.toString())
+    var COLORSGroups = getRGBColorsAndFolderNames(CSV);
+
+    setColorsToLayers(COLORSGroups)
+
+    alert("You succesfully set all colors from all rows from CSV file:\n" + CSV.toString())
+}
+
+function setColorsToLayers(COLORSGroups) {
+
+    var doc = app.activeDocument;
+
+    var FoldersInCOLORS = getFoldersInCOLORS()
+
+    var colorsLayersNames = readRGBLayersNames()
+
+    get_selection_fill_to_work()
+
+    for (var i = 0; i < COLORSGroups.length; i++) {
+
+        var COLORGroup = COLORSGroups[i]
+
+        var folderCOLOR = getFolderCOLOR(COLORGroup, FoldersInCOLORS)
+
+        for (var j = 0; j < colorsLayersNames.length; j++) {
+
+            var colorLayer = getCOLORLayer(folderCOLOR, colorsLayersNames[j])
+            doc.activeLayer = colorLayer
+
+            var myColor = getColorTofill(COLORGroup[j + 1])
+            // to fill only non-transparent pixels
+            colorLayer.transparentPixelsLocked = true
+            doc.selection.selectAll()
+            doc.selection.fill(myColor)
+
+            // clean up selection
+            doc.selection.deselect()
+        }
+    }
+}
+
+function getCOLORLayer(folderCOLOR, colorsLayerName) {
+    return folderCOLOR.artLayers.getByName(colorsLayerName)
+}
+
+function getFoldersInCOLORS() {
+
+    var doc = app.activeDocument;
+    var COLORSFolder = doc.layerSets.getByName(readColorFolderName())
+    return COLORSFolder.layerSets
+}
+
+function getFolderCOLOR(COLORGroup, FoldersInCOLORS) {
+    var folderName = COLORGroup[0]
+    var folderCOLOR = FoldersInCOLORS.getByName(folderName)
+    return folderCOLOR
+}
+
+function getColorTofill(rows) {
+    var myColor = new SolidColor()
+    myColor.rgb.hexValue = rows
+    return myColor
+}
+
+function get_selection_fill_to_work() {
+    app.displayDialogs = DialogModes.ALL
 }
 
 function getRGBColorsAndFolderNames(CSV) {

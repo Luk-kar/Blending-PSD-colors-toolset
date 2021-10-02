@@ -22,11 +22,13 @@ function setColorFromCSVFile() {
         return; //abort program
     }
 
-    var COLORSGroups = getRGBColorsAndFolderNames(CSV);
+    var COLORSGroups = getRGBColorsAndFolderNames(CSV); // errors and groups
 
     setColorsToLayers(COLORSGroups)
 
     alert("You succesfully set all colors from all rows from CSV file:\n" + CSV.toString())
+
+    // show errors
 }
 
 function setColorsToLayers(COLORSGroups) {
@@ -51,12 +53,12 @@ function setColorsInLayers(COLORGroup) {
     var folderCOLOR = getFolderCOLOR(folderName, foldersInCOLORS)
     var colorsLayersNames = readRGBLayersNames()
 
-    for (var j = 0; j < colorsLayersNames.length; j++) {
+    for (var i = 0; i < colorsLayersNames.length; i++) {
 
-        var colorLayer = getCOLORLayer(folderCOLOR, colorsLayersNames[j])
+        var colorLayer = getCOLORLayer(folderCOLOR, colorsLayersNames[i])
         doc.activeLayer = colorLayer
 
-        var myColor = getColorTofill(folderLayers[j])
+        var myColor = getColorTofill(folderLayers[i])
         colorLayer.transparentPixelsLocked = true // to fill only non-transparent pixels
         doc.selection.selectAll()
         doc.selection.fill(myColor)
@@ -93,31 +95,64 @@ function setOptionsToSelectionFillToWork() {
 
 function getRGBColorsAndFolderNames(CSV) {
 
-    var lines = [];
-    var lineNumber = 0;
+    var rows = [];
+    var rowNumber = 0;
 
     CSV.open("r");
 
-    var header_0 = configDefaultValues.fileStructure.header_0;
-    var layers = configDefaultValues.fileStructure.color_folder.layers.value
-
-    var columns = header_0 + "," + layers;
+    var columns = getColumnsLine()
 
     while (!CSV.eof) {
 
         var line = CSV.readln();
 
         if (line !== columns) {
-            lines[lineNumber] = line.split(",");
-            lineNumber++;
+            rows[rowNumber] = line.split(",");
+            rowNumber++;
+        }
+    }
+    
+    // check if CSV is not corrupted
+
+    var colorsTypes = readRGBLayersNames();
+    var corruptedColors = [];
+
+    for (var i = 0; i < rows.length; i++) {
+        var group = rows[i][0];
+        var colors = rows[i].slice(1, rows[i].length);
+        var corruptedColorsInGroup = [];
+
+        for (var j = 0; j < colors.length; j++) {
+            var matchHexColor = /^(?:[0-9a-fA-F]{3}){1,2}$/g; // https://regex101.com/r/MndtsX/1
+            if (!colors[j].match(matchHexColor)) {
+                alert("Color: " + colorsTypes[j] + " in folder: " + group + " is corrupted");
+                corruptedColorsInGroup.push(colorsTypes[j])
+            }
+        }
+
+        if (corruptedColorsInGroup.length) {
+            corruptedColors.push(group + "," + corruptedColorsInGroup.join(","));
         }
     }
 
-    // check if CSV is not corrupted
+    if (corruptedColors.length) {
+        corruptedColors.unshift(columns);
+        alert(corruptedColors)
+    }
+
     // check if there is enough folders
-    // check if there are all layers
     CSV.close();
-    return lines;
+
+    // if errors ask if you want to still do it
+    return rows;
+}
+
+function getColumnsLine() {
+    var groupColumnName = configDefaultValues.fileStructure.column_folders_name
+    var layers = readRGBLayersNames()
+
+    var columns = groupColumnName + "," + layers
+    return columns
 }
 
 function selectLayerPixels() {

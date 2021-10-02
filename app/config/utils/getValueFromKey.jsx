@@ -10,8 +10,8 @@ function getValueFromKey(key, FileIni) {
         if (lines[lineNumber].search(key) === 0) {
             var matichingLine = (lines[lineNumber]);
 
-            const regex = / \= (.*)/g; // https://regex101.com/r/n91i7K/1
-            var foundValue = matichingLine.match(regex).toString().substring(3);
+            var matchAfterKey = / \= (.*)/g; // https://regex101.com/r/n91i7K/1
+            var foundValue = matichingLine.match(matchAfterKey).toString().substring(3);
             return foundValue;
         }
 

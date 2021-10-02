@@ -3,7 +3,7 @@
 var configDefaultValues = {
     fileStructure: {
         title: "FILE STRUCTURE",
-        header_0: "groups",
+        column_folders_name: "groups",
         color_folder: {
             name: {
                 key: "color_folder_name",

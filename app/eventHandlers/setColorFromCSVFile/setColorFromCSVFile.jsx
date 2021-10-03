@@ -22,16 +22,19 @@ function setColorFromCSVFile() {
         return; //abort program
     }
 
-    var COLORSGroups = getRGBColorsAndFolderNames(CSV); // errors and groups
+    var COLORSGroups = getRGBColorsAndFolderNames(CSV); // errors and groups todo
 
     setColorsToLayers(COLORSGroups)
 
     alert("You succesfully set all colors from all rows from CSV file:\n" + CSV.toString())
 
-    // show errors
+    // show errors todo
 }
 
 function setColorsToLayers(COLORSGroups) {
+
+    //save foregorund todo
+    //save backgorund todo
 
     setOptionsToSelectionFillToWork()
 
@@ -41,6 +44,9 @@ function setColorsToLayers(COLORSGroups) {
 
         setColorsInLayers(COLORGroup)
     }
+
+    //load foregorund todo
+    //load backgorund todo
 }
 
 function setColorsInLayers(COLORGroup) {
@@ -48,7 +54,7 @@ function setColorsInLayers(COLORGroup) {
     var doc = app.activeDocument;
 
     var folderName = COLORGroup[0];
-    var folderLayers = COLORGroup.slice(1, COLORGroup.length);
+    var folderLayersColors = COLORGroup.slice(1, COLORGroup.length);
     var foldersInCOLORS = getFoldersInCOLORS()
     var folderCOLOR = getFolderCOLOR(folderName, foldersInCOLORS)
     var colorsLayersNames = readRGBLayersNames()
@@ -58,12 +64,14 @@ function setColorsInLayers(COLORGroup) {
         var colorLayer = getCOLORLayer(folderCOLOR, colorsLayersNames[i])
         doc.activeLayer = colorLayer
 
-        var myColor = getColorTofill(folderLayers[i])
+        var myColor = getColorTofill(folderLayersColors[i])
+        var isLayerTransparentAlready = colorLayer.transparentPixelsLocked
         colorLayer.transparentPixelsLocked = true // to fill only non-transparent pixels
         doc.selection.selectAll()
         doc.selection.fill(myColor)
 
         // clean up selection
+        colorLayer.transparentPixelsLocked = isLayerTransparentAlready;
         doc.selection.deselect()
     }
 }
@@ -83,10 +91,10 @@ function getFolderCOLOR(folderName, FoldersInCOLORS) {
     return FoldersInCOLORS.getByName(folderName)
 }
 
-function getColorTofill(rows) {
+function getColorTofill(color) {
     var myColor = new SolidColor()
-    myColor.rgb.hexValue = rows
-    return myColor
+    myColor.rgb.hexValue = color
+    return myColor // return validation todo
 }
 
 function setOptionsToSelectionFillToWork() {
@@ -111,40 +119,74 @@ function getRGBColorsAndFolderNames(CSV) {
             rowNumber++;
         }
     }
-    
-    // check if CSV is not corrupted
 
-    var colorsTypes = readRGBLayersNames();
-    var corruptedColors = [];
+    CSV.close();
+
+    checkIfThereAreCoruptedColors(rows, CSV)        
+
+    // check if there is enough folders todo
+
+    // if errors ask if you want to still do it todo
+    return rows; //return also errors object todo
+}
+
+function checkIfThereAreCoruptedColors(rows, CSV) {
+
+    var colorsTypes = readRGBLayersNames()
+    var corruptedColors = []
 
     for (var i = 0; i < rows.length; i++) {
-        var group = rows[i][0];
-        var colors = rows[i].slice(1, rows[i].length);
-        var corruptedColorsInGroup = [];
+        var group = rows[i][0]
+        var colors = rows[i].slice(1, rows[i].length)
+        var corruptedColorsInGroup = []
 
         for (var j = 0; j < colors.length; j++) {
-            var matchHexColor = /^(?:[0-9a-fA-F]{3}){1,2}$/g; // https://regex101.com/r/MndtsX/1
+            var matchHexColor = /^(?:[0-9a-fA-F]{3}){1,2}$/g // https://regex101.com/r/MndtsX/1
             if (!colors[j].match(matchHexColor)) {
-                alert("Color: " + colorsTypes[j] + " in folder: " + group + " is corrupted");
+                alert('Color: "' + colorsTypes[j] + '" in folder: "' + group + '" is corrupted.')
                 corruptedColorsInGroup.push(colorsTypes[j])
             }
         }
 
         if (corruptedColorsInGroup.length) {
-            corruptedColors.push(group + "," + corruptedColorsInGroup.join(","));
+            corruptedColors.push(group + "," + corruptedColorsInGroup.join(",") + "\n")
         }
     }
 
     if (corruptedColors.length) {
-        corruptedColors.unshift(columns);
-        alert(corruptedColors)
+
+        var PluralOrSingular = ""
+        if (corruptedColors.length === 1) {
+            PluralOrSingular = "Color is "
+        } else {
+            PluralOrSingular = "Colors are "
+        }
+
+        alert(corruptedColors.length + " " + PluralOrSingular + "corrupted.")
+
+        var corruptedColorsCSV = ""
+
+        for (var k = 0; k < corruptedColors.length; k++) {
+            corruptedColorsCSV += corruptedColors[k] + "\n"
+        }
+
+        alert(CSV.path)
+        var corruptedFilePath = decodeURIComponent(CSV.toString())
+        alert(corruptedFilePath)
+        var CSVErrorsPath = corruptedFilePath.slice(0, corruptedFilePath.length - 4) + "_errors.csv"
+        alert(CSVErrorsPath)
+
+        var CSVErrors = File(CSVErrorsPath)
+
+        if (CSVErrors.exists) {
+            CSVErrors.remove()
+        }
+
+        CSVErrors.encoding = "UTF8"
+        CSVErrors.open("e", "TEXT", "????")
+        CSVErrors.write(corruptedColorsCSV)
+        CSVErrors.close()
     }
-
-    // check if there is enough folders
-    CSV.close();
-
-    // if errors ask if you want to still do it
-    return rows;
 }
 
 function getColumnsLine() {

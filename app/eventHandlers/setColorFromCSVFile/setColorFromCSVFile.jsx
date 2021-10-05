@@ -24,6 +24,14 @@ function setColorFromCSVFile() {
 
     var COLORSGroups = getRGBColorsAndFolderNames(CSV); // errors and groups todo
 
+    var corruptedColorsCSV = getCoruptedColors(COLORSGroups)
+    
+    if (corruptedColorsCSV) {
+        writeErrorsToCSV(CSV, corruptedColorsCSV)
+    }
+
+    return
+
     setColorsToLayers(COLORSGroups)
 
     alert("You succesfully set all colors from all rows from CSV file:\n" + CSV.toString())
@@ -120,9 +128,7 @@ function getRGBColorsAndFolderNames(CSV) {
         }
     }
 
-    CSV.close();
-
-    checkIfThereAreCoruptedColors(rows, CSV)        
+    CSV.close();  
 
     // check if there is enough folders todo
 
@@ -130,7 +136,7 @@ function getRGBColorsAndFolderNames(CSV) {
     return rows; //return also errors object todo
 }
 
-function checkIfThereAreCoruptedColors(rows, CSV) {
+function getCoruptedColors(rows) {
 
     var colorsTypes = readRGBLayersNames()
     var corruptedColors = []
@@ -170,23 +176,29 @@ function checkIfThereAreCoruptedColors(rows, CSV) {
             corruptedColorsCSV += corruptedColors[k] + "\n"
         }
 
-        alert(CSV.path)
-        var corruptedFilePath = decodeURIComponent(CSV.toString())
-        alert(corruptedFilePath)
-        var CSVErrorsPath = corruptedFilePath.slice(0, corruptedFilePath.length - 4) + "_errors.csv"
-        alert(CSVErrorsPath)
-
-        var CSVErrors = File(CSVErrorsPath)
-
-        if (CSVErrors.exists) {
-            CSVErrors.remove()
-        }
-
-        CSVErrors.encoding = "UTF8"
-        CSVErrors.open("e", "TEXT", "????")
-        CSVErrors.write(corruptedColorsCSV)
-        CSVErrors.close()
+        return corruptedColorsCSV
+    } else {
+        return false
     }
+}
+
+function writeErrorsToCSV(CSV, corruptedColorsCSV) {
+
+    var corruptedFilePath = decodeURIComponent(CSV.toString())
+    var CSVErrorsPath = corruptedFilePath.slice(0, corruptedFilePath.length - 4) + "_errors.csv"
+
+    var CSVErrors = File(CSVErrorsPath)
+
+    if (CSVErrors.exists) {
+        CSVErrors.remove()
+    }
+
+    CSVErrors.encoding = "UTF8"
+    CSVErrors.open("e", "TEXT", "????")
+    CSVErrors.write(corruptedColorsCSV)
+    CSVErrors.close()
+
+    alert("CSV with errors is saved in: " + CSVErrorsPath)
 }
 
 function getColumnsLine() {

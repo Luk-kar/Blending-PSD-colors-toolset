@@ -62,6 +62,8 @@ function setColorFromCSVFile() {
     var diffrentGroups = getDiffrentColorGroups(foldersInCOLORS, COLORSGroups)
 
     errorsCSV += diffrentGroups;
+
+    errorsCSV += diffrentLayersInActiveDocument();
     
     if (errorsCSV) {
         writeErrorsToCSV(CSV, errorsCSV)
@@ -74,6 +76,71 @@ function setColorFromCSVFile() {
     alert("You succesfully set all colors from all rows from CSV file:\n" + CSV.toString())
 
     // show errors todo
+}
+
+function diffrentLayersInActiveDocument() {
+
+    var CSVToReturn = "";
+
+    var foldersInColorFolder = getFoldersInCOLORS();
+    var colorLayersNames = readRGBLayersNames();
+    
+    var diffrentLayersInPSD = ""
+    var diffrentLayersInTitle = "\n\nDiffrent layers in PSD: \n"  + getFullDocPath() + "\n"
+    var diffrentLayersInColumns = "folder, layers\n"
+
+    for (var i = 0; i < foldersInColorFolder.length; i++) {
+
+        var colorFolder = foldersInColorFolder[i];
+        var colorLayers = colorFolder.artLayers;
+
+        var diffrentLayersInFolder = ""
+
+        // in layers
+        for (var k = 0; k < colorLayers.length; k++) {
+
+            var thereIs = false;
+            for (var j = 0; j < colorLayersNames.length; j++) {
+                if (colorLayers[k].name === colorLayersNames[j]) {
+                    thereIs = true;
+                    break;
+                }
+            }
+
+            if(!thereIs) {
+                diffrentLayersInFolder += colorLayers[k].name + " ";
+                alert(colorLayers[k].name)
+            }
+        }
+
+        // in config
+        for (var l = 0; l < colorLayersNames.length; l++) { //todo check
+
+            var thereIs = false;
+            for (var j = 0; j < colorLayers.length; j++) {
+                if (colorLayersNames[l] === colorLayers[j].name) {
+                    thereIs = true;
+                    break;
+                }
+            }
+
+            if(!thereIs) {
+                diffrentLayersInFolder += colorLayersNames[l] + " ";
+                alert(colorLayersNames[l])
+            }
+        }
+
+        if (diffrentLayersInFolder) {
+            diffrentLayersInPSD += colorFolder.name + "," + diffrentLayersInFolder + "\n";
+        }
+
+    }
+
+    if (diffrentLayersInPSD) {
+        CSVToReturn += diffrentLayersInTitle + diffrentLayersInColumns + diffrentLayersInPSD;
+    }
+
+    return CSVToReturn;
 }
 
 function getDiffrentColorGroups(foldersInCOLORS, COLORSGroups) {
@@ -94,14 +161,14 @@ function getDiffrentColorGroups(foldersInCOLORS, COLORSGroups) {
     var diffrentGroupsCSV = "";
 
     for (var k = 0; k < COLORSGroupsNames.length; k++) {
-        var isThere = false;
+        var thereIs = false;
         for (var l = 0; l < foldersInCOLORSNames.length; l++) {
             if (COLORSGroupsNames[k] === foldersInCOLORSNames[l]) {
-                isThere = true;
+                thereIs = true;
                 break;
             }
         }
-        if (!isThere) {
+        if (!thereIs) {
             diffrentGroupsCSV +=  COLORSGroupsNames[k] + " "
         }
     }
@@ -114,14 +181,14 @@ function getDiffrentColorGroups(foldersInCOLORS, COLORSGroups) {
     var diffrentGroupsPSD = "";
 
     for (var k = 0; k < foldersInCOLORSNames.length; k++) {
-        var isThere = false;
+        var thereIs = false;
         for (var l = 0; l < COLORSGroupsNames.length; l++) {
             if (foldersInCOLORSNames[k] === COLORSGroupsNames[l]) {
-                isThere = true;
+                thereIs = true;
                 break;
             }
         }
-        if (!isThere) {
+        if (!thereIs) {
             diffrentGroupsPSD += foldersInCOLORSNames[k] + " "
         }
     }

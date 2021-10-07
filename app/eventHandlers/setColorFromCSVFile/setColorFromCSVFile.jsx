@@ -4,6 +4,21 @@
 #include "../../config/read/readRGBLayersNames.jsx"
 #include "../../config/read/readColorFolderName.jsx"
 
+function symmetricDifference(a1, a2) {
+    var result = [];
+    for (var i = 0; i < a1.length; i++) {
+      if (a2.indexOf(a1[i]) === -1) {
+        result.push(a1[i]);
+      }
+    }
+    for (i = 0; i < a2.length; i++) {
+      if (a1.indexOf(a2[i]) === -1) {
+        result.push(a2[i]);
+      }
+    }
+    return result;
+  }
+
 function setColorFromCSVFile() {
 
     if(!isActiveDocument()) {
@@ -24,10 +39,32 @@ function setColorFromCSVFile() {
 
     var COLORSGroups = getRGBColorsAndFolderNames(CSV); // errors and groups todo
 
-    var corruptedColorsCSV = getCoruptedColors(COLORSGroups)
+    var errorsCSV = getCoruptedColors(COLORSGroups)
+
+    var foldersInCOLORS = getFoldersInCOLORS()
+    if (COLORSGroups.length !== foldersInCOLORS.length) {
+        alert("There is diffrent number of color groups between CSV file and active document:\n" +
+        "The CSV File: " + COLORSGroups.length + "\n" +
+        "The active document: " + foldersInCOLORS.length + "\n" +
+        "Diffrence: " + Math.abs(COLORSGroups.length - foldersInCOLORS.length)
+        )
+
+        errorsCSV += "\n" +
+        "file,number of folders\n" +
+        "CSV," + COLORSGroups.length + "\n" +
+        getFullDocPath() + "," + foldersInCOLORS.length + "\n" +
+        "The diffrence," + Math.abs(COLORSGroups.length - foldersInCOLORS.length) +
+        "\n"
+    }
+
+
+
+    var diffrentGroups = getDiffrentColorGroups(foldersInCOLORS, COLORSGroups)
+
+    errorsCSV += diffrentGroups;
     
-    if (corruptedColorsCSV) {
-        writeErrorsToCSV(CSV, corruptedColorsCSV)
+    if (errorsCSV) {
+        writeErrorsToCSV(CSV, errorsCSV)
     }
 
     return
@@ -37,6 +74,63 @@ function setColorFromCSVFile() {
     alert("You succesfully set all colors from all rows from CSV file:\n" + CSV.toString())
 
     // show errors todo
+}
+
+function getDiffrentColorGroups(foldersInCOLORS, COLORSGroups) {
+
+    var foldersInCOLORSNames = [];
+    for (var i = 0; i < foldersInCOLORS.length; i++) {
+        foldersInCOLORSNames.push(foldersInCOLORS[i].name)
+    }
+    var COLORSGroupsNames = [];
+    for (var j = 0; j < COLORSGroups.length; j++) {
+        COLORSGroupsNames.push(COLORSGroups[j][0])
+    }
+
+    var diffrentColorGroups ="";
+    var diffrentColorGroupsColumns = "\nfile,diffrent folders\n";
+        
+    var diffrentCSVTitle = "CSV,";
+    var diffrentGroupsCSV = "";
+
+    for (var k = 0; k < COLORSGroupsNames.length; k++) {
+        var isThere = false;
+        for (var l = 0; l < foldersInCOLORSNames.length; l++) {
+            if (COLORSGroupsNames[k] === foldersInCOLORSNames[l]) {
+                isThere = true;
+                break;
+            }
+        }
+        if (!isThere) {
+            diffrentGroupsCSV +=  COLORSGroupsNames[k] + " "
+        }
+    }
+
+    if (diffrentGroupsCSV) {
+        diffrentColorGroups += diffrentColorGroupsColumns + diffrentCSVTitle + diffrentGroupsCSV
+    }
+
+    var diffrentPSDTitle = "\n" + getFullDocPath() + ","
+    var diffrentGroupsPSD = "";
+
+    for (var k = 0; k < foldersInCOLORSNames.length; k++) {
+        var isThere = false;
+        for (var l = 0; l < COLORSGroupsNames.length; l++) {
+            if (foldersInCOLORSNames[k] === COLORSGroupsNames[l]) {
+                isThere = true;
+                break;
+            }
+        }
+        if (!isThere) {
+            diffrentGroupsPSD += foldersInCOLORSNames[k] + " "
+        }
+    }
+
+    if (diffrentGroupsPSD) {
+        diffrentColorGroups += diffrentPSDTitle + diffrentGroupsPSD
+    }
+
+    return diffrentColorGroups;
 }
 
 function setColorsToLayers(COLORSGroups) {
@@ -57,14 +151,20 @@ function setColorsToLayers(COLORSGroups) {
     //load backgorund todo
 }
 
+function getFullDocPath() {
+    var doc = app.activeDocument;
+    return doc.fullName;
+}
+
 function setColorsInLayers(COLORGroup) {
 
     var doc = app.activeDocument;
 
     var folderName = COLORGroup[0];
     var folderLayersColors = COLORGroup.slice(1, COLORGroup.length);
+
     var foldersInCOLORS = getFoldersInCOLORS()
-    var folderCOLOR = getFolderCOLOR(folderName, foldersInCOLORS)
+    var folderCOLOR = getFolderInFolders(folderName, foldersInCOLORS)
     var colorsLayersNames = readRGBLayersNames()
 
     for (var i = 0; i < colorsLayersNames.length; i++) {
@@ -95,14 +195,14 @@ function getFoldersInCOLORS() {
     return COLORSFolder.layerSets
 }
 
-function getFolderCOLOR(folderName, FoldersInCOLORS) {
-    return FoldersInCOLORS.getByName(folderName)
+function getFolderInFolders(folderToFind, containgFolder) {
+    return containgFolder.getByName(folderToFind)
 }
 
 function getColorTofill(color) {
     var myColor = new SolidColor()
     myColor.rgb.hexValue = color
-    return myColor // return validation todo
+    return myColor
 }
 
 function setOptionsToSelectionFillToWork() {
@@ -170,10 +270,10 @@ function getCoruptedColors(rows) {
 
         alert(corruptedColors.length + " " + PluralOrSingular + "corrupted.")
 
-        var corruptedColorsCSV = ""
+        var corruptedColorsCSV = "corrupted colors\ngroup,layers: " + readRGBLayersNames().join(" ") // todo change all "group" to "folder"
 
         for (var k = 0; k < corruptedColors.length; k++) {
-            corruptedColorsCSV += corruptedColors[k] + "\n"
+            corruptedColorsCSV += "\n" + corruptedColors[k] 
         }
 
         return corruptedColorsCSV

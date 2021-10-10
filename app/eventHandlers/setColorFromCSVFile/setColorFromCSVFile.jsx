@@ -3,6 +3,7 @@
 #include "../../config/configDefaultValues.jsx"
 #include "../../config/read/readRGBLayersNames.jsx"
 #include "../../config/read/readColorFolderName.jsx"
+#include "../../config/utils/getConfigPath.jsx"
 
 function symmetricDifference(a1, a2) {
     var result = [];
@@ -39,31 +40,23 @@ function setColorFromCSVFile() {
 
     var COLORSGroups = getRGBColorsAndFolderNames(CSV); // errors and groups todo
 
-    var errorsCSV = getCoruptedColors(COLORSGroups)
-
     var foldersInCOLORS = getFoldersInCOLORS()
-    if (COLORSGroups.length !== foldersInCOLORS.length) {
-        alert("There is diffrent number of color groups between CSV file and active document:\n" +
-        "The CSV File: " + COLORSGroups.length + "\n" +
-        "The active document: " + foldersInCOLORS.length + "\n" +
-        "Diffrence: " + Math.abs(COLORSGroups.length - foldersInCOLORS.length)
-        )
 
-        errorsCSV += "\n" +
-        "file,number of folders\n" +
-        "CSV," + COLORSGroups.length + "\n" +
-        getFullDocPath() + "," + foldersInCOLORS.length + "\n" +
-        "The diffrence," + Math.abs(COLORSGroups.length - foldersInCOLORS.length) +
-        "\n"
-    }
+    var configColorsTypes = readRGBLayersNames()
 
+    var errorsCSV = "";
 
+    errorsCSV += getCoruptedColors(COLORSGroups, configColorsTypes)
 
-    var diffrentGroups = getDiffrentColorGroups(foldersInCOLORS, COLORSGroups)
+    errorsCSV = getColorFoldersDiffrentNumber(COLORSGroups, foldersInCOLORS)
 
-    errorsCSV += diffrentGroups;
+    errorsCSV += getDiffrentColorGroups(foldersInCOLORS, COLORSGroups)
 
-    errorsCSV += diffrentLayersInActiveDocument();
+    errorsCSV += diffrentLayersInActiveDocument(foldersInCOLORS, configColorsTypes);
+
+    // diffrent colors in config than in CSV todo
+
+    // if errors ask if you want to still do it todo
     
     if (errorsCSV) {
         writeErrorsToCSV(CSV, errorsCSV)
@@ -78,12 +71,30 @@ function setColorFromCSVFile() {
     // show errors todo
 }
 
-function diffrentLayersInActiveDocument() {
+function getColorFoldersDiffrentNumber(COLORSGroups, foldersInCOLORS) {
+
+    if (COLORSGroups.length !== foldersInCOLORS.length) {
+
+    alert("There is diffrent number of color groups between CSV file and active document:\n" +
+        "The CSV File: " + COLORSGroups.length + "\n" +
+        "The active document: " + foldersInCOLORS.length + "\n" +
+        "Diffrence: " + Math.abs(COLORSGroups.length - foldersInCOLORS.length)
+    )
+
+    return "\n" +
+        "file,number of folders\n" +
+        "CSV," + COLORSGroups.length + "\n" +
+        getFullDocPath() + "," + foldersInCOLORS.length + "\n" +
+        "The diffrence," + Math.abs(COLORSGroups.length - foldersInCOLORS.length) +
+        "\n"
+    }
+
+    return ""
+}
+
+function diffrentLayersInActiveDocument(foldersInColorFolder, colorLayersNames) {
 
     var CSVToReturn = "";
-
-    var foldersInColorFolder = getFoldersInCOLORS();
-    var colorLayersNames = readRGBLayersNames();
     
     var diffrentLayersInPSD = ""
     var diffrentLayersInTitle = "\n\nDiffrent layers in PSD: \n"  + getFullDocPath() + "\n"
@@ -109,7 +120,7 @@ function diffrentLayersInActiveDocument() {
 
             if(!thereIs) {
                 diffrentLayersInFolder += colorLayers[k].name + " ";
-                alert(colorLayers[k].name)
+                alert_wrong_color_name_in_PSD(colorFolder.name, colorLayers[k].name)
             }
         }
 
@@ -126,7 +137,7 @@ function diffrentLayersInActiveDocument() {
 
             if(!thereIs) {
                 diffrentLayersInFolder += colorLayersNames[l] + " ";
-                alert(colorLayersNames[l])
+                alert_wrong_color_name_in_PSD(colorFolder.name, colorLayersNames[l])
             }
         }
 
@@ -140,7 +151,15 @@ function diffrentLayersInActiveDocument() {
         CSVToReturn += diffrentLayersInTitle + diffrentLayersInColumns + diffrentLayersInPSD;
     }
 
+    // show number of corrupted layers in PSD todo
+
     return CSVToReturn;
+}
+
+function alert_wrong_color_name_in_PSD(colorFolderName, colorLayerName) {
+    alert("PSD's folder's: " + colorFolderName + ", layer: " + colorLayerName + " is diffrent than in config file:\n"
+        + getConfigPath()
+    )
 }
 
 function getDiffrentColorGroups(foldersInCOLORS, COLORSGroups) {
@@ -297,15 +316,11 @@ function getRGBColorsAndFolderNames(CSV) {
 
     CSV.close();  
 
-    // check if there is enough folders todo
-
-    // if errors ask if you want to still do it todo
-    return rows; //return also errors object todo
+    return rows;
 }
 
-function getCoruptedColors(rows) {
+function getCoruptedColors(rows, colorsTypes) {
 
-    var colorsTypes = readRGBLayersNames()
     var corruptedColors = []
 
     for (var i = 0; i < rows.length; i++) {
@@ -335,7 +350,7 @@ function getCoruptedColors(rows) {
             PluralOrSingular = "Colors are "
         }
 
-        alert(corruptedColors.length + " " + PluralOrSingular + "corrupted.")
+        alert(corruptedColors.length + " " + PluralOrSingular + "corrupted in chosen CSV file")
 
         var corruptedColorsCSV = "corrupted colors\ngroup,layers: " + readRGBLayersNames().join(" ") // todo change all "group" to "folder"
 
@@ -351,8 +366,8 @@ function getCoruptedColors(rows) {
 
 function writeErrorsToCSV(CSV, corruptedColorsCSV) {
 
-    var corruptedFilePath = decodeURIComponent(CSV.toString())
-    var CSVErrorsPath = corruptedFilePath.slice(0, corruptedFilePath.length - 4) + "_errors.csv"
+    var corruptedFilePath = getCSVpath(CSV)
+    var CSVErrorsPath = getsSCVErrorPath(corruptedFilePath)
 
     var CSVErrors = File(CSVErrorsPath)
 
@@ -366,6 +381,14 @@ function writeErrorsToCSV(CSV, corruptedColorsCSV) {
     CSVErrors.close()
 
     alert("CSV with errors is saved in: " + CSVErrorsPath)
+}
+
+function getsSCVErrorPath(corruptedFilePath) {
+    return corruptedFilePath.slice(0, corruptedFilePath.length - 4) + "_errors.csv"
+}
+
+function getCSVpath(CSV) {
+    return decodeURIComponent(CSV.toString())
 }
 
 function getColumnsLine() {

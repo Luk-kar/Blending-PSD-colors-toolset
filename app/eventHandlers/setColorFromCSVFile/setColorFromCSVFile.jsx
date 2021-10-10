@@ -121,7 +121,8 @@ function diffrentCSVColorsAndCSVConfig(CSV, configColorsTypes) {
     }
 
     if (wrongColorsNames) {
-        CSVToReturn += "\ndiffrent chosen CSV colors and CSV config colors\n" +
+        CSVToReturn += "\n" +
+        "\ndiffrent chosen CSV colors and CSV config colors\n" +
         "chosen CSV," + CSV.fullName + "\n" +
         "config CSV," + getConfigPath() + "\n" +
         "colors," + wrongColorsNames
@@ -235,7 +236,7 @@ function getDiffrentColorFolders(foldersInCOLORS, COLORSGroups, CSV) { //alert t
     }
 
     var diffrentColorGroups ="";
-    var diffrentColorGroupsColumns = "\nfile,diffrent folders\n";
+    var diffrentColorGroupsColumns = "file,diffrent folders\n";
         
     var diffrentCSVTitle = CSV.fullName + ",";
     var diffrentGroupsCSV = "";
@@ -254,7 +255,7 @@ function getDiffrentColorFolders(foldersInCOLORS, COLORSGroups, CSV) { //alert t
     }
 
     if (diffrentGroupsCSV) {
-        diffrentColorGroups += diffrentColorGroupsColumns + diffrentCSVTitle + diffrentGroupsCSV
+        diffrentColorGroups += diffrentCSVTitle + diffrentGroupsCSV
     }
 
     var diffrentPSDTitle = "\n" + getFullDocPath() + ","
@@ -278,6 +279,9 @@ function getDiffrentColorFolders(foldersInCOLORS, COLORSGroups, CSV) { //alert t
     }
 
     if (diffrentColorGroups) {
+
+        diffrentColorGroups = "\n" + diffrentColorGroupsColumns + diffrentColorGroups
+
         alert("Diffrent folders in psd than in chosen CSV:\n" +
             diffrentGroupsCSV + diffrentGroupsPSD
         )
@@ -397,16 +401,12 @@ function getRGBColorsAndFolderNames(CSV) {
 
     CSV.open("r");
 
-    var columns = getColumnsLine()
-
     while (!CSV.eof) {
 
         var line = CSV.readln();
 
-        if (line !== columns) {
-            rows[rowNumber] = line.split(",");
-            rowNumber++;
-        }
+        rows[rowNumber] = line.split(",");
+        rowNumber++;
     }
 
     CSV.close();  

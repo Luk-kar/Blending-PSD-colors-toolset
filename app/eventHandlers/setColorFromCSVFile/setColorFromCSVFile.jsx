@@ -39,21 +39,21 @@ function setColorFromCSVFile() {
         return; //abort program
     }
 
-    var COLORSGroups = getRGBColorsAndFolderNames(CSV); // errors and groups todo
+    var ChosenCSVCOLORSFolders = getRGBColorsAndFolderNames(CSV); // errors and groups todo
 
-    var foldersInCOLORS = getFoldersInCOLORS()
+    var PSDfoldersInCOLORS = getFoldersInCOLORS()
 
     var configColorsTypes = readRGBLayersNames()
 
     var errorsCSV = "";
 
-    errorsCSV += getCoruptedColors(COLORSGroups, configColorsTypes)
+    errorsCSV += getCoruptedColors(ChosenCSVCOLORSFolders, configColorsTypes)
 
-    errorsCSV += getColorFoldersDiffrentNumber(COLORSGroups, foldersInCOLORS, CSV)
+    errorsCSV += getColorFoldersDiffrentNumber(ChosenCSVCOLORSFolders, PSDfoldersInCOLORS, CSV)
 
-    errorsCSV += getDiffrentColorGroups(foldersInCOLORS, COLORSGroups, CSV)
+    errorsCSV += getDiffrentColorFolders(PSDfoldersInCOLORS, ChosenCSVCOLORSFolders, CSV)
 
-    errorsCSV += diffrentLayersInActiveDocument(foldersInCOLORS, configColorsTypes);
+    errorsCSV += diffrentLayersInActiveDocument(PSDfoldersInCOLORS, configColorsTypes);
 
     errorsCSV += diffrentCSVColorsAndCSVConfig(CSV, configColorsTypes)
 
@@ -65,7 +65,7 @@ function setColorFromCSVFile() {
 
     return
 
-    setColorsToLayers(COLORSGroups)
+    setColorsToLayers(ChosenCSVCOLORSFolders)
 
     alert("You succesfully set all colors from all rows from CSV file:\n" + CSV.toString())
 
@@ -132,19 +132,21 @@ function diffrentCSVColorsAndCSVConfig(CSV, configColorsTypes) {
 
 function getColorFoldersDiffrentNumber(COLORSGroups, foldersInCOLORS, CSV) {
 
-    if (COLORSGroups.length !== foldersInCOLORS.length) {
+    var COLORSGroupsLen = COLORSGroups.length - 1; // first line is columns
+
+    if (COLORSGroupsLen !== foldersInCOLORS.length) {
 
     alert("There is diffrent number of color groups between the chosen CSV file and the PSD:\n" +
-        "The chosen CSV file: " + COLORSGroups.length + "\n" +
+        "The chosen CSV file: " + COLORSGroupsLen + "\n" +
         "The PSD file: " + foldersInCOLORS.length + "\n" +
-        "The diffrence: " + Math.abs(COLORSGroups.length - foldersInCOLORS.length)
+        "The diffrence: " + Math.abs(COLORSGroupsLen - foldersInCOLORS.length)
     )
 
     return "\n" +
         "file,number of folders\n" +
-        getCSVpath(CSV) + "," + COLORSGroups.length + "\n" +
+        getCSVpath(CSV) + "," + COLORSGroupsLen + "\n" +
         getFullDocPath() + "," + foldersInCOLORS.length + "\n" +
-        "The diffrence," + Math.abs(COLORSGroups.length - foldersInCOLORS.length) +
+        "The diffrence," + Math.abs(COLORSGroupsLen - foldersInCOLORS.length) +
         "\n"
     }
 
@@ -221,14 +223,14 @@ function alertWrongColorNameInPSD(colorFolderName, colorLayerName) {
     alert("The PSD:\nfolder: " + colorFolderName + "\nlayer: " + colorLayerName + "\nhas diffrent name than in CSV config file")
 }
 
-function getDiffrentColorGroups(foldersInCOLORS, COLORSGroups, CSV) {
+function getDiffrentColorFolders(foldersInCOLORS, COLORSGroups, CSV) { //alert todo
 
     var foldersInCOLORSNames = [];
     for (var i = 0; i < foldersInCOLORS.length; i++) {
         foldersInCOLORSNames.push(foldersInCOLORS[i].name)
     }
     var COLORSGroupsNames = [];
-    for (var j = 0; j < COLORSGroups.length; j++) {
+    for (var j = 1; j < COLORSGroups.length; j++) {
         COLORSGroupsNames.push(COLORSGroups[j][0])
     }
 
@@ -383,22 +385,22 @@ function getCoruptedColors(rows, configColorsTypes) {
     var corruptedColors = ""
     var corruptedColorsCounter = 0
 
-    for (var i = 0; i < rows.length; i++) {
-        var group = rows[i][0]
+    for (var i = 1; i < rows.length; i++) { // first line is columns
+        var folder = rows[i][0]
         var colors = rows[i].slice(1, rows[i].length)
         var corruptedColorsInGroup = []
 
         for (var j = 0; j < colors.length; j++) {
             var matchHexColor = /^(?:[0-9a-fA-F]{3}){1,2}$/g // https://regex101.com/r/MndtsX/1
             if (!colors[j].match(matchHexColor)) {
-                alert('Color: "' + configColorsTypes[j] + '" in folder: "' + group + '" is corrupted in chosen CSV file')
+                alert('Color: "' + configColorsTypes[j] + '" in folder: "' + folder + '" is corrupted in chosen CSV file')
                 corruptedColorsInGroup.push(configColorsTypes[j])
                 corruptedColorsCounter++;
             }
         }
 
         if (corruptedColorsInGroup.length) {
-            corruptedColors += group + "," + corruptedColorsInGroup.join(" ") + "\n"
+            corruptedColors += folder + "," + corruptedColorsInGroup.join(" ") + "\n"
         }
     }
 

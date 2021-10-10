@@ -381,6 +381,7 @@ function getRGBColorsAndFolderNames(CSV) {
 function getCoruptedColors(rows, configColorsTypes) {
 
     var corruptedColors = ""
+    var corruptedColorsCounter = 0
 
     for (var i = 0; i < rows.length; i++) {
         var group = rows[i][0]
@@ -392,6 +393,7 @@ function getCoruptedColors(rows, configColorsTypes) {
             if (!colors[j].match(matchHexColor)) {
                 alert('Color: "' + configColorsTypes[j] + '" in folder: "' + group + '" is corrupted in chosen CSV file')
                 corruptedColorsInGroup.push(configColorsTypes[j])
+                corruptedColorsCounter++;
             }
         }
 
@@ -403,13 +405,13 @@ function getCoruptedColors(rows, configColorsTypes) {
     if (corruptedColors.length) {
 
         var PluralOrSingular = ""
-        if (corruptedColors.length === 1) {
-            PluralOrSingular = "Color is "
+        if (corruptedColorsCounter === 1) {
+            PluralOrSingular = "color is "
         } else {
-            PluralOrSingular = "Colors are "
+            PluralOrSingular = "colors are "
         }
 
-        alert(corruptedColors.length + " " + PluralOrSingular + "corrupted in chosen CSV file")
+        alert(corruptedColorsCounter + " " + PluralOrSingular + "corrupted in chosen CSV file")
 
         corruptedColors = "corrupted colors\n" + "group,layers\n" + corruptedColors; // todo change all "group" to "folder"
 

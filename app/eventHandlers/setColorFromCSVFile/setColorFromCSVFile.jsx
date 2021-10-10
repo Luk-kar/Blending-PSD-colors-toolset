@@ -5,6 +5,7 @@
 #include "../../config/read/readColorFolderName.jsx"
 #include "../../config/utils/getConfigPath.jsx"
 #include "../../config/utils/getValueFromKey.jsx"
+#include "../readColorFromLayers/helpers/checkingConditions/checkIsLayer.jsx"
 
 function symmetricDifference(a1, a2) {
     var result = [];
@@ -56,20 +57,19 @@ function setColorFromCSVFile() {
     errorsCSV += diffrentLayersInActiveDocument(PSDfoldersInCOLORS, configColorsTypes);
 
     errorsCSV += diffrentCSVColorsAndCSVConfig(CSV, configColorsTypes)
-
-    // if errors ask if you want to still do it todo
     
     if (errorsCSV) {
         writeErrorsToCSV(CSV, errorsCSV)
+        var confirmation = confirm("Do you want still to load colors into PSD?", true);
+        if (!confirmation) {
+            return; //abort program
+        }
     }
-
-    return
 
     setColorsToLayers(ChosenCSVCOLORSFolders)
 
-    alert("You succesfully set all colors from all rows from CSV file:\n" + CSV.toString())
+    alert("You succesfully set all colors from all rows from CSV file:\n" + CSV.fullName)
 
-    // show errors todo
 }
 
 function diffrentCSVColorsAndCSVConfig(CSV, configColorsTypes) {
@@ -122,7 +122,7 @@ function diffrentCSVColorsAndCSVConfig(CSV, configColorsTypes) {
 
     if (wrongColorsNames) {
         CSVToReturn += "\ndiffrent chosen CSV colors and CSV config colors\n" +
-        "chosen CSV," + getCSVpath(CSV) + "\n" +
+        "chosen CSV," + CSV.fullName + "\n" +
         "config CSV," + getConfigPath() + "\n" +
         "colors," + wrongColorsNames
     }
@@ -136,18 +136,18 @@ function getColorFoldersDiffrentNumber(COLORSGroups, foldersInCOLORS, CSV) {
 
     if (COLORSGroupsLen !== foldersInCOLORS.length) {
 
-    alert("There is diffrent number of color groups between the chosen CSV file and the PSD:\n" +
-        "The chosen CSV file: " + COLORSGroupsLen + "\n" +
-        "The PSD file: " + foldersInCOLORS.length + "\n" +
-        "The diffrence: " + Math.abs(COLORSGroupsLen - foldersInCOLORS.length)
-    )
+        alert("There is diffrent number of color groups between the chosen CSV file and the PSD:\n" +
+            "The chosen CSV file: " + COLORSGroupsLen + "\n" +
+            "The PSD file: " + foldersInCOLORS.length + "\n" +
+            "The diffrence: " + Math.abs(COLORSGroupsLen - foldersInCOLORS.length)
+        )
 
-    return "\n" +
-        "file,number of folders\n" +
-        getCSVpath(CSV) + "," + COLORSGroupsLen + "\n" +
-        getFullDocPath() + "," + foldersInCOLORS.length + "\n" +
-        "The diffrence," + Math.abs(COLORSGroupsLen - foldersInCOLORS.length) +
-        "\n"
+        return "\n" +
+            "file,number of folders\n" +
+            CSV.fullName + "," + COLORSGroupsLen + "\n" +
+            getFullDocPath() + "," + foldersInCOLORS.length + "\n" +
+            "The diffrence," + Math.abs(COLORSGroupsLen - foldersInCOLORS.length) +
+            "\n"
     }
 
     return ""
@@ -237,7 +237,7 @@ function getDiffrentColorFolders(foldersInCOLORS, COLORSGroups, CSV) { //alert t
     var diffrentColorGroups ="";
     var diffrentColorGroupsColumns = "\nfile,diffrent folders\n";
         
-    var diffrentCSVTitle = getCSVpath(CSV) + ",";
+    var diffrentCSVTitle = CSV.fullName + ",";
     var diffrentGroupsCSV = "";
 
     for (var k = 0; k < COLORSGroupsNames.length; k++) {
@@ -277,6 +277,12 @@ function getDiffrentColorFolders(foldersInCOLORS, COLORSGroups, CSV) { //alert t
         diffrentColorGroups += diffrentPSDTitle + diffrentGroupsPSD
     }
 
+    if (diffrentColorGroups) {
+        alert("Diffrent folders in psd than in chosen CSV:\n" +
+            diffrentGroupsCSV + diffrentGroupsPSD
+        )
+    }
+
     return diffrentColorGroups;
 }
 
@@ -287,7 +293,7 @@ function setColorsToLayers(COLORSGroups) {
 
     setOptionsToSelectionFillToWork()
 
-    for (var i = 0; i < COLORSGroups.length; i++) {
+    for (var i = 1; i < COLORSGroups.length; i++) {
 
         var COLORGroup = COLORSGroups[i]
 
@@ -311,24 +317,41 @@ function setColorsInLayers(COLORGroup) {
     var folderLayersColors = COLORGroup.slice(1, COLORGroup.length);
 
     var foldersInCOLORS = getFoldersInCOLORS()
-    var folderCOLOR = getFolderInFolders(folderName, foldersInCOLORS)
-    var colorsLayersNames = readRGBLayersNames()
 
-    for (var i = 0; i < colorsLayersNames.length; i++) {
+    if (checkIsFolder(foldersInCOLORS, folderName)) {
 
-        var colorLayer = getCOLORLayer(folderCOLOR, colorsLayersNames[i])
-        doc.activeLayer = colorLayer
+        var folderCOLOR = getFolderInFolders(folderName, foldersInCOLORS)
+        var colorsLayersNames = readRGBLayersNames()
 
-        var myColor = getColorTofill(folderLayersColors[i])
-        var isLayerTransparentAlready = colorLayer.transparentPixelsLocked
-        colorLayer.transparentPixelsLocked = true // to fill only non-transparent pixels
-        doc.selection.selectAll()
-        doc.selection.fill(myColor)
+        for (var i = 0; i < colorsLayersNames.length; i++) {
 
-        // clean up selection
-        colorLayer.transparentPixelsLocked = isLayerTransparentAlready;
-        doc.selection.deselect()
+            if (checkIsLayer(folderCOLOR.artLayers, colorsLayersNames[i])) {
+                var colorLayer = getCOLORLayer(folderCOLOR, colorsLayersNames[i])
+                doc.activeLayer = colorLayer
+
+                var myColor = getColorTofill(folderLayersColors[i])
+                var isLayerTransparentAlready = colorLayer.transparentPixelsLocked
+                colorLayer.transparentPixelsLocked = true // to fill only non-transparent pixels
+                doc.selection.selectAll()
+                doc.selection.fill(myColor)
+
+                // clean up selection
+                colorLayer.transparentPixelsLocked = isLayerTransparentAlready;
+                doc.selection.deselect()
+            }
+        }
     }
+}
+
+function checkIsFolder(folderWithFolders, folderName) {
+
+    for (var j = 0; j < folderWithFolders.length; j++) {
+        if (folderWithFolders[j].name === folderName) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 function getCOLORLayer(folderCOLOR, colorsLayerName) {
@@ -348,8 +371,19 @@ function getFolderInFolders(folderToFind, containgFolder) {
 
 function getColorTofill(color) {
     var myColor = new SolidColor()
-    myColor.rgb.hexValue = color
+
+    if (color instanceof "undefined" || !isHexColor(color)) {
+        myColor.rgb.hexValue = "000000"
+    } else {
+        myColor.rgb.hexValue = color
+    }
+
     return myColor
+}
+
+function isHexColor(color) {
+    var matchHexColor = /^(?:[0-9a-fA-F]{3}){1,2}$/g // https://regex101.com/r/MndtsX/1
+    return Boolean(color.match(matchHexColor))
 }
 
 function setOptionsToSelectionFillToWork() {
@@ -391,8 +425,7 @@ function getCoruptedColors(rows, configColorsTypes) {
         var corruptedColorsInGroup = []
 
         for (var j = 0; j < colors.length; j++) {
-            var matchHexColor = /^(?:[0-9a-fA-F]{3}){1,2}$/g // https://regex101.com/r/MndtsX/1
-            if (!colors[j].match(matchHexColor)) {
+            if (!isHexColor(colors[j])) {
                 alert('Color: "' + configColorsTypes[j] + '" in folder: "' + folder + '" is corrupted in chosen CSV file')
                 corruptedColorsInGroup.push(configColorsTypes[j])
                 corruptedColorsCounter++;
@@ -424,7 +457,7 @@ function getCoruptedColors(rows, configColorsTypes) {
 
 function writeErrorsToCSV(CSV, corruptedColorsCSV) {
 
-    var corruptedFilePath = getCSVpath(CSV)
+    var corruptedFilePath = CSV.fullName
     var CSVErrorsPath = getsSCVErrorPath(corruptedFilePath)
 
     var CSVErrors = File(CSVErrorsPath)

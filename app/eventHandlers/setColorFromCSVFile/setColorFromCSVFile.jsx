@@ -62,7 +62,7 @@ function setColorFromCSVFile() {
         writeErrorsToCSV(CSV, errorsCSV)
         var confirmation = confirm("Do you want still to load colors into PSD?", true);
         if (!confirmation) {
-            return; //abort program
+            return //abort program
         }
     }
 
@@ -476,10 +476,6 @@ function writeErrorsToCSV(CSV, corruptedColorsCSV) {
 
 function getsSCVErrorPath(corruptedFilePath) {
     return corruptedFilePath.slice(0, corruptedFilePath.length - 4) + "_errors.csv"
-}
-
-function getCSVpath(CSV) {
-    return decodeURIComponent(CSV.toString())
 }
 
 function getColumnsLine() {

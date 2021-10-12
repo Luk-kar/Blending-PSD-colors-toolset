@@ -1,6 +1,6 @@
 #include "../../../utils/checkIfHasItBlendingColorFolder.jsx"
 #include "./createFolderIn.jsx"
-#include "./createRGBLayerIn.jsx"
+#include "./createRGBLayersIn.jsx"
 #include "../../../../config/read/readColorFolderName.jsx"
 
 function createCOLORFolderIfNotExists() {
@@ -16,6 +16,6 @@ function createCOLORFolderIfNotExists() {
 
         var folders = createFolderIn(COLORSFolder);
 
-        createRGBLayerIn(folders);
+        createRGBLayersIn(folders);
     }
 }

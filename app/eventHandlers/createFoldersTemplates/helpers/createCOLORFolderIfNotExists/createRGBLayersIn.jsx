@@ -2,7 +2,7 @@
 #include "../../../../config/read/readRGBLayersNames.jsx"
 #include "../../../../config/read/readColorsRGB.jsx"
 
-function createRGBLayerIn(folders) {
+function createRGBLayersIn(folders) {
 
     var layers = readRGBLayersNames().reverse(); // to create last one first, first one last to have right order in PSD
     var colors = readColorsRGB();

@@ -4,7 +4,7 @@
 
 function createRGBLayerIn(folders) {
 
-    var layers = readRGBLayersNames();
+    var layers = readRGBLayersNames().reverse(); // to create last one first, first one last to have right order in PSD
     var colors = readColorsRGB();
 
     for (var i = 0; i < folders.length; i++) {

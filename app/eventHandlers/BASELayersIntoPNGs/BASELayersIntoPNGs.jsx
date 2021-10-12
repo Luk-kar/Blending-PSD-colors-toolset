@@ -40,7 +40,7 @@ function BASELayersIntoPNGs() {
     doc.close(SaveOptions.DONOTSAVECHANGES);
     app.open(File(docPath));
 
-    alert("You saved PNGs to " + copiedLayersPNGsFolder);
+    alert("You succesfully saved PNGs to " + copiedLayersPNGsFolder);
 
     var openExplorer = confirm("Do you want to open explorer?", true);
     if (openExplorer) {

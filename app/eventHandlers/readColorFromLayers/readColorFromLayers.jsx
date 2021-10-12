@@ -17,6 +17,10 @@ function readColorFromLayers() {
     var doc = passedConditons.existingDoc;
     var docPath = passedConditons.existingDocPath;
     var COLORSFolder = passedConditons.existingCOLORSFolder;
+
+    // save starting conditions
+    var startingFGColor = app.foregroundColor
+    var startingBGColor = app.backgroundColor
     
     makeSureIfSavedBeforeChangingFile();
 
@@ -37,6 +41,10 @@ function readColorFromLayers() {
     writeCSVAllHexFoldersValues(RGBfolders, layersNames);
 
     alert("You successfully saved values to " + getCSVpath());
+
+    // restore starting conditions
+    app.foregroundColor = startingFGColor
+    app.backgroundColor = startingBGColor
 
     // reset file
     doc.close(SaveOptions.DONOTSAVECHANGES);

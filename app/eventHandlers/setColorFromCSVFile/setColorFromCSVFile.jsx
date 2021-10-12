@@ -292,8 +292,10 @@ function getDiffrentColorFolders(foldersInCOLORS, COLORSGroups, CSV) { //alert t
 
 function setColorsToLayers(COLORSGroups) {
 
-    //save foregorund todo
-    //save backgorund todo
+    // Color will be changed during usage
+    var startingFGColor = app.foregroundColor
+    var startingBGColor = app.backgroundColor
+
 
     setOptionsToSelectionFillToWork()
 
@@ -304,8 +306,9 @@ function setColorsToLayers(COLORSGroups) {
         setColorsInLayers(COLORGroup)
     }
 
-    //load foregorund todo
-    //load backgorund todo
+    // Setting colors to starting values
+    app.foregroundColor = startingFGColor
+    app.backgroundColor = startingBGColor
 }
 
 function getFullDocPath() {

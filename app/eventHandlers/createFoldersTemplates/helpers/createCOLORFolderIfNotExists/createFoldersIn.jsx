@@ -1,6 +1,6 @@
 #include "../../../../config/read/readFoldersInColorFolder.jsx"
 
-function createFolderIn(COLORSFolder) {
+function createFoldersIn(COLORSFolder) {
 
     var folders = [];
     var foldersNames = readFoldersInColorFolder().reverse();

@@ -40,7 +40,7 @@ function setColorFromCSVFile() {
         return; //abort program
     }
 
-    var ChosenCSVCOLORSFolders = getRGBColorsAndFolderNames(CSV); // errors and groups todo
+    var ChosenCSVCOLORSFolders = getRGBColorsAndFolderNames(CSV);
 
     var PSDfoldersInCOLORS = getFoldersInCOLORS()
 

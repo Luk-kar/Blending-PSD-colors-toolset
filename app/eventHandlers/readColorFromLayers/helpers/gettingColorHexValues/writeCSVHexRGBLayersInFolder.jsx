@@ -13,7 +13,13 @@ function writeCSVHexRGBLayersInFolder(RBGLayers) {
             continue;
         }
 
-        writeInCSVFile(getLayerLeftUpperCornerColorHex(layer) + ",");
+        var isNextColumn = "";
+
+        if (j + 1 !== RBGLayers.length) {
+            isNextColumn = ",";
+        }
+
+        writeInCSVFile(getLayerLeftUpperCornerColorHex(layer) + isNextColumn);
         layer.visible = false;
     }
 

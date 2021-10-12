@@ -215,8 +215,6 @@ function diffrentLayersInActiveDocument(foldersInColorFolder, colorLayersNames) 
         CSVToReturn += diffrentLayersInTitle + diffrentLayersInColumns + diffrentLayersInPSD;
     }
 
-    // show number of corrupted layers in PSD todo
-
     return CSVToReturn;
 }
 
@@ -224,7 +222,7 @@ function alertWrongColorNameInPSD(colorFolderName, colorLayerName) {
     alert("The PSD:\nfolder: " + colorFolderName + "\nlayer: " + colorLayerName + "\nhas diffrent name than in CSV config file")
 }
 
-function getDiffrentColorFolders(foldersInCOLORS, COLORSGroups, CSV) { //alert todo
+function getDiffrentColorFolders(foldersInCOLORS, COLORSGroups, CSV) {
 
     var foldersInCOLORSNames = [];
     for (var i = 0; i < foldersInCOLORS.length; i++) {

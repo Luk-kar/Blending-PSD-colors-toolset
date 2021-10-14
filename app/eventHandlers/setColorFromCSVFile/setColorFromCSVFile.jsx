@@ -4,14 +4,6 @@
 #include "./helpers/writeErrorsToCSV.jsx"
 #include "./helpers/setColorsToLayers.jsx"
 
-
-// #include "../../config/configDefaultValues.jsx"
-// #include "../../config/read/readRGBLayersNames.jsx"
-// #include "../../config/read/readColorFolderName.jsx"
-// #include "../../config/utils/getConfigPath.jsx"
-// #include "../../config/utils/getValueFromKey.jsx"
-// #include "../readColorFromLayers/helpers/checkingConditions/checkIsLayer.jsx"
-
 function setColorFromCSVFile() {
 
     if(!isActiveDocument()) {

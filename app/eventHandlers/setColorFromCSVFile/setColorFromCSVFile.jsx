@@ -7,21 +7,6 @@
 #include "../../config/utils/getValueFromKey.jsx"
 #include "../readColorFromLayers/helpers/checkingConditions/checkIsLayer.jsx"
 
-function symmetricDifference(a1, a2) {
-    var result = [];
-    for (var i = 0; i < a1.length; i++) {
-      if (a2.indexOf(a1[i]) === -1) {
-        result.push(a1[i]);
-      }
-    }
-    for (i = 0; i < a2.length; i++) {
-      if (a1.indexOf(a2[i]) === -1) {
-        result.push(a2[i]);
-      }
-    }
-    return result;
-  }
-
 function setColorFromCSVFile() {
 
     if(!isActiveDocument()) {
@@ -155,8 +140,6 @@ function getColorFoldersDiffrentNumber(COLORSFolders, foldersInCOLORS, CSV) {
 }
 
 function diffrentLayersInActiveDocument(foldersInColorFolder, colorLayersNames) {
-
-    var CSVToReturn = "";
     
     var diffrentLayersInPSD = ""
     var diffrentLayersInTitle =  "\n\ndiffrent layers in PSD compare to config file\n" +
@@ -212,10 +195,10 @@ function diffrentLayersInActiveDocument(foldersInColorFolder, colorLayersNames) 
     }
 
     if (diffrentLayersInPSD) {
-        CSVToReturn += diffrentLayersInTitle + diffrentLayersInColumns + diffrentLayersInPSD;
+        return diffrentLayersInTitle + diffrentLayersInColumns + diffrentLayersInPSD;
     }
 
-    return CSVToReturn;
+    return "";
 }
 
 function alertWrongColorNameInPSD(colorFolderName, colorLayerName) {

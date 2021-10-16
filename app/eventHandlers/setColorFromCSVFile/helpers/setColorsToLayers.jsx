@@ -10,7 +10,7 @@ function setColorsToLayers(CSV) {
 
     setOptionsToSelectionFillToWork();
 
-    var ChosenCSVCOLORSFolders = getRGBColorsAndFolderNames(CSV);
+    var COLORSFolders = getRGBColorsAndFolderNames(CSV);
 
     for (var i = 1; i < COLORSFolders.length; i++) {
 

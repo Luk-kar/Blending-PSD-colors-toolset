@@ -8,9 +8,7 @@ function createColoredPixel(color) {
     selectedPixel.select(shapeRef);
 
     var colorToFill = new SolidColor();
-    colorToFill.rgb.red = color.red;
-    colorToFill.rgb.green = color.green;
-    colorToFill.rgb.blue = color.blue;
+    colorToFill.rgb.hexValue = color;
 
     selectedPixel.fill(colorToFill); //fills background layer with white.
     selectedPixel.deselect();

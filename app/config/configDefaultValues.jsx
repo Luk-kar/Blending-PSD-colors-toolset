@@ -29,15 +29,15 @@ var configDefaultValues = {
         title: "COLORS RGB",
         R: {
             key: "R",
-            value: "255,0,0"
+            value: "FF0000"
         },
         G: {
             key: "G",
-            value: "0,255,0"
+            value: "00FF00"
         },
         B: {
             key: "B",
-            value: "0,0,255"
+            value: "0000FF"
         }
     }
 };

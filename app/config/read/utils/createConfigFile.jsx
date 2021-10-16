@@ -17,7 +17,7 @@ function createConfigFile() {
         color_folder.layers.key + _ + color_folder.layers.value + "\n" +
         base_folder.name.key + _ + base_folder.name.value + "\n" +
         "[" + configDefaultValues.colorsRGB.title + "]\n" +
-        colorsRGB.R.key + _ + colorsRGB.R.value + "\n" +
+        colorsRGB.R.key + _ + colorsRGB.R.value + "\n" + // todo create number of folder in object
         colorsRGB.G.key + _ + colorsRGB.G.value + "\n" +
         colorsRGB.B.key + _ + colorsRGB.B.value + "\n";
 

@@ -1,19 +1,16 @@
+#include "./readRGBLayersNames.jsx"
 #include "./utils/getConfigValue.jsx"
 #include "../configDefaultValues.jsx"
 
 function readColorsRGB() {
 
-    // get all colors from config as loop todo
+    var colors = []
 
-    var R = getConfigValue(configDefaultValues.colorsRGB.R.key)
-    var G = getConfigValue(configDefaultValues.colorsRGB.G.key)
-    var B = getConfigValue(configDefaultValues.colorsRGB.B.key)
+    var layersNames = readRGBLayersNames()
 
-    var colors = [
-        R,
-        G,
-        B,
-    ];
+    for (var i = 0; i < layersNames.length; i++) {
+        colors.unshift(getConfigValue(layersNames[i]))
+    }
 
     return colors;
 }

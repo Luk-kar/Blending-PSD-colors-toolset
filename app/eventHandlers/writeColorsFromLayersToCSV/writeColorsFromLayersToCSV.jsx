@@ -6,7 +6,7 @@
 #include "./helpers/gettingColorHexValues/writeCSVAllHexFoldersValues.jsx"
 #include "../utils/revealFileInExplorer.jsx"
 
-function readColorFromLayers() {
+function writeColorsFromLayersToCSV() {
 
     var passedConditons = checkConditionToRunScript();
 

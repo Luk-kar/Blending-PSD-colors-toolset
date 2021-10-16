@@ -2,7 +2,7 @@
 #include "./checkIsFolder.jsx"
 #include "./getFolderInFolders.jsx"
 #include "../../../config/read/readRGBLayersNames.jsx"
-#include "../../readColorFromLayers/helpers/checkingConditions/checkIsLayer.jsx"
+#include "../../writeColorsFromLayersToCSV/helpers/checkingConditions/checkIsLayer.jsx"
 #include "./getCOLORLayer.jsx"
 #include "./getColorTofill.jsx"
 

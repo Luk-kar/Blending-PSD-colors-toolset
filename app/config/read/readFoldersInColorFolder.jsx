@@ -1,4 +1,4 @@
-#include "../utils/getConfigValue.jsx"
+#include "./utils/getConfigValue.jsx"
 #include "../configDefaultValues.jsx"
 
 function readFoldersInColorFolder() {

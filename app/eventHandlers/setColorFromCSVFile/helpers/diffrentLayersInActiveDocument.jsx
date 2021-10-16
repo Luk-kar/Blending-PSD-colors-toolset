@@ -1,4 +1,4 @@
-#include "../../../config/utils/getConfigPath.jsx"
+#include "../../../config/read/utils/getConfigPath.jsx"
 #include "./getFullDocPath.jsx"
 #include "./alertWrongColorNameInPSD.jsx"
 

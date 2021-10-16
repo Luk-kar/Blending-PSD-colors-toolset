@@ -1,14 +1,16 @@
 #include "./setOptionsToSelectionFillToWork.jsx"
+#include "./getRGBColorsAndFolderNames.jsx"
 #include "./setColorsInLayers.jsx"
 
-function setColorsToLayers(COLORSFolders) {
+function setColorsToLayers(CSV) {
 
     // Color will be changed during usage
     var startingFGColor = app.foregroundColor;
     var startingBGColor = app.backgroundColor;
 
-
     setOptionsToSelectionFillToWork();
+
+    var ChosenCSVCOLORSFolders = getRGBColorsAndFolderNames(CSV);
 
     for (var i = 1; i < COLORSFolders.length; i++) {
 

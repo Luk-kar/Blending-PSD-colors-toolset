@@ -26,13 +26,13 @@ function setColorFromCSVFile() {
     
     if (errorsCSV) {
         writeErrorsToCSV(CSV, errorsCSV)
-        var confirmation = confirm("Do you want still to load colors into PSD?", true);
-        if (!confirmation) {
+        var proceedFurther = confirm("Do you want still to load colors into PSD?", true);
+        if (!proceedFurther) {
             return //abort program
         }
     }
 
-    setColorsToLayers(ChosenCSVCOLORSFolders)
+    setColorsToLayers(CSV)
 
     alert("You succesfully set all colors from all rows from CSV file:\n" + CSV.fullName)
 

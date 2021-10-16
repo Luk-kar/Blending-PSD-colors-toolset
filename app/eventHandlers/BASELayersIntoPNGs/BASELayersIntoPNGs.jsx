@@ -2,7 +2,7 @@
 #include "../utils/checkIfHasItBaseFolder.jsx"
 #include "./helpers/copy/copyPixelAreasToFolder.jsx"
 #include "./helpers/changeLayersFolderAttributes/makeOnlyVisible.jsx"
-#include "./helpers/getPaths/getFolderToSavePNGs.jsx"
+#include "./helpers/getPaths/getDirToSavePNGs.jsx"
 #include "./helpers/saveToPNGs/saveLayersToPNGsInFolder.jsx"
 #include "./helpers/saveToPNGs/saveLayersToPNGsInFolder.jsx"
 #include "../utils/revealFileInExplorer.jsx"
@@ -25,6 +25,7 @@ function BASELayersIntoPNGs() {
     var BASEFolder = doc.layerSets.getByName(readBaseFolderName());
     var BASELayers = BASEFolder.artLayers;
 
+    // PS could be to slow you have to copye pixels first
     var copyFolder = doc.layerSets.add();
     copyFolder.name = "COPIED"
 
@@ -33,7 +34,7 @@ function BASELayersIntoPNGs() {
     makeOnlyVisible(copyFolder);
     var copiedLayers = copyFolder.artLayers;
 
-    var copiedLayersPNGsFolder = getFolderToSavePNGs();
+    var copiedLayersPNGsFolder = getDirToSavePNGs();
 
     saveLayersToPNGsInFolder(copiedLayers, copiedLayersPNGsFolder);
 

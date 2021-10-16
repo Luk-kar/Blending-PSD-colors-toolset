@@ -1,6 +1,6 @@
 #include "../getDocName.jsx"
 
-function getFolderToSavePNGs() {
+function getDirToSavePNGs() {
 
     var doc = app.activeDocument;
     var docName = getDocName();

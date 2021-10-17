@@ -1,6 +1,6 @@
 #include "./getFullActivePSDPath.jsx"
 
-function getCSVAndPSDDiffrenceColorFoldersCount(COLORSFolders, foldersInCOLORS, CSV) {
+function getCSVAndPSDDiffrenceColorsFoldersCount(COLORSFolders, foldersInCOLORS, CSV) {
 
     var COLORSFoldersLen = COLORSFolders.length - 1; // first line is columns
 

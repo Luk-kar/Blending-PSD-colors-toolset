@@ -1,6 +1,6 @@
 #include "./getFullActivePSDPath.jsx"
 
-function getDiffrentColorFolders(foldersInCOLORS, COLORSFolders, CSV) {
+function getCASVAndPSDDiffrentColorFolders(foldersInCOLORS, COLORSFolders, CSV) {
 
     var foldersInCOLORSNames = [];
     for (var i = 0; i < foldersInCOLORS.length; i++) {

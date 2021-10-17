@@ -1,4 +1,4 @@
-#include "./getPSDFoldersInCOLORS.jsx"
+#include "./getPSDFoldersInCOLORSFolder.jsx"
 #include "./checkIsFolder.jsx"
 #include "./getFolderInFolders.jsx"
 #include "../../../config/read/readRGBLayersNames.jsx"
@@ -13,7 +13,7 @@ function setColorsInLayers(COLORFolder) {
     var folderName = COLORFolder[0];
     var folderLayersColors = COLORFolder.slice(1, COLORFolder.length);
 
-    var foldersInCOLORS = getPSDFoldersInCOLORS();
+    var foldersInCOLORS = getPSDFoldersInCOLORSFolder();
 
     if (checkIsFolder(foldersInCOLORS, folderName)) {
 

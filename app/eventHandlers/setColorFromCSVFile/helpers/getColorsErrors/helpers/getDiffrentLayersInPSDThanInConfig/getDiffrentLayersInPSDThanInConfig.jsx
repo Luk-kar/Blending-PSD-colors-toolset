@@ -2,7 +2,7 @@
 #include "../../../utils/getFullActivePSDPath.jsx"
 #include "./helpers/alertWrongColorNameInPSD.jsx"
 
-function getDiffrentLayersInPSDThanInConfig(foldersInColorFolder, colorLayersNames) {
+function getDiffrentLayersInPSDThanInConfig(foldersInColorFolder, colorLayersNames) {  //todo
 
     var diffrentLayersInPSD = "";
     var diffrentLayersInTitle = "\n\ndiffrent layers in PSD compare to config file\n" +

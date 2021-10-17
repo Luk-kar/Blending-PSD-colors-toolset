@@ -12,7 +12,7 @@ function about(mainMenu) {
     '2. Have some folders in the "COLORS" folder.\n' +
     '3. In each folder have 3 layers with names: R, G, B.\n' +
     '4. Each layer has in the left upper corner a color sample.\n' +
-    '5. Run "Write colors from layers to CSV file".\n' +
+    '5. Run "Write colors from layers to CSV file".\n' + //todo
     '6. Find CSV file, where opened PSD file is located.\n' +
     '7. Enjoy.';
 

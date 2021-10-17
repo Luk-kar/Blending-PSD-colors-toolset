@@ -1,6 +1,6 @@
-#include "../../../config/read/utils/getConfigPath.jsx"
-#include "./getFullActivePSDPath.jsx"
-#include "./alertWrongColorNameInPSD.jsx"
+#include "../../../../../config/read/utils/getConfigPath.jsx"
+#include "../../getFullActivePSDPath.jsx"
+#include "../../alertWrongColorNameInPSD.jsx"
 
 function getDiffrentLayersInPSDThanInConfig(foldersInColorFolder, colorLayersNames) {
 

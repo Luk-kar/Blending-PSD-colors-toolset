@@ -1,11 +1,11 @@
-#include "./getCSVColorsAndFoldersNames.jsx"
-#include "./getPSDFoldersInCOLORSFolder.jsx"
-#include "../../../config/read/readRGBLayersNames.jsx"
-#include "./getCSVCoruptedColors.jsx"
-#include "./getCSVAndPSDDiffrenceColorsFoldersCount.jsx"
-#include "./getCSVAndPSDDiffrentColorsFolders.jsx"
-#include "./getDiffrentLayersInPSDThanInConfig.jsx"
-#include "./getDiffrentColorsCSVAndConfig.jsx"
+#include "../getCSVColorsAndFoldersNames.jsx"
+#include "../getPSDFoldersInCOLORSFolder.jsx"
+#include "../../../../config/read/readRGBLayersNames.jsx"
+#include "./helpers/getCSVCoruptedColors.jsx"
+#include "./helpers/getCSVAndPSDDiffrenceColorsFoldersCount.jsx"
+#include "./helpers/getCSVAndPSDDiffrentColorsFolders.jsx"
+#include "./helpers/getDiffrentLayersInPSDThanInConfig.jsx"
+#include "./helpers/getDiffrentColorsCSVAndConfig.jsx"
 
 function getColorsErrors(CSV) {
 

@@ -1,4 +1,4 @@
-#include "./getFullActivePSDPath.jsx"
+#include "../../getFullActivePSDPath.jsx"
 
 function getCSVAndPSDDiffrentColorsFolders(CSVCOLORSFolders, foldersInCOLORS, CSV) {
 

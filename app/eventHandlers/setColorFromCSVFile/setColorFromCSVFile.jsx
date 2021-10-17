@@ -1,6 +1,6 @@
 #include "../utils/isActiveDocument.jsx"
 #include "../utils/checkIfHasItBlendingColorFolder.jsx"
-#include "./helpers/getColorsErrors.jsx"
+#include "./helpers/getErrors/getColorsErrors.jsx"
 #include "./helpers/writeErrorsToCSV.jsx"
 #include "./helpers/setColorsToLayers.jsx"
 

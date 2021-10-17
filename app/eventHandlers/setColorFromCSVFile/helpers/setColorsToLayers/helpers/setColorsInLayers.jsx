@@ -1,8 +1,8 @@
 #include "../../getPSDFoldersInCOLORSFolder.jsx"
-#include "../../checkIsFolder.jsx"
+#include "../../../../utils/checkIsFolder.jsx"
 #include "../../getFolderInFolders.jsx"
 #include "../../../../../config/read/readRGBLayersNames.jsx"
-#include "../../../../writeColorsFromLayersToCSV/helpers/checkingConditions/checkIsLayer.jsx"
+#include "../../../../utils/checkIsLayer.jsx"
 #include "../../getCOLORLayer.jsx"
 #include "../../getColorTofill.jsx"
 

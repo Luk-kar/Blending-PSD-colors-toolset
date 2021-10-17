@@ -1,4 +1,4 @@
-#include "../checkingConditions/checkIsLayer.jsx"
+#include "../../../utils/checkIsLayer.jsx"
 
 function getRGBLayers(layers, layersNames) {
 

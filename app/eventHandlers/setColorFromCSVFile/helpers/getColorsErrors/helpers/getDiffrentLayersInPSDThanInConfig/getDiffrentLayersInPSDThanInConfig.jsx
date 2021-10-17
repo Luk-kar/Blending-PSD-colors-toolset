@@ -1,5 +1,5 @@
 #include "../../../../../../config/read/utils/getConfigPath.jsx"
-#include "../../../getFullActivePSDPath.jsx"
+#include "../../../utils/getFullActivePSDPath.jsx"
 #include "./helpers/alertWrongColorNameInPSD.jsx"
 
 function getDiffrentLayersInPSDThanInConfig(foldersInColorFolder, colorLayersNames) {

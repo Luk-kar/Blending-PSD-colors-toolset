@@ -1,5 +1,5 @@
 #include "../utils/getCSVColorsAndFoldersNames.jsx"
-#include "../getPSDFoldersInCOLORSFolder.jsx"
+#include "../utils/getPSDFoldersInCOLORSFolder.jsx"
 #include "../../../../config/read/readRGBLayersNames.jsx"
 #include "./helpers/getCSVCoruptedColors.jsx"
 #include "./helpers/getCSVAndPSDDiffrenceColorsFoldersCount.jsx"

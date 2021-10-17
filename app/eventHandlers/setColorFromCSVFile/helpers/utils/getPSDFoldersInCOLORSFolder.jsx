@@ -1,4 +1,4 @@
-#include "../../../config/read/readRGBLayersNames.jsx"
+#include "../../../../config/read/readRGBLayersNames.jsx"
 
 function getPSDFoldersInCOLORSFolder() {
 

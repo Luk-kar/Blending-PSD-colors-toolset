@@ -1,4 +1,4 @@
-#include "../../getFullActivePSDPath.jsx"
+#include "../../utils/getFullActivePSDPath.jsx"
 
 function getCSVAndPSDDiffrenceColorsFoldersCount(COLORSFolders, foldersInCOLORS, CSV) {
 

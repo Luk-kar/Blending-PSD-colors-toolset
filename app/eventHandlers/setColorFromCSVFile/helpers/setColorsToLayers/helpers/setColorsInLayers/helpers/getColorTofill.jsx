@@ -1,4 +1,4 @@
-#include "../../../../isHexColor.jsx"
+#include "../../../../utils/isHexColor.jsx"
 
 function getColorTofill(color) {
     var myColor = new SolidColor();

@@ -1,4 +1,4 @@
-#include "../../isHexColor.jsx"
+#include "../../utils/isHexColor.jsx"
 
 function getCSVCoruptedColors(rows, configColorsTypes) {
 

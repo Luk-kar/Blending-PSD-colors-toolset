@@ -1,4 +1,4 @@
-function getRGBColorsAndFolderNames(CSV) {
+function getCSVColorsAndFoldersNames(CSV) {
 
     var rows = [];
     var rowNumber = 0;

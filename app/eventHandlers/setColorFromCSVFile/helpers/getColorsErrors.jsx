@@ -1,5 +1,5 @@
-#include "./getRGBColorsAndFolderNames.jsx"
-#include "./getFoldersInCOLORS.jsx"
+#include "./getCSVColorsAndFoldersNames.jsx"
+#include "./getPSDFoldersInCOLORS.jsx"
 #include "../../../config/read/readRGBLayersNames.jsx"
 #include "./getCoruptedColors.jsx"
 #include "./getColorFoldersDiffrentNumber.jsx"
@@ -9,9 +9,9 @@
 
 function getColorsErrors(CSV) {
 
-    var ChosenCSVCOLORSFolders = getRGBColorsAndFolderNames(CSV);
+    var ChosenCSVCOLORSFolders = getCSVColorsAndFoldersNames(CSV);
 
-    var PSDfoldersInCOLORS = getFoldersInCOLORS();
+    var PSDfoldersInCOLORS = getPSDFoldersInCOLORS();
 
     var configColorsTypes = readRGBLayersNames();
 

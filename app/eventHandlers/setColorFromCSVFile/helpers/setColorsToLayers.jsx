@@ -1,5 +1,5 @@
 #include "./setOptionsToSelectionFillToWork.jsx"
-#include "./getRGBColorsAndFolderNames.jsx"
+#include "./getCSVColorsAndFoldersNames.jsx"
 #include "./setColorsInLayers.jsx"
 
 function setColorsToLayers(CSV) {
@@ -10,7 +10,7 @@ function setColorsToLayers(CSV) {
 
     setOptionsToSelectionFillToWork();
 
-    var COLORSFolders = getRGBColorsAndFolderNames(CSV);
+    var COLORSFolders = getCSVColorsAndFoldersNames(CSV);
 
     for (var i = 1; i < COLORSFolders.length; i++) {
 

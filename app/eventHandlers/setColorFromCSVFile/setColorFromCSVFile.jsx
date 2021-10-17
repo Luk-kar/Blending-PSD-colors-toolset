@@ -1,8 +1,8 @@
 #include "../utils/isActiveDocument.jsx"
 #include "../utils/checkIfHasItBlendingColorFolder.jsx"
-#include "./helpers/getErrors/getColorsErrors.jsx"
+#include "./helpers/getColorsErrors/getColorsErrors.jsx"
 #include "./helpers/writeErrorsToCSV.jsx"
-#include "./helpers/setColorsToLayers.jsx"
+#include "./helpers/setColorsToLayers/setColorsToLayers.jsx"
 
 function setColorFromCSVFile() {
 

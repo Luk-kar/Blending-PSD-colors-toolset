@@ -1,14 +1,14 @@
 #include "./getFullActivePSDPath.jsx"
 
-function getCSVAndPSDDiffrentColorsFolders(foldersInCOLORS, COLORSFolders, CSV) {
+function getCSVAndPSDDiffrentColorsFolders(CSVCOLORSFolders, foldersInCOLORS, CSV) {
 
     var foldersInCOLORSNames = [];
     for (var i = 0; i < foldersInCOLORS.length; i++) {
         foldersInCOLORSNames.push(foldersInCOLORS[i].name);
     }
-    var COLORSFoldersNames = [];
-    for (var j = 1; j < COLORSFolders.length; j++) {
-        COLORSFoldersNames.push(COLORSFolders[j][0]);
+    var CSVCOLORSFoldersNames = [];
+    for (var j = 1; j < CSVCOLORSFolders.length; j++) {
+        CSVCOLORSFoldersNames.push(CSVCOLORSFolders[j][0]);
     }
 
     var diffrentColorFolders = "";
@@ -17,16 +17,16 @@ function getCSVAndPSDDiffrentColorsFolders(foldersInCOLORS, COLORSFolders, CSV) 
     var diffrentCSVTitle = CSV.fullName + ",";
     var diffrentFoldersCSV = "";
 
-    for (var k = 0; k < COLORSFoldersNames.length; k++) {
+    for (var k = 0; k < CSVCOLORSFoldersNames.length; k++) {
         var thereIs = false;
         for (var l = 0; l < foldersInCOLORSNames.length; l++) {
-            if (COLORSFoldersNames[k] === foldersInCOLORSNames[l]) {
+            if (CSVCOLORSFoldersNames[k] === foldersInCOLORSNames[l]) {
                 thereIs = true;
                 break;
             }
         }
         if (!thereIs) {
-            diffrentFoldersCSV += COLORSFoldersNames[k] + " ";
+            diffrentFoldersCSV += CSVCOLORSFoldersNames[k] + " ";
         }
     }
 
@@ -39,8 +39,8 @@ function getCSVAndPSDDiffrentColorsFolders(foldersInCOLORS, COLORSFolders, CSV) 
 
     for (var k = 0; k < foldersInCOLORSNames.length; k++) {
         var thereIs = false;
-        for (var l = 0; l < COLORSFoldersNames.length; l++) {
-            if (foldersInCOLORSNames[k] === COLORSFoldersNames[l]) {
+        for (var l = 0; l < CSVCOLORSFoldersNames.length; l++) {
+            if (foldersInCOLORSNames[k] === CSVCOLORSFoldersNames[l]) {
                 thereIs = true;
                 break;
             }

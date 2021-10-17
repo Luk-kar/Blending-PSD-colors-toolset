@@ -21,7 +21,7 @@ function getColorsErrors(CSV) {
 
     errorsCSV += getCSVAndPSDDiffrenceColorsFoldersCount(ChosenCSVCOLORSFolders, PSDfoldersInCOLORS, CSV);
 
-    errorsCSV += getCSVAndPSDDiffrentColorsFolders(PSDfoldersInCOLORS, ChosenCSVCOLORSFolders, CSV);
+    errorsCSV += getCSVAndPSDDiffrentColorsFolders(ChosenCSVCOLORSFolders, PSDfoldersInCOLORS, CSV);
 
     errorsCSV += getDiffrentLayersInPSDThanInConfig(PSDfoldersInCOLORS, configColorsTypes);
 

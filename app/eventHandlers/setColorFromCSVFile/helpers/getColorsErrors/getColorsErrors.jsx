@@ -1,4 +1,4 @@
-#include "../getCSVColorsAndFoldersNames.jsx"
+#include "../utils/getCSVColorsAndFoldersNames.jsx"
 #include "../getPSDFoldersInCOLORSFolder.jsx"
 #include "../../../../config/read/readRGBLayersNames.jsx"
 #include "./helpers/getCSVCoruptedColors.jsx"

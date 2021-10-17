@@ -1,6 +1,6 @@
 #include "./helpers/setOptionsToSelectionFillToWork.jsx"
 #include "../getCSVColorsAndFoldersNames.jsx"
-#include "./helpers/setColorsInLayers.jsx"
+#include "./helpers/setColorsInLayers/setColorsInLayers.jsx"
 
 function setColorsToLayers(CSV) {
 

@@ -1,10 +1,10 @@
-#include "../../getPSDFoldersInCOLORSFolder.jsx"
-#include "../../../../utils/checkIsFolder.jsx"
-#include "../../getFolderInFolders.jsx"
-#include "../../../../../config/read/readRGBLayersNames.jsx"
-#include "../../../../utils/checkIsLayer.jsx"
-#include "../../getCOLORLayer.jsx"
-#include "../../getColorTofill.jsx"
+#include "../../../getPSDFoldersInCOLORSFolder.jsx"
+#include "../../../../../utils/checkIsFolder.jsx"
+#include "./helpers/getFolderInFolders.jsx"
+#include "../../../../../../config/read/readRGBLayersNames.jsx"
+#include "../../../../../utils/checkIsLayer.jsx"
+#include "../../../getCOLORLayer.jsx"
+#include "../../../getColorTofill.jsx"
 
 function setColorsInLayers(COLORFolder) {
 

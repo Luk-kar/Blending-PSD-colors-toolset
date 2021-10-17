@@ -2,7 +2,7 @@
 #include "./getPSDFoldersInCOLORSFolder.jsx"
 #include "../../../config/read/readRGBLayersNames.jsx"
 #include "./getCSVCoruptedColors.jsx"
-#include "./getColorFoldersDiffrentNumber.jsx"
+#include "./getCSVAndPSDDiffrenceColorFoldersCount.jsx"
 #include "./getDiffrentColorFolders.jsx"
 #include "./getDiffrentLayersInActivePSDThanInConfig.jsx"
 #include "./getDiffrentColorsCSVAndConfig.jsx"
@@ -19,7 +19,7 @@ function getColorsErrors(CSV) {
 
     errorsCSV += getCSVCoruptedColors(ChosenCSVCOLORSFolders, configColorsTypes);
 
-    errorsCSV += getColorFoldersDiffrentNumber(ChosenCSVCOLORSFolders, PSDfoldersInCOLORS, CSV);
+    errorsCSV += getCSVAndPSDDiffrenceColorFoldersCount(ChosenCSVCOLORSFolders, PSDfoldersInCOLORS, CSV);
 
     errorsCSV += getDiffrentColorFolders(PSDfoldersInCOLORS, ChosenCSVCOLORSFolders, CSV);
 

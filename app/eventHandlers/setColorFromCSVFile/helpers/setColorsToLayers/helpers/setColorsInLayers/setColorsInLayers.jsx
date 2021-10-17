@@ -3,8 +3,8 @@
 #include "./helpers/getFolderInFolders.jsx"
 #include "../../../../../../config/read/readRGBLayersNames.jsx"
 #include "../../../../../utils/checkIsLayer.jsx"
-#include "../../../getCOLORLayer.jsx"
-#include "../../../getColorTofill.jsx"
+#include "./helpers/getCOLORLayer.jsx"
+#include "./helpers/getColorTofill.jsx"
 
 function setColorsInLayers(COLORFolder) {
 

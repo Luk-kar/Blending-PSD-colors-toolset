@@ -1,6 +1,6 @@
 #include "./isHexColor.jsx"
 
-function getCoruptedColors(rows, configColorsTypes) {
+function getCSVCoruptedColors(rows, configColorsTypes) {
 
     var corruptedColors = "";
     var corruptedColorsCounter = 0;

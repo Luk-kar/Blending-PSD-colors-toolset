@@ -4,8 +4,8 @@
 #include "./getCoruptedColors.jsx"
 #include "./getColorFoldersDiffrentNumber.jsx"
 #include "./getDiffrentColorFolders.jsx"
-#include "./diffrentLayersInActiveDocument.jsx"
-#include "./diffrentCSVColorsAndCSVConfig.jsx"
+#include "./getDiffrentLayersInActivePSDThanInConfig.jsx"
+#include "./getDiffrentColorsCSVAndConfig.jsx"
 
 function getColorsErrors(CSV) {
 
@@ -23,9 +23,9 @@ function getColorsErrors(CSV) {
 
     errorsCSV += getDiffrentColorFolders(PSDfoldersInCOLORS, ChosenCSVCOLORSFolders, CSV);
 
-    errorsCSV += diffrentLayersInActiveDocument(PSDfoldersInCOLORS, configColorsTypes);
+    errorsCSV += getDiffrentLayersInActivePSDThanInConfig(PSDfoldersInCOLORS, configColorsTypes); //to
 
-    errorsCSV += diffrentCSVColorsAndCSVConfig(CSV, configColorsTypes);
+    errorsCSV += getDiffrentColorsCSVAndConfig(CSV, configColorsTypes);
 
     return errorsCSV;
 }

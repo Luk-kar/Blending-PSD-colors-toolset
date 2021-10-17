@@ -1,12 +1,12 @@
 #include "../../../config/read/utils/getConfigPath.jsx"
-#include "./getFullDocPath.jsx"
+#include "./getFullActivePSDPath.jsx"
 #include "./alertWrongColorNameInPSD.jsx"
 
-function diffrentLayersInActiveDocument(foldersInColorFolder, colorLayersNames) {
+function getDiffrentLayersInActivePSDThanInConfig(foldersInColorFolder, colorLayersNames) {
 
     var diffrentLayersInPSD = "";
     var diffrentLayersInTitle = "\n\ndiffrent layers in PSD compare to config file\n" +
-        "PSD," + getFullDocPath() + "\n" +
+        "PSD," + getFullActivePSDPath() + "\n" +
         "config CSV," + getConfigPath() + "\n";
     var diffrentLayersInColumns = "folder, layers\n";
 

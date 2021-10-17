@@ -1,4 +1,4 @@
-#include "./getFullDocPath.jsx"
+#include "./getFullActivePSDPath.jsx"
 
 function getDiffrentColorFolders(foldersInCOLORS, COLORSFolders, CSV) {
 
@@ -34,7 +34,7 @@ function getDiffrentColorFolders(foldersInCOLORS, COLORSFolders, CSV) {
         diffrentColorFolders += diffrentCSVTitle + diffrentFoldersCSV;
     }
 
-    var diffrentPSDTitle = "\n" + getFullDocPath() + ",";
+    var diffrentPSDTitle = "\n" + getFullActivePSDPath() + ",";
     var diffrentFoldersPSD = "";
 
     for (var k = 0; k < foldersInCOLORSNames.length; k++) {

@@ -1,4 +1,4 @@
-function diffrentCSVColorsAndCSVConfig(CSV, configColorsTypes) {
+function getDiffrentColorsCSVAndConfig(CSV, configColorsTypes) {
 
     var CSVToReturn = "";
     var wrongColorsNames = "";

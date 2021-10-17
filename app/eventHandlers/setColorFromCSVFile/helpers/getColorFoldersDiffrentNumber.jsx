@@ -1,4 +1,4 @@
-#include "./getFullDocPath.jsx"
+#include "./getFullActivePSDPath.jsx"
 
 function getColorFoldersDiffrentNumber(COLORSFolders, foldersInCOLORS, CSV) {
 
@@ -15,7 +15,7 @@ function getColorFoldersDiffrentNumber(COLORSFolders, foldersInCOLORS, CSV) {
         return "\n" +
             "file,number of folders\n" +
             CSV.fullName + "," + COLORSFoldersLen + "\n" +
-            getFullDocPath() + "," + foldersInCOLORS.length + "\n" +
+            getFullActivePSDPath() + "," + foldersInCOLORS.length + "\n" +
             "The diffrence," + Math.abs(COLORSFoldersLen - foldersInCOLORS.length) +
             "\n";
     }

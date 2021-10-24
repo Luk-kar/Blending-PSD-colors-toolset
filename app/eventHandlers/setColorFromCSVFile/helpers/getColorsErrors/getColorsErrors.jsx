@@ -5,7 +5,7 @@
 #include "./helpers/getCSVAndPSDDiffrenceColorsFoldersCount.jsx"
 #include "./helpers/getCSVAndPSDDiffrentColorsFolders/getCSVAndPSDDiffrentColorsFolders.jsx"
 #include "./helpers/getDiffrentLayersInPSDThanInConfig/getDiffrentLayersInPSDThanInConfig.jsx"
-#include "./helpers/getDiffrentColorsCSVAndConfig.jsx"
+#include "./helpers/getDiffrentColorsCSVAndConfig/getDiffrentColorsCSVAndConfig.jsx"
 
 function getColorsErrors(CSV) {
 

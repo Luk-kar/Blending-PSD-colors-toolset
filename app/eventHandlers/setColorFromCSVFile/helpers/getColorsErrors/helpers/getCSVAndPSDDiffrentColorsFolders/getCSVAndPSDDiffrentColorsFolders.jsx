@@ -3,7 +3,7 @@
 #include "./helpers/getDiffrentFoldersNames.jsx"
 #include "../../../utils/getFullActivePSDPath.jsx"
 
-function getCSVAndPSDDiffrentColorsFolders(CSVCOLORSFolders, foldersInCOLORS, CSV) { // todo
+function getCSVAndPSDDiffrentColorsFolders(CSVCOLORSFolders, foldersInCOLORS, CSV) {
 
     var foldersInCOLORSNames = getFoldersInCOLORSNames(foldersInCOLORS);
 

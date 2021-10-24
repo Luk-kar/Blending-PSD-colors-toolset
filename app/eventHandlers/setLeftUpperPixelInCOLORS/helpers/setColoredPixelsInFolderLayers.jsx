@@ -1,16 +1,18 @@
+#include "../../../config/read/readColorPickerCoords.jsx"
+#include "../../utils/checkIsLayer.jsx"
 #include "./getLayerColorHex.jsx"
 
 function setColoredPixelsInFolderLayers(RGBLayers, layersNames, selectedPixel) {
 
     var doc = app.activeDocument;
 
-    var coordsR = [180, 175]; // read config coord todo
-    var coordsG = [140, 274]; // read config coord todo
-    var coordsB = [178, 249]; // read config coord todo
-
-    var coords = [coordsR, coordsG, coordsB];
+    var coords = readColorPickerCoords();
 
     for (var i = 0; i < layersNames.length; i++) {
+
+        if(!checkIsLayer(layersNames[i])) {
+            continue
+        }
 
         var colorLayer = RGBLayers.getByName(layersNames[i]);
 

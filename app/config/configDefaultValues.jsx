@@ -39,5 +39,20 @@ var configDefaultValues = {
             key: "B",
             value: "0000FF"
         }
+    },
+    pickerCoords: {
+        title: "COLOR PICKER COORDS PIXEL FILL",
+        R: {
+            key: "R_coords",
+            value: "180,175"
+        },
+        G: {
+            key: "G_coords",
+            value: "140,274"
+        },
+        B: {
+            key: "B_coords",
+            value: "178,249"
+        }
     }
 };

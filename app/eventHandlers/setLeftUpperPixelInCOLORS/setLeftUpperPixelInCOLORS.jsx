@@ -5,7 +5,7 @@
 #include "../../config/read/readBaseFolderName.jsx"
 #include "../../config/read/readRGBLayersNames.jsx"
 #include "./helpers/setLayersToBeEditable.jsx"
-#include "./helpers/setColoredLeftUpperPixel.jsx"
+#include "./helpers/setColoredLeftUpperPixelInFolders.jsx"
 
 
 function setLeftUpperPixelInCOLORS() {
@@ -33,7 +33,7 @@ function setLeftUpperPixelInCOLORS() {
 
     var layersNames = readRGBLayersNames()
     setLayersToBeEditable(COLORSfolders, layersNames);
-    setColoredLeftUpperPixel(COLORSfolders, layersNames);
+    setColoredLeftUpperPixelInFolders(COLORSfolders, layersNames);
 
     // Restore app settings
     app.foregroundColor = startingFGColor;
@@ -45,5 +45,5 @@ function setLeftUpperPixelInCOLORS() {
         var folderBASE = doc.layerSets.getByName(readBaseFolderName())
         folderBASE.visible = true
     }
-    alert("You succesfully set left upper corner for all COLORS layers")
+    alert("You succesfully set left upper corner for all " + readColorFolderName() + " layers")
 }

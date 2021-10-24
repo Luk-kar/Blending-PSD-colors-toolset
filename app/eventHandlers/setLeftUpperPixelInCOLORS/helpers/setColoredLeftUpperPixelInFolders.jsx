@@ -1,7 +1,7 @@
 #include "./setSelectionLeftUpperCorner.jsx"
 #include "./setColoredPixelsInFolderLayers.jsx"
 
-function setColoredLeftUpperPixel(COLORSfolders, layersNames) {
+function setColoredLeftUpperPixelInFolders(COLORSfolders, layersNames) {
 
     var selectedPixel = setSelectionLeftUpperCorner();
 

@@ -10,9 +10,11 @@ function setLayersToBeEditable(COLORSfolders, layersNames) {
         var layersRGB = ColorFolder.artLayers;
 
         for (var j = 0; j < layersRGB.length; j++) {
+
             if(!checkIsLayer(layersNames[j])) {
                 continue
             }
+            
             var RGBLayer = layersRGB.getByName(layersNames[j]);
             doc.activeLayer = RGBLayer;
             RGBLayer.transparentPixelsLocked = false;

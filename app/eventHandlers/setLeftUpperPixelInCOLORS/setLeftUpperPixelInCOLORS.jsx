@@ -1,13 +1,28 @@
+#include "../utils/isActiveDocument.jsx"
+#include "../utils/checkIfHasItBlendingColorFolder.jsx"
+#include "../../config/read/readColorFolderName.jsx"
+#include "../utils/checkIfHasItBaseFolder.jsx"
+#include "../../config/read/readBaseFolderName.jsx"
+#include "../../config/read/readRGBLayersNames.jsx"
 #include "./helpers/setLayersToBeEditable.jsx"
 #include "./helpers/setColoredLeftUpperPixel.jsx"
 
+
 function setLeftUpperPixelInCOLORS() {
 
-    //isDoc todo
-    //areLayes todo
+    if(!isActiveDocument()) {
+        alert("You do not have any opened file!");
+        return; //abort program
+    }
+
+    if(!checkIfHasItBlendingColorFolder()) {
+        alert("There is no " + readColorFolderName() + " folder");
+        return; //abort program
+    }
+
     var doc = app.activeDocument
 
-    var folderCOLORS = doc.layerSets.getByName("COLORS")
+    var folderCOLORS = doc.layerSets.getByName(readColorFolderName())
     var COLORSfolders = folderCOLORS.layerSets
 
     // Set app settings
@@ -16,7 +31,7 @@ function setLeftUpperPixelInCOLORS() {
     var savedDialogs = app.displayDialogs
     app.displayDialogs = DialogModes.ALL;
 
-    var layersNames = ["R", "G", "B"] //read layers todo
+    var layersNames = readRGBLayersNames()
     setLayersToBeEditable(COLORSfolders, layersNames);
     setColoredLeftUpperPixel(COLORSfolders, layersNames);
 
@@ -26,9 +41,9 @@ function setLeftUpperPixelInCOLORS() {
     app.displayDialogs = savedDialogs
     doc.selection.deselect();
     folderCOLORS.visible = true
-    // if base is base todo
-    var folderBASE = doc.layerSets.getByName("BASE")
-    folderBASE.visible = true
-
+    if (checkIfHasItBaseFolder()){
+        var folderBASE = doc.layerSets.getByName(readBaseFolderName())
+        folderBASE.visible = true
+    }
     alert("You succesfully set left upper corner for all COLORS layers")
 }

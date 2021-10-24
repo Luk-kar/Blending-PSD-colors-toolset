@@ -4,9 +4,9 @@ function setColoredPixelsInFolderLayers(RGBLayers, layersNames, selectedPixel) {
 
     var doc = app.activeDocument;
 
-    var coordsR = [180, 175];
-    var coordsG = [140, 274];
-    var coordsB = [178, 249];
+    var coordsR = [180, 175]; // read config coord todo
+    var coordsG = [140, 274]; // read config coord todo
+    var coordsB = [178, 249]; // read config coord todo
 
     var coords = [coordsR, coordsG, coordsB];
 

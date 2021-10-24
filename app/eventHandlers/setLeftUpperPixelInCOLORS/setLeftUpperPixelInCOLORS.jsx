@@ -3,6 +3,8 @@
 
 function setLeftUpperPixelInCOLORS() {
 
+    //isDoc todo
+    //areLayes todo
     var doc = app.activeDocument
 
     var folderCOLORS = doc.layerSets.getByName("COLORS")
@@ -14,7 +16,7 @@ function setLeftUpperPixelInCOLORS() {
     var savedDialogs = app.displayDialogs
     app.displayDialogs = DialogModes.ALL;
 
-    var layersNames = ["R", "G", "B"]
+    var layersNames = ["R", "G", "B"] //read layers todo
     setLayersToBeEditable(COLORSfolders, layersNames);
     setColoredLeftUpperPixel(COLORSfolders, layersNames);
 
@@ -24,7 +26,7 @@ function setLeftUpperPixelInCOLORS() {
     app.displayDialogs = savedDialogs
     doc.selection.deselect();
     folderCOLORS.visible = true
-    // if base
+    // if base is base todo
     var folderBASE = doc.layerSets.getByName("BASE")
     folderBASE.visible = true
 

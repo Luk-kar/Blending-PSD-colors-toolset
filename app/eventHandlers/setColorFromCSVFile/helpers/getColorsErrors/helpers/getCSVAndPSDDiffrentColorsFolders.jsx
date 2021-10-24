@@ -11,14 +11,14 @@ function getCSVAndPSDDiffrentColorsFolders(CSVCOLORSFolders, foldersInCOLORS, CS
 
     var diffrentCSVTitle = CSV.fullName + ",";
 
-    var diffrentFoldersCSV = getDiffrentDiffrentFoldersCSV(CSVCOLORSFoldersNames, foldersInCOLORSNames)
+    var diffrentFoldersCSV = getDiffrentFoldersNames(foldersInCOLORSNames, CSVCOLORSFoldersNames)
 
     if (diffrentFoldersCSV) {
         diffrentColorFolders += diffrentCSVTitle + diffrentFoldersCSV;
     }
 
     var diffrentPSDTitle = "\n" + getFullActivePSDPath() + ",";
-    var diffrentFoldersPSD = getDiffrentFoldersPSD(CSVCOLORSFoldersNames, foldersInCOLORSNames) 
+    var diffrentFoldersPSD = getDiffrentFoldersNames(CSVCOLORSFoldersNames, foldersInCOLORSNames) 
 
     if (diffrentFoldersPSD) {
         diffrentColorFolders += diffrentPSDTitle + diffrentFoldersPSD;
@@ -52,42 +52,22 @@ function getFoldersInCOLORSNames(foldersInCOLORS) {
     return foldersInCOLORSNames;
 }
 
-function getDiffrentDiffrentFoldersCSV(CSVCOLORSFoldersNames, foldersInCOLORSNames) {
+function getDiffrentFoldersNames(foldersNamesA, foldersNamesB) {
 
-    var diffrentFoldersCSV = "";
+    var diffrentFolders = "";
 
-    for (var i = 0; i < CSVCOLORSFoldersNames.length; i++) {
+    for (var k = 0; k < foldersNamesB.length; k++) {
         var thereIs = false;
-        for (var l = 0; l < foldersInCOLORSNames.length; l++) {
-            if (CSVCOLORSFoldersNames[i] === foldersInCOLORSNames[l]) {
+        for (var l = 0; l < foldersNamesA.length; l++) {
+            if (foldersNamesB[k] === foldersNamesA[l]) {
                 thereIs = true;
                 break;
             }
         }
         if (!thereIs) {
-            diffrentFoldersCSV += CSVCOLORSFoldersNames[i] + " ";
+            diffrentFolders += foldersNamesB[k] + " ";
         }
     }
 
-    return diffrentFoldersCSV
-}
-
-function getDiffrentFoldersPSD(CSVCOLORSFoldersNames, foldersInCOLORSNames) {
-
-    var diffrentFoldersPSD = "";
-
-    for (var k = 0; k < foldersInCOLORSNames.length; k++) {
-        var thereIs = false;
-        for (var l = 0; l < CSVCOLORSFoldersNames.length; l++) {
-            if (foldersInCOLORSNames[k] === CSVCOLORSFoldersNames[l]) {
-                thereIs = true;
-                break;
-            }
-        }
-        if (!thereIs) {
-            diffrentFoldersPSD += foldersInCOLORSNames[k] + " ";
-        }
-    }
-
-    return diffrentFoldersPSD
+    return diffrentFolders
 }

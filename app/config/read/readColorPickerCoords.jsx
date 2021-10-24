@@ -7,7 +7,7 @@ function readColorPickerCoords() {
 
     for (var i = 0; i < RGBLayersNames.length; i++) {
         var layerName = RGBLayersNames[i]
-        var coordLayer = getConfigValue(layerName + "_coords").split(",")
+        var coordLayer = getConfigValue(layerName + _configKeys.coordKey).split(",")
         coords.push(coordLayer)
     }
 

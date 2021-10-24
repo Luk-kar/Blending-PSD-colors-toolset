@@ -1,4 +1,7 @@
-
+var _configKeys = {
+    colorKey: "_color",
+    coordKey: "_coord"
+}
 
 var configDefaultValues = {
     fileStructure: {
@@ -28,30 +31,30 @@ var configDefaultValues = {
     colorsRGB: {
         title: "COLORS RGB",
         R: {
-            key: "R",
+            key: "R" + _configKeys.colorKey,
             value: "FF0000"
         },
         G: {
-            key: "G",
+            key: "G" + _configKeys.colorKey,
             value: "00FF00"
         },
         B: {
-            key: "B",
+            key: "B" + _configKeys.colorKey,
             value: "0000FF"
         }
     },
     pickerCoords: {
         title: "COLOR PICKER COORDS PIXEL FILL",
         R: {
-            key: "R_coords",
+            key: "R" + _configKeys.coordKey,
             value: "180,175"
         },
         G: {
-            key: "G_coords",
+            key: "G" + _configKeys.coordKey,
             value: "140,274"
         },
         B: {
-            key: "B_coords",
+            key: "B" + _configKeys.coordKey,
             value: "178,249"
         }
     }

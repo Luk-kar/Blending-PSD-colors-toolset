@@ -9,7 +9,7 @@ function readColorsRGB() {
     var layersNames = readRGBLayersNames()
 
     for (var i = 0; i < layersNames.length; i++) {
-        colors.unshift(getConfigValue(layersNames[i]))
+        colors.unshift(getConfigValue(layersNames[i]) + _configKeys.colorKey)
     }
 
     return colors;

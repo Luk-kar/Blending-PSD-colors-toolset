@@ -17,39 +17,9 @@ function getDiffrentLayersInPSDThanInConfig(foldersInColorFolder, colorLayersNam
 
         var diffrentLayersInFolder = "";
 
-        // in layers
-        for (var k = 0; k < colorLayers.length; k++) {
+        diffrentLayersInFolder += getDiffrentPSDLayersNames(colorLayers, colorLayersNames, colorFolder)
 
-            var thereIs = false;
-            for (var j = 0; j < colorLayersNames.length; j++) {
-                if (colorLayers[k].name === colorLayersNames[j]) {
-                    thereIs = true;
-                    break;
-                }
-            }
-
-            if (!thereIs) {
-                diffrentLayersInFolder += colorLayers[k].name + " ";
-                alertWrongColorNameInPSD(colorFolder.name, colorLayers[k].name);
-            }
-        }
-
-        // in config
-        for (var l = 0; l < colorLayersNames.length; l++) {
-
-            var thereIs = false;
-            for (var j = 0; j < colorLayers.length; j++) {
-                if (colorLayersNames[l] === colorLayers[j].name) {
-                    thereIs = true;
-                    break;
-                }
-            }
-
-            if (!thereIs) {
-                diffrentLayersInFolder += colorLayersNames[l] + " ";
-                alertWrongColorNameInPSD(colorFolder.name, colorLayersNames[l]);
-            }
-        }
+        diffrentLayersInFolder += getDiffrentConfigLayersNames(colorLayersNames, colorLayers, colorFolder)
 
         if (diffrentLayersInFolder) {
             diffrentLayersInPSD += colorFolder.name + "," + diffrentLayersInFolder + "\n";
@@ -62,4 +32,50 @@ function getDiffrentLayersInPSDThanInConfig(foldersInColorFolder, colorLayersNam
     }
 
     return "";
+}
+
+function getDiffrentPSDLayersNames(colorLayers, colorLayersNames, colorFolder) {
+
+    var diffrentLayersInFolder = "";
+
+    for (var k = 0; k < colorLayers.length; k++) {
+
+        var thereIs = false;
+        for (var j = 0; j < colorLayersNames.length; j++) {
+            if (colorLayers[k].name === colorLayersNames[j]) {
+                thereIs = true;
+                break;
+            }
+        }
+
+        if (!thereIs) {
+            diffrentLayersInFolder += colorLayers[k].name + " ";
+            alertWrongColorNameInPSD(colorFolder.name, colorLayers[k].name);
+        }
+    }
+
+    return diffrentLayersInFolder
+}
+
+function getDiffrentConfigLayersNames(colorLayersNames, colorLayers, colorFolder) {
+
+    var diffrentLayersInFolder = "";
+
+    for (var l = 0; l < colorLayersNames.length; l++) {
+
+        var thereIs = false;
+        for (var j = 0; j < colorLayers.length; j++) {
+            if (colorLayersNames[l] === colorLayers[j].name) {
+                thereIs = true;
+                break;
+            }
+        }
+
+        if (!thereIs) {
+            diffrentLayersInFolder += colorLayersNames[l] + " ";
+            alertWrongColorNameInPSD(colorFolder.name, colorLayersNames[l]);
+        }
+    }
+
+    return diffrentLayersInFolder
 }

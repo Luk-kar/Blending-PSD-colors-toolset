@@ -9,15 +9,20 @@ function getDiffrentLayersInPSDThanInConfig(foldersInColorFolder, colorLayersNam
     diffrentLayersInPSD = getDiffrentLayersInPSD(foldersInColorFolder, colorLayersNames)
 
     if (diffrentLayersInPSD) {
-        var diffrentLayersInTitle = "\n\ndiffrent layers in PSD compare to config file\n" +
-        "PSD," + getFullActivePSDPath() + "\n" +
-        "config CSV," + getConfigPath() + "\n";
-        var diffrentLayersInColumns = "folder, layers\n";
-
-        return diffrentLayersInTitle + diffrentLayersInColumns + diffrentLayersInPSD;
+        return convertIntoCSVValues(diffrentLayersInPSD)
     }
 
     return "";
+}
+
+function convertIntoCSVValues(diffrentLayersInPSD) {
+
+    var diffrentLayersInTitle = "\n\ndiffrent layers in PSD compare to config file\n" +
+        "PSD," + getFullActivePSDPath() + "\n" +
+        "config CSV," + getConfigPath() + "\n"
+    var diffrentLayersInColumns = "folder, layers\n"
+
+    return diffrentLayersInTitle + diffrentLayersInColumns + diffrentLayersInPSD
 }
 
 function getDiffrentLayersInPSD(foldersInColorFolder, colorLayersNames, diffrentLayersInPSD) {

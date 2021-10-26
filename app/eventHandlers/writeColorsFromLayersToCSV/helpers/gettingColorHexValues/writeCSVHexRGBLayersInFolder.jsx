@@ -4,9 +4,9 @@
 
 function writeCSVHexRGBLayersInFolder(RBGLayers) {
 
-    for (var j = 0; j < RBGLayers.length; j++) {
+    for (var i = 0; i < RBGLayers.length; i++) {
 
-        var layer = RBGLayers[j];
+        var layer = RBGLayers[i];
 
         if (isLayerEmptyCheck(layer)) {
             writeInCSVFile("null,");
@@ -15,7 +15,7 @@ function writeCSVHexRGBLayersInFolder(RBGLayers) {
 
         var isNextColumn = "";
 
-        if (j + 1 !== RBGLayers.length) {
+        if (i + 1 !== RBGLayers.length) {
             isNextColumn = ",";
         }
 

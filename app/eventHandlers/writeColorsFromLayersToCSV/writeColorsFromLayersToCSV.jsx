@@ -43,7 +43,7 @@ function writeColorsFromLayersToCSV() {
 
     writeCSVAllHexFoldersValues(RGBfolders, layersNames);
 
-    alert("You successfully saved values to " + getCSVpath());
+    alert("You successfully saved values to " + decodeURI(getCSVpath()));
 
     // reset file
     doc.close(SaveOptions.DONOTSAVECHANGES);

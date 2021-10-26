@@ -7,6 +7,8 @@ function writeCSVHexRGBLayersInFolder(RBGLayers) {
     for (var i = 0; i < RBGLayers.length; i++) {
 
         var layer = RBGLayers[i];
+        var doc = app.activeDocument;
+        doc.activeLayer = layer
 
         if (isLayerEmptyCheck(layer)) {
             writeInCSVFile("null,");

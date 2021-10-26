@@ -1,5 +1,6 @@
 #include "./helpers/checkingConditions/checkConditionToRunScript.jsx"
 #include "./helpers/makeSureIfSavedBeforeChangingFile.jsx"
+#include "../../config/read/readRGBLayersNames.jsx"
 #include "./helpers/changeLayersFolderAttributes/prearrangeDocToProcess.jsx"
 #include "./helpers/CSV/getCSVpath.jsx"
 #include "./helpers/CSV/writeCSVColumns.jsx"
@@ -28,7 +29,7 @@ function writeColorsFromLayersToCSV() {
 
     var RGBfolders = COLORSFolder.layerSets;
 
-    var layersNames = ["R", "G", "B"];
+    var layersNames = readRGBLayersNames();
     
     prearrangeDocToProcess(COLORSFolder, RGBfolders, layersNames);
 

@@ -43,7 +43,7 @@ If you want to customize the tool towards your needs look at **config.ini** in t
 
 ### AppData are in: <em>~/.../Blending PSD colors - toolset/</em>:
 - **config.ini**
-  - FILE STRUCTURE (How the PSD has to be constructed)
+  - <em>FILE STRUCTURE (How the PSD has to be constructed)
     - color_folder_name = COLORS (Name of folder from which color hex values will be gathered)
     - folders_in_it = 1 (Names of folders, created in COLORS folder)
     - layers_in_it = R,G,B (Names of each layer in folder in COLORS folder)
@@ -55,7 +55,7 @@ If you want to customize the tool towards your needs look at **config.ini** in t
   - COLOR PICKER COORDS PIXEL FILL (Color picker coordinates needed in **Set left upper pixel in COLORS**)
     - R_coord = 180,175 
     - G_coord = 140,274 
-    - B_coord = 178,249
+    - B_coord = 178,249</em>
 
 
 ### Prerequisites 💪
@@ -126,7 +126,7 @@ Please read [**CONTRIBUTING.md**](docs/CONTRIBUTING.md) for details on our code 
 
 ## License 📜
 
-This project is licensed under the MIT License - see the [**LICENSE**](docs/LICENSE) file for details
+This project is licensed under the MIT License - see the [**LICENSE**](LICENSE) file for details
 
 ## Acknowledgments 👍
 

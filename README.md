@@ -3,7 +3,7 @@
 <div align="center">🔎🔎🔎</div>
 
 <div align="center">
-</br>Read all colors in folder COLORS. Save them into CSV file and several others helping tool</br>
+</br>Read all colors in folder COLORS and save them into CSV file. It also has several others utility tools</br>
 </div>
 <div align="center"><i>
 Important! Tested and created for Photshop CS6 64bit Version: 13.0 on Windows 10</br></br>
@@ -17,18 +17,17 @@ Important! Tested and created for Photshop CS6 64bit Version: 13.0 on Windows 10
 
 ## Getting Started 💡
 
-The tool is created for reading blending **"colors layers"** hex values above some **"base layers"**
-All read values are written into a CSV file in the same directory as opened PSD file and with the same name
+The tool is created for reading blending **"colors layers"** hex values above **"base layers"** <br/>All read values are written into a CSV file in the same directory as opened PSD file and with the same name
 To do that just click **Write colors from layers to CSV file** in the menu
 
 There are other utility tools as well, like:
 **Set colors from CSV file**, **Transform BASE layers into pngs**, **Create folders templates**, **Set left upper pixel in COLORS**
 
-List of errors during usage is written in a file in chosen CSV directory with CSV's name + prefix _errors.csv
+List of **errors** during usage is written in a file in **chosen CSV directory** with **CSV's name + prefix _errors.csv**
 
 If you want to customize the tool towards your needs look at **config.ini** in the script directory
 
-#### Toolset consist of:
+### Toolset consist of:
 
 - **Write colors from layers to CSV file** (Read all colors in folder COLORS. Save them into CSV file)
 
@@ -42,7 +41,7 @@ If you want to customize the tool towards your needs look at **config.ini** in t
 
 - **About** (mainly usage and author's info)
 
-#### AppData are in: ~/.../Blending PSD colors - toolset/:
+### AppData are in: <em>~/.../Blending PSD colors - toolset/</em>:
 - **config.ini**
   - FILE STRUCTURE (How the PSD has to be constructed)
     - color_folder_name = COLORS (Name of folder from which color hex values will be gathered)

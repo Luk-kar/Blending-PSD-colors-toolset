@@ -1,7 +1,7 @@
 #include "./helpers/getDiffrentLayersInPSD/getDiffrentLayersInPSD.jsx"
 #include "./helpers/convertIntoCSVValues/convertIntoCSVValues.jsx"
 
-function getDiffrentLayersInPSDThanInConfig(foldersInColorFolder, colorLayersNames) {  //todo
+function getDiffrentLayersInPSDThanInConfig(foldersInColorFolder, colorLayersNames) {
 
     var diffrentLayersInPSD = "";
 

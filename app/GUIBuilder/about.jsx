@@ -1,5 +1,7 @@
+#include "../config/read/readColorFolderName.jsx"
+#include "../config/read/readRGBLayersNames.jsx"
 
-function about(mainMenu) {
+function about(mainMenu, buttonsDescriptions) {
     var about = new Window("dialog", "About");
     about.alignChildren = "left";
 
@@ -8,11 +10,11 @@ function about(mainMenu) {
     var blueColor = winGraphics.newPen(winGraphics.BrushType.SOLID_COLOR, [0,0,1], 1);
 
     var text = 'Instruction:\n' +
-    '1. Have folder "COLORS" in the top hierarchy in the PSD file.\n' +
-    '2. Have some folders in the "COLORS" folder.\n' +
-    '3. In each folder have 3 layers with names: R, G, B.\n' +
+    '1. Have folder "' + readColorFolderName() + '" in the top hierarchy in the PSD file.\n' +
+    '2. Have some folders in the "' + readColorFolderName() + '" folder.\n' +
+    '3. In each folder have ' + readRGBLayersNames().length + ' layers with names: ' + readRGBLayersNames().join(",") + '.\n' +
     '4. Each layer has in the left upper corner a color sample.\n' +
-    '5. Run "Write colors from layers to CSV file".\n' + //todo
+    '5. Run "' + buttonsDescriptions.readColors + '".\n' + //todo
     '6. Find CSV file, where opened PSD file is located.\n' +
     '7. Enjoy.';
 

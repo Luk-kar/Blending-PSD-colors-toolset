@@ -6,15 +6,25 @@
 #include "./about.jsx"
 
 function mainMenu() {
-    var menu = new Window("dialog", "Read blending colors");
+    var menu = new Window("dialog", "Blending colors - tools");
 
-    var buttonFoldersTemplates = menu.add("button", [0,80,290,101], 'Create folders templates');
-    var buttonSetLeftUpperPixelInCOLORS = menu.add("button", [0,80,290,101], 'Set left upper pixel in COLORS');
-    var buttonReadColors = menu.add("button", [0,80,290,101], 'Write colors from layers to CSV file');
-    var buttonSetColors = menu.add("button", [0,80,290,101], 'Set colors from CSV file');
-    var buttonBASEToPNGs = menu.add("button", [0,80,290,101], 'Transform BASE layers into pngs');
-    var buttonAbout = menu.add("button", [0,80,290,101], 'About');
-    var buttonClose = menu.add("button", [0,80,290,101], 'Close');
+    var buttonsDescriptions = {
+        foldersTemplates: 'Create folders templates',
+        setLeftUpperPixelInCOLORS: 'Set left upper pixel in COLORS',
+        readColors: 'Write colors from layers to CSV file',
+        setColors: 'Set colors from CSV file',
+        BASEToPNGs: 'Transform BASE layers into pngs',
+        About: 'About',
+        Close: 'Close'
+    }
+
+    var buttonReadColors = menu.add("button", [0,80,290,101], buttonsDescriptions.readColors);
+    var buttonSetColors = menu.add("button", [0,80,290,101], buttonsDescriptions.setColors);
+    var buttonBASEToPNGs = menu.add("button", [0,80,290,101], buttonsDescriptions.BASEToPNGs);
+    var buttonFoldersTemplates = menu.add("button", [0,80,290,101], buttonsDescriptions.foldersTemplates);
+    var buttonSetLeftUpperPixelInCOLORS = menu.add("button", [0,80,290,101], buttonsDescriptions.setLeftUpperPixelInCOLORS);
+    var buttonAbout = menu.add("button", [0,80,290,101], buttonsDescriptions.About);
+    var buttonClose = menu.add("button", [0,80,290,101], buttonsDescriptions.Close);
 
     buttonFoldersTemplates.onClick = function() {
         menu.close();
@@ -43,7 +53,7 @@ function mainMenu() {
 
     buttonAbout.onClick = function() {
         menu.close();
-        about(menu);
+        about(menu, buttonsDescriptions);
     }
 
     buttonClose.onClick = function() {

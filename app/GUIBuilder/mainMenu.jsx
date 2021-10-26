@@ -9,11 +9,11 @@ function mainMenu() {
     var menu = new Window("dialog", "Blending colors - tools");
 
     var buttonsDescriptions = {
-        foldersTemplates: 'Create folders templates',
-        setLeftUpperPixelInCOLORS: 'Set left upper pixel in COLORS',
         readColors: 'Write colors from layers to CSV file',
         setColors: 'Set colors from CSV file',
         BASEToPNGs: 'Transform BASE layers into pngs',
+        foldersTemplates: 'Create folders templates',
+        setLeftUpperPixelInCOLORS: 'Set left upper pixel in COLORS',
         About: 'About',
         Close: 'Close'
     }

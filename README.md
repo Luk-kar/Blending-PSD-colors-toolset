@@ -1,9 +1,9 @@
-<h1 align="center">Read blending colors - toolset</h1>
+<h1 align="center">Blending PSD colors - toolset</h1>
 
-<div align="center">🚀🚀🚀</div>
+<div align="center">🔎🔎🔎</div>
 
 <div align="center">
-</br>Read all colors in folder COLORS. Save them into csv fle and several helping tools</br>
+</br>Read all colors in folder COLORS. Save them into CSV file and several others helping tool</br>
 </div>
 <div align="center"><i>
 Important! Tested and created for Photshop CS6 64bit Version: 13.0 on Windows 10</br></br>
@@ -11,53 +11,63 @@ Important! Tested and created for Photshop CS6 64bit Version: 13.0 on Windows 10
 
 ![How the program works](docs/images/How_it_works.png)
 
-|      save BASE layers into PNGs           |            create folders templates           |        read color from layers           |
-| :---------------------------------------: | :-------------------------------------------: | :-------------------------------------: |
-| ![Save BASE layers into PNGs](docs/images/add_canvas.gif) | ![Create folders templates](docs/images/set_canvas.gif)     | ![Read color from layers](docs/images/set_canvas_by_biggest_edges.gif)|
+|      Write colors from layers to CSV file           |            Set colors from CSV file           |        Transform BASE layers into pngs           |     Set left upper pixel in COLORS           |     Create folders templates COLORS           |
+| :---------------------------------------: | :-------------------------------------------: | :-------------------------------------: | :-------------------------------------: | :-------------------------------------: |
+| ![Write colors from layers to CSV file](docs/images/add_canvas.gif) | ![Set colors from CSV file](docs/images/set_canvas.gif)     | ![Read color from layers](docs/images/set_canvas_by_biggest_edges.gif)| ![Set left upper pixel in COLORS](docs/images/add_canvas.gif) | ![Create folders templates](docs/images/add_canvas.gif) |
 
 ## Getting Started 💡
 
-You choose opened files in PS or source folder with files to process  
-Later you decide if you want to save them in an original directory or in the chosen destination folder  //todo
-In the end, you process files by (**Add canvas**, **Set canvas**, **Resize image**, **Set canvas by biggest edges**, **2^n canvas**, **Trim canvas**, or **Resize image**) with input by user values
+The tool is created for reading blending **"colors layers"** hex values above some **"base layers"**
+All read values are written into a CSV file in the same directory as opened PSD file and with the same name
+To do that just click **Write colors from layers to CSV file** in the menu
 
-List of changed files are written in **ChangedFilesList.log**, if value in **Preferences.ini** in **"CHANGEDFILESLIST.LOG"- WRITE LOG** is **=ON**  
-You can change this value by clicking the button **Settings**, then button **ChangedFilesList.log" Log**
+There are other utility tools as well, like:
+**Set colors from CSV file**, **Transform BASE layers into pngs**, **Create folders templates**, **Set left upper pixel in COLORS**
+
+List of errors during usage is written in a file in chosen CSV directory with CSV's name + prefix _errors.csv
+
+If you want to customize the tool towards your needs look at **config.ini** in the script directory
 
 #### Toolset consist of:
 
-- **Add canvas** (add a canvas by relative value to already existing size)
+- **Write colors from layers to CSV file** (Read all colors in folder COLORS. Save them into CSV file)
 
-- **Set canvas** (set a canvas by absolute value, each selected file will have the same size)
+- **Set colors from CSV file** (Set colors from chosen CSV file into COLORS folder's layers)
 
-- **Set canvas by biggest edges** (each image has extreme edges sizes in a selected set)
+- **Transform BASE layers into pngs** (Print screen all layers in folder BASE and save them into pngs)
 
-- **2^n canvas** (add a canvas for both sides by the nearest value of a power of 2)
+- **Create folders templates** (Create a template in opened PSD for the tool)
 
-- **Trim canvas**
+- **Set left upper pixel in COLORS** (Give each COLORS's layer a pixel which is needed to be able to read color value)
 
-- **Resize image**
+- **About** (mainly usage and author's info)
 
-- **Settings** (Filter source folder files by PNG, hide dialog "Do you want to close all opened files" enable writing changed names of files in "ChangedFilesList.log")
+#### AppData are in: ~/.../Blending PSD colors - toolset/:
+- **config.ini**
+  - FILE STRUCTURE (How the PSD has to be constructed)
+    - color_folder_name = COLORS (Name of folder from which color hex values will be gathered)
+    - folders_in_it = 1 (Names of folders, created in COLORS folder)
+    - layers_in_it = R,G,B (Names of each layer in folder in COLORS folder)
+    - base_folder_name = BASE (Name of folder from which will be layers saved to pngs)
+  - COLORS RGB (colors which will be set to layers in template)
+    - R_color = FF0000 
+    - G_color = 00FF00 
+    - B_color = 0000FF 
+  - COLOR PICKER COORDS PIXEL FILL (Color picker coordinates needed in **Set left upper pixel in COLORS**)
+    - R_coord = 180,175 
+    - G_coord = 140,274 
+    - B_coord = 178,249
 
-#### AppData are in: _~Documents/UI-Photoshop-toolSet_:
-
-- **ChangedFilesList.log**
-
-- **Preferences.ini** in which you can change values by **Settings** buttons or by rewriting them in a file:
-  - "Filter files by PNG" By default
-  - "Do you want to close all opened files?" Dialog
-  - "ChangedFilesList.log" Writing in log
 
 ### Prerequisites 💪
 
-To run this script, you need at least **Photoshop CS6 64bit Version: 13.0** other versions of PS could not work
+To run this script, you need at least **Photoshop CS6 64bit Version: 13.0** other versions of PS are not tested
 
 ### Installing 🔨
 
-1. **Download "UI-Photoshop-toolSet-master.zip"**
+1. **Download "Blending PSD colors - toolset"**
 
-2. **Unzip file** in a preferred directory (suggested place is: _...\Adobe\Adobe Photoshop CS6 (64 Bit)\Presets\Scripts_)
+2. **Unzip file** in a preferred directory (suggested place is: _...\Adobe\Adobe Photoshop CS6 (64 Bit)\Presets\Scripts)
 
 3. **Open "Photoshop"**
 
@@ -77,7 +87,7 @@ To run this script, you need at least **Photoshop CS6 64bit Version: 13.0** othe
 
 11. **Navigate** to the unzipped folder directory
 
-12. **Open "control panel.jsx"**
+12. **Open "blending_PSD_colors_toolset.jsx"**
 
 13. Click **"Close"** button in UI toolset
 
@@ -107,21 +117,9 @@ For now, only manual testing is available. Use [**Adobe Phtoshop CS6 SDK Win**](
 - [**JavaScript Tools Guide CS6**](https://github.com/1179432578/psd-tool/blob/master/JavaScript%20Tools%20Guide%20CS6.pdf)
 - [**Photoshop CS6 JavaScript Ref.pdf**](https://www.adobe.com/content/dam/acom/en/devnet/photoshop/scripting/Photoshop-CS6-JavaScript-Ref.pdf)
 
-## Structure of the code 🧭
-
-![Flow diagram](docs/images/Flow_Diagram.png)
-
-## How to make an own module 🪓
-
-Just open [**How_to_make_own_module.md**](docs/How_to_make_own_module.md)
-
 ## Contributing 📬
 
 Please read [**CONTRIBUTING.md**](docs/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us
-
-## Versioning 🗓️
-
-We use [**SemVer**](http://semver.org/) for versioning in [**CHANGELOG.md**](docs/CHANGELOG.md)
 
 ## Authors 🎈
 
@@ -134,7 +132,3 @@ This project is licensed under the MIT License - see the [**LICENSE**](docs/LICE
 ## Acknowledgments 👍
 
 - _README-template.md, CONTRIBUTING-template.md_ by [**PurpleBooth**](https://gist.github.com/PurpleBooth)
-- [**_dateAdd()_**](https://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object/1214753#1214753) by [**Kip**](https://stackoverflow.com/users/18511/kip)
-- [**_restrictInputKeys()_**](https://stackoverflow.com/questions/59697920/is-possible-to-lock-certain-keys-in-keyboard-during-input-in-edittext-box-ph) by [**RobC**](https://stackoverflow.com/users/1611459/robc)
-- persistent reviewer [**Ikulis**](https://github.com/ikulis)
-

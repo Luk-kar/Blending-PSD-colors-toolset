@@ -13,7 +13,7 @@ Important! Tested and created for Photshop CS6 64bit Version: 13.0 on Windows 10
 
 |      Write colors from layers to CSV file           |            Set colors from CSV file           |        Transform BASE layers into pngs           |     Set left upper pixel in COLORS           |     Create folders templates COLORS           |
 | :---------------------------------------: | :-------------------------------------------: | :-------------------------------------: | :-------------------------------------: | :-------------------------------------: |
-| ![Write colors from layers to CSV file](docs/images/add_canvas.gif) | ![Set colors from CSV file](docs/images/set_canvas.gif)     | ![Read color from layers](docs/images/set_canvas_by_biggest_edges.gif)| ![Set left upper pixel in COLORS](docs/images/add_canvas.gif) | ![Create folders templates](docs/images/add_canvas.gif) |
+| ![Write colors from layers to CSV file](docs/images/1-Write-colors-from-layers-to-CSV-file.gif) | ![Set colors from CSV file](docs/images/2-Set-colors-from-CSV-file.gif)     | ![Transform BASE layers into pngs](docs/images/3-Transform-BASE-layers-into-pngs.gif)| ![Create folders templates](docs/images/4-Create-folders-templates.gif) | ![Set left upper pixel in COLORS](docs/images/5-Set-left-upper-pixel-in-COLORS.gif) |
 
 ## Getting Started 💡
 

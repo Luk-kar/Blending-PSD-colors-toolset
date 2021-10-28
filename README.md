@@ -98,8 +98,6 @@ To run this script, you need at least **Photoshop CS6 64bit Version: 13.0** othe
 
 17. **Enjoy!**
 
-![make script as button](docs/images/make_script_as_button.gif)
-
 ## Running the tests 🧪
 
 For now, only manual testing is available. Use [**Adobe Phtoshop CS6 SDK Win**](http://download.macromedia.com/pub/developer/photoshop/sdk/adobe_photoshop_cs6_sdk_win.zip) to find bugs during running script

@@ -1,5 +1,5 @@
 #include "./helpers/getDiffrentPSDLayersNames.jsx"
-#include "./helpers/getDiffConfigLayersNames.jsx" //name has to be short, path is too long
+#include "./helpers/getDiffrentConfigLayersNames.jsx" //name has to be short, path is too long
 
 function getDiffrentLayersNames(colorLayers, colorLayersNames, colorFolder) {
 

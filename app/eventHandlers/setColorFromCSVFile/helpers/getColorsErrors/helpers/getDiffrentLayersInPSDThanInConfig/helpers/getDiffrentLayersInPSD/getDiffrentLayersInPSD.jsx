@@ -1,4 +1,4 @@
-#include "./helpers/getDiffrentLayersNames/getDiffrentLayersNames.jsx"
+#include "./getDiffrentLayersNames.jsx"
 
 function getDiffrentLayersInPSD(foldersInColorFolder, colorLayersNames, diffrentLayersInPSD) {
 

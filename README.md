@@ -11,9 +11,14 @@ Important! Tested and created for Photshop CS6 64bit Version: 13.0 on Windows 10
 
 ![How the program works](docs/images/How_it_works.png)
 
-|      Write colors from layers to CSV file           |            Set colors from CSV file           |        Transform BASE layers into pngs           |     Set left upper pixel in COLORS           |     Create folders templates COLORS           |
-| :---------------------------------------: | :-------------------------------------------: | :-------------------------------------: | :-------------------------------------: | :-------------------------------------: |
-| ![Write colors from layers to CSV file](docs/images/1-Write-colors-from-layers-to-CSV-file.gif) | ![Set colors from CSV file](docs/images/2-Set-colors-from-CSV-file.gif)     | ![Transform BASE layers into pngs](docs/images/3-Transform-BASE-layers-into-pngs.gif)| ![Create folders templates](docs/images/4-Create-folders-templates.gif) | ![Set left upper pixel in COLORS](docs/images/5-Set-left-upper-pixel-in-COLORS.gif) |
+|      Write colors from layers to CSV file           |            Set colors from CSV file           |        Transform BASE layers into pngs           |
+| :---------------------------------------: | :-------------------------------------------: | :-------------------------------------: |
+| ![Write colors from layers to CSV file](docs/images/1-Write-colors-from-layers-to-CSV-file.gif) | ![Set colors from CSV file](docs/images/2-Set-colors-from-CSV-file.gif)     | ![Transform BASE layers into pngs](docs/images/3-Transform-BASE-layers-into-pngs.gif)|
+
+| Set left upper pixel in COLORS           |     Create folders templates COLORS           | Enumerate folders in COLORS|
+| :---------------------------------------: | :---------------------------------------: | :---------------------------------------: |
+| ![Create folders templates](docs/images/4-Create-folders-templates.gif) | ![Set left upper pixel in COLORS](docs/images/5-Set-left-upper-pixel-in-COLORS.gif) | ![Enumerate folders in COLORS folder](docs/images/6-Enumerate-folders-in-COLORS-folder.gif) |
+
 
 ## Getting Started 💡
 
@@ -38,6 +43,8 @@ If you want to customize the tool towards your needs look at **config.ini** in t
 - **Create folders templates** (Create a template in opened PSD for the tool)
 
 - **Set left upper pixel in COLORS** (Give each COLORS's layer a pixel which is needed to be able to read color value)
+
+- **Enumerate folders in COLORS** (Enumerate all folders in COLORS folder in reverse order)
 
 - **About** (mainly usage and author's info)
 

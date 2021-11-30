@@ -12,6 +12,7 @@ function createCOLORFolderIfNotExists() {
 
     } else {
         var COLORSFolder = doc.layerSets.add();
+        COLORSFolder.blendMode = BlendMode.OVERLAY;
         COLORSFolder.name = readColorFolderName();
 
         var folders = createFoldersIn(COLORSFolder);

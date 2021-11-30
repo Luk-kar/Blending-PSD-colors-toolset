@@ -1,7 +1,7 @@
-function checkIsFolder(folderWithFolders, folderName) {
+function checkIsFolder(layerSets, folderName) {
 
-    for (var j = 0; j < folderWithFolders.length; j++) {
-        if (folderWithFolders[j].name === folderName) {
+    for (var j = 0; j < layerSets.length; j++) {
+        if (layerSets[j].name === folderName) {
             return true;
         }
     }

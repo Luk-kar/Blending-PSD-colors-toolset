@@ -1,4 +1,4 @@
-#include "../../../utils/getFoldersInCOLORSFolder.jsx"
+#include "../../../../../utils/getFoldersInCOLORSFolder.jsx"
 #include "../../../../../utils/checkIsFolder.jsx"
 #include "./helpers/getFolderInFolders.jsx"
 #include "../../../../../../config/read/readRGBLayersNames.jsx"

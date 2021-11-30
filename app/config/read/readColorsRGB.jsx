@@ -1,6 +1,5 @@
 #include "./readRGBLayersNames.jsx"
 #include "./utils/getConfigValue.jsx"
-#include "../configDefaultValues.jsx"
 
 function readColorsRGB() {
 
@@ -9,7 +8,7 @@ function readColorsRGB() {
     var layersNames = readRGBLayersNames()
 
     for (var i = 0; i < layersNames.length; i++) {
-        colors.unshift(getConfigValue(layersNames[i]) + _configKeys.colorKey)
+        colors.unshift(getConfigValue(layersNames[i]))
     }
 
     return colors;

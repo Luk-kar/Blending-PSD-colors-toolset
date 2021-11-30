@@ -1,6 +1,6 @@
-#include "../../../../config/read/readRGBLayersNames.jsx"
+#include "../../config/read/readRGBLayersNames.jsx"
 
-function getPSDFoldersInCOLORSFolder() {
+function getFoldersInCOLORSFolder() {
 
     var doc = app.activeDocument;
     var COLORSFolder = doc.layerSets.getByName(readColorFolderName());

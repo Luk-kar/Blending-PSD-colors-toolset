@@ -3,7 +3,7 @@
 #include "../eventHandlers/writeColorsFromLayersToCSV/writeColorsFromLayersToCSV.jsx"
 #include "../eventHandlers/setColorFromCSVFile/setColorFromCSVFile.jsx"
 #include "../eventHandlers/BASELayersIntoPNGs/BASELayersIntoPNGs.jsx"
-#include "../eventHandlers/numerateColorsFolders/numerateColorsFolders.jsx"
+#include "../eventHandlers/enumerateColorsFolders/enumerateColorsFolders.jsx"
 #include "../config/read/readColorFolderName.jsx"
 #include "./about.jsx"
 
@@ -16,7 +16,7 @@ function mainMenu() {
         BASEToPNGs: 'Transform BASE layers into pngs',
         foldersTemplates: 'Create folders templates',
         setLeftUpperPixelInCOLORS: 'Set left upper pixel in ' + readColorFolderName() + ' folder',
-        buttonNumerateFoldersInColors: 'Numerate folders in ' + readColorFolderName() + ' folder',
+        buttonNumerateFoldersInColors: 'Enumerate folders in ' + readColorFolderName() + ' folder',
         About: 'About',
         Close: 'Close'
     }
@@ -42,7 +42,7 @@ function mainMenu() {
 
     buttonNumerateFoldersInColors.onClick = function() {
         menu.close();
-        numerateColorsFolders();
+        enumerateColorsFolders();
     }
 
     buttonReadColors.onClick = function() {

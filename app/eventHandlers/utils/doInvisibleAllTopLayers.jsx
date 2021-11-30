@@ -2,7 +2,7 @@
 
 function doInvisibleAllTopLayers() {
     var doc = app.activeDocument;
-    var notFolderLayers = doc.artLayers;
+    var topLayers = doc.artLayers;
 
-    doInvisible(notFolderLayers);
+    doInvisible(topLayers);
 }

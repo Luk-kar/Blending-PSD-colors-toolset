@@ -3,6 +3,7 @@
 #include "../eventHandlers/writeColorsFromLayersToCSV/writeColorsFromLayersToCSV.jsx"
 #include "../eventHandlers/setColorFromCSVFile/setColorFromCSVFile.jsx"
 #include "../eventHandlers/BASELayersIntoPNGs/BASELayersIntoPNGs.jsx"
+#include "../eventHandlers/numerateColorsFolders/numerateColorsFolders.jsx"
 #include "../config/read/readColorFolderName.jsx"
 #include "./about.jsx"
 
@@ -25,7 +26,7 @@ function mainMenu() {
     var buttonBASEToPNGs = menu.add("button", [0,80,290,101], buttonsDescriptions.BASEToPNGs);
     var buttonFoldersTemplates = menu.add("button", [0,80,290,101], buttonsDescriptions.foldersTemplates);
     var buttonSetLeftUpperPixelInCOLORS = menu.add("button", [0,80,290,101], buttonsDescriptions.setLeftUpperPixelInCOLORS);
-    var buttonNumerateFoldersInColors = menu.add("button", [0,80,290,101], buttonsDescriptions.setLeftUpperPixelInCOLORS);
+    var buttonNumerateFoldersInColors = menu.add("button", [0,80,290,101], buttonsDescriptions.buttonNumerateFoldersInColors);
     var buttonAbout = menu.add("button", [0,80,290,101], buttonsDescriptions.About);
     var buttonClose = menu.add("button", [0,80,290,101], buttonsDescriptions.Close);
 
@@ -37,6 +38,11 @@ function mainMenu() {
     buttonSetLeftUpperPixelInCOLORS.onClick = function() {
         menu.close();
         setLeftUpperPixelInCOLORS();
+    }
+
+    buttonNumerateFoldersInColors.onClick = function() {
+        menu.close();
+        numerateColorsFolders();
     }
 
     buttonReadColors.onClick = function() {

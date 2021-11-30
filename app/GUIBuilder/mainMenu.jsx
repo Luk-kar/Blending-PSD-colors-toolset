@@ -3,6 +3,7 @@
 #include "../eventHandlers/writeColorsFromLayersToCSV/writeColorsFromLayersToCSV.jsx"
 #include "../eventHandlers/setColorFromCSVFile/setColorFromCSVFile.jsx"
 #include "../eventHandlers/BASELayersIntoPNGs/BASELayersIntoPNGs.jsx"
+#include "../config/read/readColorFolderName.jsx"
 #include "./about.jsx"
 
 function mainMenu() {
@@ -13,7 +14,8 @@ function mainMenu() {
         setColors: 'Set colors from CSV file',
         BASEToPNGs: 'Transform BASE layers into pngs',
         foldersTemplates: 'Create folders templates',
-        setLeftUpperPixelInCOLORS: 'Set left upper pixel in COLORS',
+        setLeftUpperPixelInCOLORS: 'Set left upper pixel in ' + readColorFolderName() + ' folder',
+        buttonNumerateFoldersInColors: 'Numerate folders in ' + readColorFolderName() + ' folder',
         About: 'About',
         Close: 'Close'
     }
@@ -23,6 +25,7 @@ function mainMenu() {
     var buttonBASEToPNGs = menu.add("button", [0,80,290,101], buttonsDescriptions.BASEToPNGs);
     var buttonFoldersTemplates = menu.add("button", [0,80,290,101], buttonsDescriptions.foldersTemplates);
     var buttonSetLeftUpperPixelInCOLORS = menu.add("button", [0,80,290,101], buttonsDescriptions.setLeftUpperPixelInCOLORS);
+    var buttonNumerateFoldersInColors = menu.add("button", [0,80,290,101], buttonsDescriptions.setLeftUpperPixelInCOLORS);
     var buttonAbout = menu.add("button", [0,80,290,101], buttonsDescriptions.About);
     var buttonClose = menu.add("button", [0,80,290,101], buttonsDescriptions.Close);
 
